@@ -19,7 +19,7 @@ stages:
 build:
   stage: build
   script: |
-    python3 build_helper.py docker-compose.yml > /dev/null
+    # python3 build_helper.py --n docker-compose.yml > /dev/null
     docker build -t sc-registry.fredhutch.org/covid19vaccinesimulator:test .
     docker push sc-registry.fredhutch.org/covid19vaccinesimulator:test
     sleep 5
