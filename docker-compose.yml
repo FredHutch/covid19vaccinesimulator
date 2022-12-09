@@ -9,8 +9,8 @@ services:
         condition: on-failure
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.covid19vaccinesimulator.rule=Host(`covid19vaccinesimulator0.fredhutch.org`)"
-        - "traefik.http.routers.covid19vaccinesimulator-secured.rule=Host(`covid19vaccinesimulator0.fredhutch.org`)"
+        - "traefik.http.routers.covid19vaccinesimulator.rule=Host(`covid19vaccinesimulator.fredhutch.org`)"
+        - "traefik.http.routers.covid19vaccinesimulator-secured.rule=Host(`covid19vaccinesimulator.fredhutch.org`)"
         - "traefik.http.routers.covid19vaccinesimulator.entrypoints=web,web-secured"
         - "traefik.http.services.covid19vaccinesimulator.loadbalancer.server.port=80" # it seems you always need to give traefik a port so it 'notices' the service
         - "traefik.http.routers.covid19vaccinesimulator.tls=true"
