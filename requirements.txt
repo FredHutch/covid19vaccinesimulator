@@ -1,0 +1,4 @@
+Flask==2.2.2
+matplotlib==3.3.2
+numpy==1.19.2+mkl
+scipy==1.5.3

@@ -1,0 +1,29 @@
+{
+  "name": "vaccine-allocator-front",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "flask --app index run",
+    "preview": "vite preview --port 5050"
+  },
+  "dependencies": {
+    "@unhead/vue": "^1.0.22",
+    "chart.js": "^3.8.0",
+    "decimal.js": "^10.4.3",
+    "luxon": "^2.4.0",
+    "pinia": "^2.0.13",
+    "primeflex": "^3.1.3",
+    "primeicons": "^5.0.0",
+    "primevue": "^3.12.5",
+    "voca": "^1.4.0",
+    "vue": "^3.2.33",
+    "vue-gtag": "^2.0.1",
+    "vue-router": "^4.0.14"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.1",
+    "sass": "^1.50.1",
+    "vite": "^2.9.5"
+  }
+}
