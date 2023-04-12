@@ -64,7 +64,7 @@ By default, the "yarn build" command above will generate html, css, javascript f
 Option 1 (recommended): follow the official installation instructions: https://flask.palletsprojects.com/en/2.2.x/installation/
 
 
-Optiono 2: inside the projet folder, run the following command
+Option 2: inside the projet folder, run the following command
 
 ```
 # if only Flask is not installed
