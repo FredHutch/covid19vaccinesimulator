@@ -75,10 +75,21 @@ pip install Flask
 # if all packages (i.e., numpy, scipy, matplotlib, Flask) are not installed
 
 # option 1
-pip install numpy scipy matplotlib Flask
+
+
+# windows
+pip install numpy scipy pandas Flask
+
+# mac
+pip3 install numpy scipy pandas Flask
 
 # option 2
+
+# windows
 pip install -r requirements.txt
+
+# mac
+pip3 install -r requirements.txt
 
 ```
 

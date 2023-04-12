@@ -3,7 +3,7 @@ import sys
 import os
 import json
 import numpy as np
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 from json import JSONEncoder
 
 class NumpyArrayEncoder(JSONEncoder):

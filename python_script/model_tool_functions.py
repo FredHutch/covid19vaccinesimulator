@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.integrate import odeint
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 import sys
 import os
 import json
