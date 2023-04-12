@@ -37,13 +37,13 @@ Yarn (Package Manager): https://yarnpkg.com/
 yarn install
 ```
 
-### Compile and Hot-Reload for Development
+### Compile and Hot-Reload for Development (only to see rednering during development)
 
 ```sh
 yarn dev
 ```
 
-### Compile and Minify for Production (e.g., served by Backend)
+### Compile and Minify for Production (e.g., run this everytime after making changes to compile html/css/javascript for Flask to serve)
 
 ```sh
 yarn build
@@ -83,7 +83,7 @@ pip install numpy scipy pandas Flask
 # mac
 pip3 install numpy scipy pandas Flask
 
-# option 2
+# option 2 
 
 # windows
 pip install -r requirements.txt
