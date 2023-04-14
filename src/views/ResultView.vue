@@ -44,7 +44,8 @@ const {
 //const API_URL = `http://localhost/VaccineAllocator/service.php`;
 
 // Flask
-const API_URL = `http://127.0.0.1:5000/simulation`;
+//const API_URL = `http://127.0.0.1:5000/simulation`;
+const API_URL = `/simulation`;
 
 let tempStrategy = {
   default_params: [0.8, 0.25, 0.01],
