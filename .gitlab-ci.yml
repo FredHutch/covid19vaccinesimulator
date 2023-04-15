@@ -13,40 +13,30 @@ stages:
   - test
   - deploy
 
-
 build:
   stage: build
-  script: |
-    # python3 build_helper.py --n docker-compose.yml > /dev/null
-    docker build -t sc-registry.fredhutch.org/covid19vaccinesimulator:test .
-    docker push sc-registry.fredhutch.org/covid19vaccinesimulator:test
-    sleep 5
+  script:
+    - docker build -t sc-registry.fredhutch.org/covid19vaxplorer:test .
+    - docker push sc-registry.fredhutch.org/covid19vaxplorer:test
 
 test:
   stage: test
   services: 
-    - name: sc-registry.fredhutch.org/covid19vaccinesimulator:test
-      alias: covid19vaccinesimulator
-  script: |
-    sleep 10
-    # CONTAINER_ID=$(docker ps | grep sc-registry.fredhutch.org__covid19vaccinesimulator- | cut -d' ' -f1)
-    # env
-    # curl -si http://covid19vaccinesimulator
-    # docker logs $CONTAINER_ID
-    curl -sI http://covid19vaccinesimulator | head -1 | grep -q "200 OK"
-  
+    - name: sc-registry.fredhutch.org/covid19vaxplorer:test
+      alias: covid19vaxplorer
+  script:
+    - sleep 15 && curl -sI  http://covid19vaxplorer:5000  |head -1|grep -q "200 OK"
 
-
-
+# TODO change branch to main after first-draft is merged to main
 deploy:
   stage: deploy
   only:
     refs:
-       - main
-  script: |
-    docker tag sc-registry.fredhutch.org/covid19vaccinesimulator:test sc-registry.fredhutch.org/covid19vaccinesimulator:latest
-    docker push sc-registry.fredhutch.org/covid19vaccinesimulator:latest
-    sleep 15
-    echo $SC_SWARM_CICD_SSH_KEY | base64 -d > ./sc_swarm_cicd_ssh_key
-    chmod 0400 ./sc_swarm_cicd_ssh_key
-    python3 build_helper.py docker-compose.yml | ssh -i ./sc_swarm_cicd_ssh_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@sc-swarm-mgr.fhcrc.org docker stack deploy --with-registry-auth -c - covid19vaccinesimulator
+        - first-draft
+  script:
+    - docker tag sc-registry.fredhutch.org/covid19vaxplorer:test sc-registry.fredhutch.org/covid19vaxplorer:latest
+    - docker push sc-registry.fredhutch.org/covid19vaxplorer:latest
+    - sleep 15
+    - echo $SC_SWARM_CICD_SSH_KEY | base64 -d > ./sc_swarm_cicd_ssh_key
+    - chmod 0400 ./sc_swarm_cicd_ssh_key
+    - python3 build_helper.py docker-compose.yml | ssh -i ./sc_swarm_cicd_ssh_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@sc-swarm-mgr.fhcrc.org docker stack deploy --with-registry-auth -c - covid19vaxplorer

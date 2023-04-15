@@ -1,20 +1,20 @@
 version: '3.3'
 services:
-  covid19vaccinesimulator:
+  covid19vaxplorer:
+    image: sc-registry.fredhutch.org/covid19vaxplorer:latest
     networks:
       - proxy
-    image: sc-registry.fredhutch.org/covid19vaccinesimulator:latest
     deploy:
       restart_policy:
         condition: on-failure
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.covid19vaccinesimulator.rule=Host(`covid19vaxplorer.fredhutch.org`)"
-        - "traefik.http.routers.covid19vaccinesimulator-secured.rule=Host(`covid19vaxplorer.fredhutch.org`)"
-        - "traefik.http.routers.covid19vaccinesimulator.entrypoints=web,web-secured"
-        - "traefik.http.services.covid19vaccinesimulator.loadbalancer.server.port=80" # it seems you always need to give traefik a port so it 'notices' the service
-        - "traefik.http.routers.covid19vaccinesimulator.tls=true"
-                          
+        - "traefik.http.routers.covid19vaxplorer.rule=Host(`covid19vaxplorer.fredhutch.org`)"
+        - "traefik.http.routers.covid19vaxplorer-secured.rule=Host(`covid19vaxplorer.fredhutch.org`)"
+        - "traefik.http.routers.covid19vaxplorer.entrypoints=web,web-secured"
+        - "traefik.http.services.covid19vaxplorer.loadbalancer.server.port=5000" # it seems you always need to give traefik a port so it 'notices' the service
+        - "traefik.http.routers.covid19vaxplorer.tls=true"
+
 networks:
   proxy:
     external: true
