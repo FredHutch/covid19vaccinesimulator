@@ -37,7 +37,7 @@ Yarn (Package Manager): https://yarnpkg.com/
 yarn install
 ```
 
-### Compile and Hot-Reload for Development (only to see rednering during development)
+### Compile and Hot-Reload for Development (only to see rendering during development)
 
 ```sh
 yarn dev
