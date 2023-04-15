@@ -27,12 +27,11 @@ test:
   script:
     - sleep 15 && curl -sI  http://covid19vaxplorer:5000  |head -1|grep -q "200 OK"
 
-# TODO change branch to main after first-draft is merged to main
 deploy:
   stage: deploy
   only:
     refs:
-        - first-draft
+        - main
   script:
     - docker tag sc-registry.fredhutch.org/covid19vaxplorer:test sc-registry.fredhutch.org/covid19vaxplorer:latest
     - docker push sc-registry.fredhutch.org/covid19vaxplorer:latest
