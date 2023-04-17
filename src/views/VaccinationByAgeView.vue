@@ -586,7 +586,7 @@ const basicOptions = {
             </DataTable>
             <br />
             <br />
-            <div class="text-2xl text-center">Unvaccinated: {{ 100 - group1VaccinatedTotal }} %</div>
+            <div class="text-2xl text-center">Unvaccinated: {{ GeneralUtility.minusNumbersAsDecimal(100, group1VaccinatedTotal) }} %</div>
             <div>
               
               <Message severity="error" v-if="group1VaccinatedTotal > 100" :closable="false">{{ proporSumOver100Msg }}</Message>

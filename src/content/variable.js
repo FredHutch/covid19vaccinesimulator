@@ -2066,7 +2066,7 @@ export var presetStrategyList = [
           },
           {
             category: "Unvaccinated",
-            fulldose: 100,
+            fulldose: 49.98,
             booster: 100,
           },
         ],
@@ -2088,7 +2088,7 @@ export var presetStrategyList = [
           },
           {
             category: "Unvaccinated",
-            fulldose: 0,
+            fulldose: 0.05,
             booster: 100,
           },
         ],
@@ -2495,7 +2495,7 @@ export var presetStrategyList = [
           },
           {
             category: "Unvaccinated",
-            fulldose: 100,
+            fulldose: 58.8,
             booster: 100,
           },
         ],
