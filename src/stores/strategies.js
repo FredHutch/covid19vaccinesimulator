@@ -220,6 +220,7 @@ export const useStrategiesStore = defineStore("strategies", () => {
       allocation: [
         {
           category: "Full dose",
+          date: jsDate,
           proportion: 100,
           group1: 100,
           group2: 0,
@@ -229,6 +230,7 @@ export const useStrategiesStore = defineStore("strategies", () => {
         },
         {
           category: "Booster",
+          date: jsDate,
           proportion: 0,
           group1: 0,
           group2: 0,

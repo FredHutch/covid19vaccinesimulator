@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 export var systemName = "Covid19Vaxplorer"; // 'Vaccine Allocator';
 
 export const fileFormatVersion = "0.0.1";
@@ -13,6 +15,12 @@ export const  boosterLessThanTotalMsg = "Not all proportion of the booster is al
 export const  boosterMoreThanTotalMsg = "Can not allocate more than the available proportion for the booster. Please reduce the proportion for certain age groups.";
 export const  lessThan100Msg = "Not all 100% of vaccine is allocated.";
 export const  moreThan100Msg = "Can not allocate more than 100% of the vaccines. Please reduce the proportion for certain age groups.";
+
+
+let nowDate = DateTime.utc().startOf("day");
+let jsDate = nowDate.toJSDate();
+//let nowDateString = nowDate.toISO();
+
 
 export var colorList = ["#ffa600", "#ff6361", "#bc5090", "#58508d", "#003f5c"];
 
@@ -1807,6 +1815,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
+              date: jsDate,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -1816,6 +1825,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
+              date: jsDate,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -1885,6 +1895,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
+              date: jsDate,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -1894,6 +1905,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
+              date: jsDate,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -1963,6 +1975,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
+              date: jsDate,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -1972,6 +1985,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
+              date: jsDate,
               proportion: 100,
               group1: 0,
               group2: 0,
@@ -2236,6 +2250,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
+              date: jsDate,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -2245,6 +2260,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
+              date: jsDate,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -2314,6 +2330,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
+              date: jsDate,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -2323,6 +2340,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
+              date: jsDate,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -2392,6 +2410,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
+              date: jsDate,
               proportion: 45.4,
               group1: 0,
               group2: 45.4,
@@ -2401,6 +2420,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
+              date: jsDate,
               proportion: 54.6,
               group1: 0,
               group2: 0,
@@ -2665,6 +2685,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
+              date: jsDate,
               proportion: 100,
               group1: 100,
               group2: 0,
@@ -2674,6 +2695,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
+              date: jsDate,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -2738,6 +2760,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
+              date: jsDate,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -2747,6 +2770,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
+              date: jsDate,
               proportion: 100,
               group1: 0,
               group2: 0,
@@ -2811,6 +2835,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
+              date: jsDate,
               proportion: 18,
               group1: 18,
               group2: 0,
@@ -2820,6 +2845,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
+              date: jsDate,
               proportion: 82,
               group1: 0,
               group2: 0,

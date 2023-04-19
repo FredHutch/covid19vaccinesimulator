@@ -100,13 +100,13 @@ const items = ref([
   {
     key: "3",
     label: "Vaccine Planning",
-    to: '/vaccine-availability-timeline',
+    to: '/vaccine-availability',
     //icon: "pi pi-fw pi-user",
     items: [
       {
         key: "3_0",
         label: "Availability timeline",
-        to: '/vaccine-availability-timeline',
+        to: '/vaccine-availability',
         //icon: "pi pi-fw pi-user-plus",
       },
       {

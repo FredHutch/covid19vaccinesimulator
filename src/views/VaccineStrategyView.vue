@@ -22,7 +22,7 @@ import Card from 'primevue/card';
 import Panel from 'primevue/panel';
 import Fieldset from 'primevue/fieldset';
 import voca from 'voca';
-
+import Calendar from 'primevue/calendar';
 
 import AllocationMethodList from "../components/AllocationMethodList.vue";
 import { useStrategiesStore } from '../stores/strategies';
@@ -910,6 +910,53 @@ const onInputBoosterBlur = (event, obj, vaccineIndex, allocationIndex) => {
 
 
 
+const onCalendarInput = (event) => {
+  console.log(`onCalendarInput: ${event}`);
+};
+
+const onCalendarDateSelect = (event) => {
+  console.log(`onCalendarDateSelect: ${event}`);
+
+  let { data, newValue, vaccineIndex, allocationIndex } = event;
+
+  console.log(`onCalendarDateSelect: ${JSON.stringify(data, null, 2)}, ${vaccineIndex}, ${newValue}`);
+
+
+
+  // need to update the date property in the allocation
+
+
+
+  currentStrategy["vaccineParameters"]["vaccineList"][vaccineIndex]["allocation"][allocationIndex]["date"] = newValue;
+
+
+
+
+
+
+  /*
+  let newInterval = [...data];
+  newInterval[index] = newValue; //DateTime.fromJSDate(newValue).startOf("day").toJSDate();
+
+  currentStrategy["simulationInterval"] = newInterval;
+
+
+  // version 2, use  GeneralUtility
+  currentStrategy["simulationDays"]  = GeneralUtility.diffDateByUnits(newInterval[0], newInterval[1], "days");
+  */
+
+};
+
+const onCalendarHide = (event) => {
+  console.log(`onCalendarHide`);
+};
+
+
+/*
+will be available on {{ DateTime.fromJSDate(vaccine.date).toISODate() }}
+*/
+
+
 </script>
 
 <template>
@@ -953,12 +1000,34 @@ const onInputBoosterBlur = (event, obj, vaccineIndex, allocationIndex) => {
       <div class="grid">
         <div class="col">
 
-          <div v-for="(vaccine, index) in strategyList[strategyIndex].vaccineParameters.vaccineList" :key="index">
+          <div v-for="(vaccine, vaccineIndex) in strategyList[strategyIndex].vaccineParameters.vaccineList" :key="vaccineIndex">
             <Fieldset>
               <template #legend>
                 <h3>{{ convertVaccineLabel(vaccine.category) }}</h3>
               </template>
-              <h4>{{ vaccine.number }} doses will be available on {{ DateTime.fromJSDate(vaccine.date).toISODate() }}</h4>
+              <h4>Total: {{ vaccine.number }} doses</h4>
+              <h4 v-show="vaccine.number > 0">
+                
+                Primary series starts on:&nbsp;<Calendar :id="0" v-model="vaccine.allocation[0].date" dateFormat="yy-mm-dd" :touchUI="true"
+
+                @input="onCalendarInput"
+
+                @date-select="onCalendarDateSelect({data: vaccine.allocation[0], newValue: vaccine.allocation[0].date, vaccineIndex: vaccineIndex, allocationIndex: 0})"
+
+                @hide="onCalendarHide"
+
+                />, 
+                Booster starts on:&nbsp;<Calendar :id="1" v-model="vaccine.allocation[1].date" dateFormat="yy-mm-dd" :touchUI="true"
+
+                @input="onCalendarInput"
+
+                @date-select="onCalendarDateSelect({data: vaccine.allocation[1], newValue: vaccine.allocation[1].date,  vaccineIndex: vaccineIndex, allocationIndex: 1})"
+
+                @hide="onCalendarHide"
+
+                />
+
+              </h4>
               <div v-show="vaccine.number > 0">
                 <h4>Specify how you plan to allocate these doses (in %): {{ getVaccineTotal(index) }}% allocated</h4>
                 <AllocationMethodList @change="(event) => { onStrategyChange(event, [index]) }"></AllocationMethodList>
@@ -1069,3 +1138,5 @@ const onInputBoosterBlur = (event, obj, vaccineIndex, allocationIndex) => {
     <div class="col-2"></div>
   </div>
 </template>
+
+

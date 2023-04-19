@@ -348,7 +348,7 @@ const convertVaccineLabel = (placholderName) => {
     <div class="col ml-4">
       <div class="sticky top-0"><Header></Header></div>
       
-      <h1>Vaccine Availablity Timeline</h1>
+      <h1>Vaccine Availablity</h1>
       <Divider class="fh-divider-primary"></Divider>
       <div class="grid">
         <div class="col" style="padding-right: 0px;">
