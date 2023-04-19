@@ -172,7 +172,7 @@ const onNextClick = (event) => {
 const combinedColumns = reactive([
   { field: "category", header: "Category" },
   { field: "number", header: "Number" },
-  { field: "date", header: "Available on" },
+  //{ field: "date", header: "Available on" },
   { field: "rate", header: "Vaccination rate" }
 ]);
 
