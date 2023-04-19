@@ -74,6 +74,8 @@ export default class GeneralUtility {
     result["vaccineParameters"]["vaccineList"] = result["vaccineParameters"]["vaccineList"].map((vaccineInfo) => {
       let convertedVaccineInfo = {...vaccineInfo};
       convertedVaccineInfo.date  = DateTime.fromISO(convertedVaccineInfo.date).toJSDate();
+      convertedVaccineInfo.allocation[0].date = DateTime.fromISO(convertedVaccineInfo.allocation[0].date).toJSDate();
+      convertedVaccineInfo.allocation[1].date = DateTime.fromISO(convertedVaccineInfo.allocation[1].date).toJSDate();
       return convertedVaccineInfo;
     });
 

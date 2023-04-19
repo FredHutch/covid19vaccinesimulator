@@ -19,7 +19,7 @@ export const  moreThan100Msg = "Can not allocate more than 100% of the vaccines.
 
 let nowDate = DateTime.utc().startOf("day");
 let jsDate = nowDate.toJSDate();
-//let nowDateString = nowDate.toISO();
+let nowDateString = nowDate.toISO();
 
 
 export var colorList = ["#ffa600", "#ff6361", "#bc5090", "#58508d", "#003f5c"];
@@ -1815,7 +1815,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
-              date: jsDate,
+              date: nowDateString,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -1825,7 +1825,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
-              date: jsDate,
+              date: nowDateString,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -1895,7 +1895,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
-              date: jsDate,
+              date: nowDateString,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -1905,7 +1905,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
-              date: jsDate,
+              date: nowDateString,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -1975,7 +1975,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
-              date: jsDate,
+              date: nowDateString,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -1985,7 +1985,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
-              date: jsDate,
+              date: nowDateString,
               proportion: 100,
               group1: 0,
               group2: 0,
@@ -2250,7 +2250,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
-              date: jsDate,
+              date: nowDateString,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -2260,7 +2260,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
-              date: jsDate,
+              date: nowDateString,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -2330,7 +2330,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
-              date: jsDate,
+              date: nowDateString,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -2340,7 +2340,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
-              date: jsDate,
+              date: nowDateString,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -2410,7 +2410,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
-              date: jsDate,
+              date: nowDateString,
               proportion: 45.4,
               group1: 0,
               group2: 45.4,
@@ -2420,7 +2420,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
-              date: jsDate,
+              date: nowDateString,
               proportion: 54.6,
               group1: 0,
               group2: 0,
@@ -2685,7 +2685,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
-              date: jsDate,
+              date: nowDateString,
               proportion: 100,
               group1: 100,
               group2: 0,
@@ -2695,7 +2695,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
-              date: jsDate,
+              date: nowDateString,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -2760,7 +2760,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
-              date: jsDate,
+              date: nowDateString,
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -2770,7 +2770,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
-              date: jsDate,
+              date: nowDateString,
               proportion: 100,
               group1: 0,
               group2: 0,
@@ -2835,7 +2835,7 @@ export var presetStrategyList = [
           allocation: [
             {
               category: "Full dose",
-              date: jsDate,
+              date: nowDateString,
               proportion: 18,
               group1: 18,
               group2: 0,
@@ -2845,7 +2845,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
-              date: jsDate,
+              date: nowDateString,
               proportion: 82,
               group1: 0,
               group2: 0,
