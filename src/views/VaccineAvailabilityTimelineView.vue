@@ -162,7 +162,7 @@ watch(
 
 
 const onNextClick = (event) => {
-  router.push({ path: '/vaccine-plan-period'});
+  router.push({ path: '/vaccine-strategy'});
 };
 
 

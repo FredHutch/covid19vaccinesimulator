@@ -48,7 +48,7 @@ let vParameters = currentStrategy["vaccineParameters"];
 
 const router = useRouter();
 const onNextClick = (event) => {
-  router.push('/vaccination-by-age')
+  router.push('/vaccine-plan-period')
 };
 
 

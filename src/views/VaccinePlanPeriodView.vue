@@ -58,7 +58,7 @@ const route = useRoute();
 
 
 const onNextClick = (event) => {
-  router.push({ path: '/vaccine-strategy'});
+  router.push({ path: '/additional-parameters'});
 };
 
 const onCalendarInput = (event) => {

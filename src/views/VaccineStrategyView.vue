@@ -142,7 +142,7 @@ function sleep(ms) {
 
 const onNextClick = async (event) => {
   await sleep(200);
-  router.push("/additional-parameters");
+  router.push("/vaccine-plan-period");
 };
 
 
