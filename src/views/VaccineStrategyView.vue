@@ -1019,7 +1019,7 @@ will be available on {{ DateTime.fromJSDate(vaccine.date).toISODate() }}
       <div class="grid">
         <div class="col">
 
-          <div v-for="(vaccine, vaccineIndex) in strategyList[strategyIndex].vaccineParameters.vaccineList" :key="vaccineIndex">
+          <div v-for="(vaccine, index) in strategyList[strategyIndex].vaccineParameters.vaccineList" :key="index">
             <Fieldset>
               <template #legend>
                 <h3>{{ convertVaccineLabel(vaccine.category) }}</h3>
@@ -1031,7 +1031,7 @@ will be available on {{ DateTime.fromJSDate(vaccine.date).toISODate() }}
 
                 @input="onCalendarInput"
 
-                @date-select="onCalendarDateSelect({data: vaccine.allocation[0], newValue: vaccine.allocation[0].date, vaccineIndex: vaccineIndex, allocationIndex: 0})"
+                @date-select="onCalendarDateSelect({data: vaccine.allocation[0], newValue: vaccine.allocation[0].date, vaccineIndex: index, allocationIndex: 0})"
 
                 @hide="onCalendarHide"
 
@@ -1040,7 +1040,7 @@ will be available on {{ DateTime.fromJSDate(vaccine.date).toISODate() }}
 
                 @input="onCalendarInput"
 
-                @date-select="onCalendarDateSelect({data: vaccine.allocation[1], newValue: vaccine.allocation[1].date,  vaccineIndex: vaccineIndex, allocationIndex: 1})"
+                @date-select="onCalendarDateSelect({data: vaccine.allocation[1], newValue: vaccine.allocation[1].date,  vaccineIndex: index, allocationIndex: 1})"
 
                 @hide="onCalendarHide"
 
@@ -1056,11 +1056,11 @@ will be available on {{ DateTime.fromJSDate(vaccine.date).toISODate() }}
                 <InputNumber v-model="vaccine.allocation[0].proportion" inputClass="text-1xl" mode="decimal"
                   :minFractionDigits="1" :maxFractionDigits="2" :allowEmpty="false" :min="0" :max="100"
                   @input="(event) => { onInputPercentageChange(event, index) }"
-                  />&nbsp;% &nbsp;<spam>
+                  />&nbsp;% &nbsp;<span>
                   ({{ computeAllocationFulldoseTotal(vaccine.allocation) }} % used, {{
                     GeneralUtility.minusNumbersAsDecimal(vaccine.allocation[0].proportion,
                       computeAllocationFulldoseTotal(vaccine.allocation))
-                  }} % left)</spam>
+                  }} % left)</span>
                 <br />
                 <br />
                 <DataTable :value="[vaccine.allocation[0]]" editMode="cell"
@@ -1096,10 +1096,10 @@ will be available on {{ DateTime.fromJSDate(vaccine.date).toISODate() }}
                 </h5>
                 <InputNumber v-model="vaccine.allocation[1].proportion" inputClass="text-1xl" mode="decimal"
                   :minFractionDigits="0" :maxFractionDigits="2" :allowEmpty="false" :min="0"  :max="100" :readonly="true" disabled />&nbsp;% &nbsp;
-                <spam>({{ computeAllocationBoosterTotal(vaccine.allocation) }} % used, {{
+                <span>({{ computeAllocationBoosterTotal(vaccine.allocation) }} % used, {{
                   GeneralUtility.minusNumbersAsDecimal(vaccine.allocation[1].proportion,
                     computeAllocationBoosterTotal(vaccine.allocation))
-                }} % left)</spam>
+                }} % left)</span>
                 <br />
                 <br />
                 <DataTable :value="vaccine.allocation[1]['primaryMatching']" editMode="cell"
