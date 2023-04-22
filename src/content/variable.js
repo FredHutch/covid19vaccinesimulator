@@ -17,9 +17,11 @@ export const  lessThan100Msg = "Not all 100% of vaccine is allocated.";
 export const  moreThan100Msg = "Can not allocate more than 100% of the vaccines. Please reduce the proportion for certain age groups.";
 
 
-let nowDate = DateTime.utc().startOf("day");
+let nowDate = DateTime.now(); //.utc().startOf("day");
 let jsDate = nowDate.toJSDate();
 let nowDateString = nowDate.toISO();
+
+console.log(`nowDateString: ${nowDateString}`);
 
 
 export var colorList = ["#ffa600", "#ff6361", "#bc5090", "#58508d", "#003f5c"];
