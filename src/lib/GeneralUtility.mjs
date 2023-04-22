@@ -6,6 +6,15 @@ import { systemName } from "../content/variable";
 
 export default class GeneralUtility {
 
+  static divideNumbersAsDecimal(numA, numB) {
+    let result = new Decimal(numA);
+    return result.div(new Decimal(numB)).toNumber();
+  }
+  static multiplyNumbersAsDecimal(numA, numB) {
+    let result = new Decimal(numA);
+    return result.mul(new Decimal(numB)).toNumber();
+  }
+
   static sumNumbersAsDecimal(numberList) {
     let result = new Decimal(0);
 

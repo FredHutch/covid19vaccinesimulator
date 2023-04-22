@@ -100,6 +100,26 @@ const onPresetSelectionButtonChange = (event) => {
   */
 };
 
+strategiesStore.$subscribe((mutation, state) => {
+  console.log(`strategiesStore.$subscribe: state change`);
+  /*
+  // import { MutationType } from 'pinia'
+  mutation.type // 'direct' | 'patch object' | 'patch function'
+  // same as cartStore.$id
+  mutation.storeId // 'cart'
+  // only available with mutation.type === 'patch object'
+  mutation.payload // patch object passed to cartStore.$patch()
+  */
+
+  updateSimulationParameters();
+
+})
+
+const updateSimulationParameters = () => {
+  console.log(`updateSimulationParameters`);
+  strategiesStore.updateSimulationParametersByStrategyIndex(0);
+}
+
 const onPresetSelectionInputChange = (newValue) => {
   console.log(`onPresetSelectionInputChange: checked ${newValue}`);
 

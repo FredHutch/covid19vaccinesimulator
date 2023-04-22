@@ -280,8 +280,32 @@ export const useStrategiesStore = defineStore("strategies", () => {
 
 
     // date, number/rate
+    let dateDaysList = [];
 
+    // version 2: a date for a primary/booster for each vaccine
+    for(let i = 0; i < validVaccineList.length; i++){
+
+      let vInfo = validVaccineList[i];
+      
+      console.log(`getValidVaccineDateDaysListByStrategyIndex: number: ${vInfo["number"]}, rate: ${vInfo["rate"]}`);
+
+      vInfo.allocation.forEach((allocationInfo) => {
+        let allocatedNumber = GeneralUtility.multiplyNumbersAsDecimal(vInfo["number"], GeneralUtility.divideNumbersAsDecimal(allocationInfo.proportion, 100));
+
+        let calculatedDays = 0;
+
+        if(vInfo["number"] != undefined && vInfo["rate"] != undefined && vInfo["rate"] > 0 && allocatedNumber > 0){
+          calculatedDays  = Math.ceil(allocatedNumber/vInfo["rate"]) + 1;
+          dateDaysList.push({startDate: allocationInfo.date, days: calculatedDays});
+        }
+      });
+
+    }
+
+    // version 1: a date for a vaccine
+    /*
     let dateDaysList = validVaccineList.map((vInfo) => {
+
       console.log(`getValidVaccineDateDaysListByStrategyIndex: date: ${vInfo.date}, number: ${vInfo["number"]}, rate: ${vInfo["rate"]}`);
 
 
@@ -292,8 +316,9 @@ export const useStrategiesStore = defineStore("strategies", () => {
       }
 
       return {startDate: vInfo.date, days: calculatedDays};
-    });
 
+    });
+    */
 
     return dateDaysList;
   }
