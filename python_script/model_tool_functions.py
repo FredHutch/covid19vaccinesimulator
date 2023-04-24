@@ -4,7 +4,7 @@ from scipy.integrate import odeint
 import sys
 import os
 import json
-import pandas as pd 
+import pandas as pd
 import pickle
 from .myFunctions import * #runVaccination_model, set_time_vaccine_simulation, set_vaccine_rates, \
 #different from model_tool_functions0.py in that I will adapt all the functions to match the front end json file
@@ -83,7 +83,8 @@ def get_vaccine_params_from_json(vaccineAvailability):
     num_doses = np.zeros(3)
     num_vaccines_available_primary = np.zeros(3)
     # num_vaccines_available_booster = np.zeros(3)
-    vaccination_startDates = []
+    vaccination_startDates_primary = []
+    vaccination_startDates_booster = []
     vaccination_rates = np.zeros(3)
     vaccination_rates_primary = np.zeros((3,5))
     vaccination_rates_booster_list_pt_of_view_vaccinated = [np.zeros((3,5)), np.zeros((3,5)),np.zeros((3,5))]
@@ -119,7 +120,8 @@ def get_vaccine_params_from_json(vaccineAvailability):
 
         # read the names of vaccines to be used:
         vaccineNames.append(vaccineAvailability[ivals]['code'])
-        vaccination_startDates.append(pd.to_datetime(vaccineAvailability[ivals]['date']))
+        vaccination_startDates_primary.append(pd.to_datetime(vaccineAvailability[ivals]['allocation'][0]['date']))
+        vaccination_startDates_booster.append(pd.to_datetime(vaccineAvailability[ivals]['allocation'][1]['date']))
         vaccination_rates[ivals] = vaccineAvailability[ivals]['rate']
         vaccination_rates_primary[ivals] = prop_vaccines_available_primary[ivals] * vaccineAvailability[ivals]['rate']
         #fill the distribution matrix for the primary series:
@@ -166,7 +168,7 @@ def get_vaccine_params_from_json(vaccineAvailability):
             num_doses_per_day_booster_list_pt_of_view_vaccinated[ivals, kvals] = np.sum(vaccination_rates_booster_list_pt_of_view_vaccinated[ivals][kvals,:])
 
     return [num_vaccines_available_primary,num_vaccines_available_pt_of_view_vaccinated,
-            vaccination_startDates,
+            vaccination_startDates_primary, vaccination_startDates_booster,
             distribution_matrix_primary_series,  distribution_list_boosters_pt_of_view_vaccinated,
             vaccination_rates_primary, vaccination_rates_booster_list_pt_of_view_vaccinated,
             num_doses_per_day_primary, num_doses_per_day_booster_list_pt_of_view_vaccinated]
@@ -1001,7 +1003,7 @@ def input_function(myjson_file):
     [VE_SUS_primary, VE_DIS_primary, VE_H_primary, VE_SUS_booster, VE_DIS_booster, VE_H_booster] = vaccine_effectiveness_params
 
     [num_vaccines_available_primary, num_vaccines_available_pt_of_view_vaccinated,
-     vaccination_startDates,
+     vaccination_startDates_primary, vaccination_startDates_booster,
      distribution_matrix_primary_series, distribution_list_boosters_pt_of_view_vaccinated,
      vaccination_rates_primary, vaccination_rates_booster_list_pt_of_view_vaccinated,
      num_doses_per_day_primary, num_doses_per_day_booster_list_pt_of_view_vaccinated] = vaccine_Params
@@ -1013,9 +1015,12 @@ def input_function(myjson_file):
     #convert times into numbers
     tfinal = (endDate - startDate) / np.timedelta64(1, 'D')
     # print(tfinal)
-    vaccination_start_days = np.zeros(3)
+    vaccination_start_days_primary = np.zeros(3)
+    vaccination_start_days_booster = np.zeros(3)
     for ivals in range(3):
-        vaccination_start_days[ivals] = (vaccination_startDates[ivals] - startDate) / np.timedelta64(1, 'D')
+        vaccination_start_days_primary[ivals] = (vaccination_startDates_primary[ivals] - startDate) / np.timedelta64(1, 'D')
+        vaccination_start_days_booster[ivals] = (vaccination_startDates_booster[ivals] - startDate) / np.timedelta64(1,
+                                                                                                                     'D')
 
     # print(vaccination_start_days)
     # ######## load the data that we will need to run the model
@@ -1028,6 +1033,7 @@ def input_function(myjson_file):
 
 
     ############ compute the matrix under current social distancing interventions:
+
     matNew = contact_matrix_weighted_by_social_distancing(myURL, social_distancing_multipliers, region_code, numAgeGroups)
 
     ############ compute the matrix without any social distancing interventions (used later to comptue beta):
@@ -1206,7 +1212,7 @@ def input_function(myjson_file):
 
     # # ###### PRIMARY VACCINATION SETTINGS:
     # # # #compute the time partition with primary vaccines to run the model
-    tEnd_primary = set_time_vaccine_simulation(vaccination_start_days, tfinal, num_vaccines_available_primary,
+    tEnd_primary = set_time_vaccine_simulation(vaccination_start_days_primary, tfinal, num_vaccines_available_primary,
                                         num_doses_per_day_primary)
 
 
@@ -1217,34 +1223,32 @@ def input_function(myjson_file):
 
 
 
-    tEndV1_B = set_time_vaccine_simulation(vaccination_start_days, tfinal, numBoostersAvailable_for_V1_B, numVaccinesPerGroupPerDayV1_B)
-    tEndV2_B = set_time_vaccine_simulation(vaccination_start_days, tfinal, numBoostersAvailable_for_V2_B, numVaccinesPerGroupPerDayV2_B)
-    tEndV3_B = set_time_vaccine_simulation(vaccination_start_days, tfinal, numBoostersAvailable_for_V3_B, numVaccinesPerGroupPerDayV3_B)
+    tEndV1_B = set_time_vaccine_simulation(vaccination_start_days_booster, tfinal, numBoostersAvailable_for_V1_B, numVaccinesPerGroupPerDayV1_B)
+    tEndV2_B = set_time_vaccine_simulation(vaccination_start_days_booster, tfinal, numBoostersAvailable_for_V2_B, numVaccinesPerGroupPerDayV2_B)
+    tEndV3_B = set_time_vaccine_simulation(vaccination_start_days_booster, tfinal, numBoostersAvailable_for_V3_B, numVaccinesPerGroupPerDayV3_B)
 
-    paramsRunModel = [beta, matNew, death_rate, frac_sym, gammaA, gammaE, gammaH, gammaI, gammaP, gammaR, gammaRA, gammaRH,
-                  gammaRP, gammaRAP, gammaRHP, gammaRPV, gammaRAPV, gammaRHPV, gammaRV, gammaRAV, gammaRHV, gammaRB,
-                  gammaRAB, gammaRHB,
-                  gammaSV, gammaSB, hosp_rate, numAgeGroups, oneMinusFracSym, oneMinusFracHosp, redA, redH, redP,
-                  red_sus,
-                  sigma, region_pop,
+    paramsRunModel = [beta, matNew, death_rate, frac_sym, gammaA, gammaE, gammaH, gammaI, gammaP, gammaR,
+                      gammaRA, gammaRH, gammaRP, gammaRAP, gammaRHP, gammaRPV, gammaRAPV, gammaRHPV, gammaRV, gammaRAV,
+                      gammaRHV, gammaRB, gammaRAB, gammaRHB,gammaSV, gammaSB, hosp_rate, numAgeGroups, oneMinusFracSym, oneMinusFracHosp,
+                      redA, redH, redP, red_sus, sigma, region_pop, #36
                   oneMinus_VESUS_partially_sus,
                   oneMinus_VESYMP_partially_sus, oneMinus_oneMinus_VESYMP_partially_sus,
-                  oneMinus_VE_HOSP_cond_partially_sus, oneMinus_oneMinus_VE_HOSP_cond_partially_sus,
+                  oneMinus_VE_HOSP_cond_partially_sus, oneMinus_oneMinus_VE_HOSP_cond_partially_sus, #41
                   oneMinus_VESUS_partially_sus_vaccinated,
                   oneMinus_VESYMP_partially_sus_vaccinated,oneMinus_oneMinus_VESYMP_partially_sus_vaccinated,
                   oneMinus_VE_HOSP_cond_partially_sus_vaccinated, oneMinus_oneMinus_VE_HOSP_cond_partially_sus_vaccinated,
                   oneMinus_VESUS_primary,
                   oneMinus_VESYMP_primary, oneMinus_oneMinus_VESYMP_primary,
-                  oneMinus_VE_HOSP_cond_primary, oneMinus_oneMinus_VE_HOSP_cond_primary,
+                  oneMinus_VE_HOSP_cond_primary, oneMinus_oneMinus_VE_HOSP_cond_primary, #51
                   oneMinus_VESUS_booster,
                   oneMinus_VESYMP_booster, oneMinus_oneMinus_VESYMP_booster,
-                  oneMinus_VE_HOSP_cond_booster,oneMinus_oneMinus_VE_HOSP_cond_booster,
+                  oneMinus_VE_HOSP_cond_booster,oneMinus_oneMinus_VE_HOSP_cond_booster, #56
                   tEnd_primary, tEndV1_B, tEndV2_B, tEndV3_B]
 
 
     result, tspan = runVaccination_model(init_cond, paramsRunModel,
-                                         vaccination_start_days,
-                                         vaccination_start_days, vaccination_start_days, vaccination_start_days,
+                                         vaccination_start_days_primary,
+                                         vaccination_start_days_booster[0]*np.ones(3), vaccination_start_days_booster[1]*np.ones(3), vaccination_start_days_booster[2]*np.ones(3),
                                          tEnd_primary, tEndV1_B, tEndV2_B, tEndV3_B, tfinal,
                                          vaccination_rates_primary,
                                          vaccination_rates_booster_list_pt_of_view_vaccinated[0],
@@ -1289,111 +1293,3 @@ def input_function(myjson_file):
 
 
 
-if __name__ == '__main__':
-    f = open('vaccineAvailability2.json')
-    vaccineAvailability = json.load(f)
-    f.close()
-    # # ex = get_vaccine_distribution_from_json(vaccineAvailability)
-    #
-    frac_sym = [0.5, 0.5, 0.5, 0.5, 0.5]
-    current_frac_infections = [0.1, 0.1, 0.1, 0.1, 0.1]
-    hosp_rate = [0,0,0,0,0]#[0.0001, 0.001, 0.01, 0.05, 0.09]
-    previous_frac_infections = [0.5, 0.5, 0.5, 0.5, 0.5]
-    previous_frac_primary_vaccinated = np.array([[0.1, 0., 0., 0., 0.2], #[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]])
-                                                 [0.2, 0., 0.5, 0., 0.2],
-                                                 [0.4, 0., 0., 0., 0.],])
-    previous_frac_boosted = np.array([[0.1, 0.1, 0.1, 0.1, .1],#[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]])
-                                      [0.2, 0.4, 0.1, 0.1, 0.2],
-                                      [0., 0.2, 0.3, 0.3, 0.]])
-
-    region_pop = [10000, 10000, 1000, 1000, 1000]
-    # ex = computeInitialConditions2(region_pop, current_frac_infections, frac_sym, hosp_rate,
-    #                          previous_frac_boosted, previous_frac_infections,
-    #                          previous_frac_primary_vaccinated, 1)
-    # print(np.sum(ex))
-    f = open('pinia-state_for_Laura_LMedits_noPrevVac.json')
-    myjson_file = json.load(f)
-    f.close()
-    vaccineAvailability = myjson_file["vaccineParameters"]['vaccineList']
-    get_vaccine_params_from_json(vaccineAvailability)
-    # [default_params, initial_conditions_params, location_params, vaccine_Params, vaccine_effectiveness_params] = get_info_from_frontEnd(myjson_file)
-    #
-    input_function(myjson_file)
-    # f = open('default/fixed_parameters.json')
-    # default_params = json.load(f)
-    # f.close()
-    # region = "Mexico"
-    # tfinal = 200
-    # social_distancing_multipliers = [0, 1, 0.5, 0.2]
-    # R0 = 3
-    # location_params = [region, tfinal, social_distancing_multipliers,R0 ]
-    #
-    # # vaccineType = ['AstraZeneca', 'Pfizer', 'Cansino']
-    # # vaccination_start_times_primary_series =  [0,10,50]
-    # # vaccination_start_time_boosters= [50, 50, 50]
-    # # mean_duration_vaccine_induced_immunity_primary = [90, 90, 90]
-    # # mean_duration_vaccine_induced_immunity_booster = [180, 180, 180]
-    # # num_vaccines_available_primary = 1e5*np.array([1,1,1])
-    # # num_vaccines_available_booster= 1e5*np.array([1,1,1])
-    # # num_doses_per_day = [1e3, 1e3, 1e3]
-    # # distribution_matrix_primary_series = np.array(
-    # #     [[0, 0, 0, 0.5, 0.5], [0, 0, 0, 0.5, 0.5], [0, 0, 0, 0.5, 0.5]])
-    # # distribution_list_booster = [np.array(
-    # #     [[0, 0, 1, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0]]),
-    # #     np.array(
-    # #     [[0, 1, 0, 0.0, 0.0], [0.0, 1,0, 0, 0], [0, 0, 0, 0, 1]]),
-    # #     np.array(
-    # #         [[0, 0, 0, 1, 0], [0, 0, 0, 1, 0], [0, 0, 0, 1, 0]])]
-    # #
-    # #
-    # # vaccine_allocation_params = [vaccineType, vaccination_start_times_primary_series, vaccination_start_time_boosters, \
-    # #  mean_duration_vaccine_induced_immunity_primary, mean_duration_vaccine_induced_immunity_booster,
-    # #  num_vaccines_available_primary, num_vaccines_available_booster,num_doses_per_day, \
-    # #  distribution_matrix_primary_series, distribution_list_booster]
-    # # input_function(default_params, 'initial_conditions_params', location_params,
-    # #            vaccine_allocation_params, 'vaccine_effectiveness_params')
-    # # # input_function(default_params, initial_conditions_params, location_params,
-    # # #                vaccine_allocation_params, vaccine_effectiveness_params)
-    #
-    # initial_conditions_params = current_frac_infections, previous_frac_infections, previous_frac_primary_vaccinated, previous_frac_boosted
-    # ex = input_function(default_params, initial_conditions_params, location_params,
-    # vaccineAvailability)
-    # print(ex)
-    #
-    # # [vaccineNames, num_doses, vaccination_rates,
-    # #  vaccination_startDates_primary, vaccination_startDates_booster,
-    # #  prop_distribution_matrix_primary_series, prop_distribution_list_boosters_pt_of_view_vaccinated] = get_fraction_vaccine_distribution_from_json(vaccineAvailability)
-    # #
-    # # [vaccineNames, num_doses, vaccination_rates, num_vaccines_available_primary,
-    # #  num_vaccines_available_booster, num_vaccines_available_pt_of_view_vaccinated,
-    # #  vaccination_startDates_primary, vaccination_startDates_booster,
-    # #  distribution_matrix_primary_series, distribution_list_boosters, distribution_list_boosters_pt_of_view_vaccinated,
-    # #  vaccination_rates_primary, vaccination_rates_booster_list_pt_of_view_vaccinated,
-    # #  num_doses_per_day_primary, num_doses_per_day_booster_list_pt_of_view_vaccinated] = get_vaccine_distribution_from_json(vaccineAvailability)
-    #
-    #
-    #
-    #
-    #
-    # # for kvals in range(3):
-    # #     ex =np.sum(vaccination_rates_primary[kvals,:]) + np.sum(np.array([np.sum(vaccination_rates_booster_list_pt_of_view_vaccinated[ivals][kvals,:]) for ivals in range(3)]))
-    # #     print(ex)
-    # #
-    # # for ivals in range(3):
-    # #     print(ivals)
-    # #     a = vaccination_rates[ivals]*prop_distribution_matrix_primary_series[ivals,:]
-    # #     b = vaccination_rates[ivals]*prop_distribution_list_boosters_pt_of_view_vaccinated[0][ivals,:]
-    # #     c = vaccination_rates[ivals] * prop_distribution_list_boosters_pt_of_view_vaccinated[1][ivals, :]
-    # #     d =vaccination_rates[ivals] * prop_distribution_list_boosters_pt_of_view_vaccinated[2][ivals, :]
-    # #     print(a)
-    # #     print(b)
-    # #     print(c)
-    # #     print(d)
-    # #     print(np.sum(a+b+c+d))
-    # # [vaccineNames, num_doses2, vaccination_rates2, num_vaccines_available_primary,
-    # #  num_vaccines_available_booster, num_vaccines_available_pt_of_view_vaccinated,
-    # #  vaccination_startDates_primary2, vaccination_startDates_booster2,
-    # #  distribution_matrix_primary_series2, distribution_list_boosters2, distribution_list_boosters_pt_of_view_vaccinated2] = get_vaccine_distribution_from_json(vaccineAvailability)
-    # #
-    # # print(set_vaccine_rates(num_doses, prop_distribution_list_boosters_pt_of_view_vaccinated[0], [1,1,1]))
-    # # print(distribution_list_boosters_pt_of_view_vaccinated2[0])
