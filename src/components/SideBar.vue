@@ -76,7 +76,7 @@ const items = ref([
       */
       {
         key: "2_2",
-        label: "Vaccination by age",
+        label: "Previous vaccination",
         to: '/vaccination-by-age',
         //icon: "pi pi-fw pi-align-center",
       },
