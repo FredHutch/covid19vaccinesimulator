@@ -81,7 +81,7 @@ let vaccineAvailability = vaccineList;
 strategiesStore.$subscribe((mutation, state) => {
   console.log(`strategiesStore.$subscribe: state change - mutation: ${JSON.stringify(mutation, null, 2)}`);
 
-  if( mutation.events.key == "rate" || mutation.events.key == "number"){
+  if(mutation.events != undefined && (mutation.events.key == "rate" || mutation.events.key == "number")){
     updateSimulationParameters();
   }
 
