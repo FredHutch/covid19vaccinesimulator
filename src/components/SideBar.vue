@@ -105,7 +105,7 @@ const items = ref([
     items: [
       {
         key: "3_0",
-        label: "Availability timeline",
+        label: "Availability",
         to: '/vaccine-availability',
         //icon: "pi pi-fw pi-user-plus",
       },
