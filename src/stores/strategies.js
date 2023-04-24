@@ -103,6 +103,12 @@ export const useStrategiesStore = defineStore("strategies", () => {
     let targetStrategy = strategyList.value[index];
     console.log(`duplicateStrategyByIndex: targetStrategy: ${targetStrategy}`);
 
+    
+    let newStrategy = GeneralUtility.convertStrategyFromJSON(JSON.stringify(targetStrategy));
+
+    // GeneralUtility.convertStrategyFromJSON
+
+    /*
     let newStrategy = JSON.parse(JSON.stringify(targetStrategy));
 
     // remember to set the simulationInterval
@@ -112,6 +118,8 @@ export const useStrategiesStore = defineStore("strategies", () => {
     newStrategy["simulationInterval"][1] = DateTime.fromISO(
       newStrategy["simulationInterval"][1]
     ).toJSDate();
+
+    */
 
     strategyList.value.push(newStrategy);
   }
