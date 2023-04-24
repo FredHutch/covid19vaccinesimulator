@@ -77,14 +77,16 @@ let vaccinationStatusByAgeGroup =
 
 let vaccineAvailability = vaccineList;
 
-/*
-strategiesStore.$subscribe((mutation, state) => {
-  console.log(`strategiesStore.$subscribe: state change`);
 
-  updateSimulationParameters();
+strategiesStore.$subscribe((mutation, state) => {
+  console.log(`strategiesStore.$subscribe: state change - mutation: ${JSON.stringify(mutation, null, 2)}`);
+
+  if( mutation.events.key == "rate" || mutation.events.key == "number"){
+    updateSimulationParameters();
+  }
 
 })
-*/
+
 // URL: work if enter URL direclty, but not with roouter
 
 const router = useRouter();
@@ -241,6 +243,7 @@ const onCellEditComplete = (event) => {
         console.log(`${newValue} is a positive integer`);
         data[field] = Number(newValue);
         //onVaccinationStatusChange(event);
+        
       }
       else {
         console.log(`${newValue} is not a positive integer`);
@@ -267,10 +270,11 @@ const onCellEditComplete = (event) => {
     default:
       //if (newValue.trim().length > 0) data[field] = newValue;
       //else event.preventDefault();
+      
       break;
   }
+  
 
-  updateSimulationParameters();
 };
 
 const onCalendarInput = (event) => {
@@ -297,7 +301,7 @@ const onCalendarDateSelect = (event) => {
 
 const onNumberInput = (event) => {
   console.log(`onNumberInput: new value: ${event.value}`);
-  //updateSimulationParameters();
+  
 };
 
 
@@ -367,20 +371,6 @@ const convertVaccineLabel = (placholderName) => {
               <template  v-else-if="col.field == 'number'" #body="slotProps">
                 <div><InputNumber @input="onNumberInput" :allowEmpty="false" mode="decimal" :min="0"  v-model="slotProps.data[slotProps.field]" /></div>
               </template>
-              <template  v-else-if="col.field == 'date'" #body="slotProps">
-                <div>
-                  <Calendar :id="0" v-model="slotProps.data[slotProps.field]" dateFormat="yy-mm-dd" :touchUI="true"
-
-                  @input="onCalendarInput"
-
-                  @date-select="onCalendarDateSelect({data: vaccineAvailability[0], newValue: vaccineAvailability[0]['date'], field: 'date'})"
-
-                  @hide="onCalendarHide"
-
-                  ></Calendar>
-
-                </div>
-              </template>
               <template  v-else-if="col.field == 'rate'" #body="slotProps">
                 <div><InputNumber @input="onNumberInput"  mode="decimal" :allowEmpty="false" :min="0" v-model="slotProps.data[slotProps.field]" /></div>
               </template>
@@ -409,6 +399,25 @@ const convertVaccineLabel = (placholderName) => {
   </div>
 </template>
 
+
+<!--
+              <template  v-else-if="col.field == 'date'" #body="slotProps">
+                <div>
+                  <Calendar :id="0" v-model="slotProps.data[slotProps.field]" dateFormat="yy-mm-dd" :touchUI="true"
+
+                  @input="onCalendarInput"
+
+                  @date-select="onCalendarDateSelect({data: vaccineAvailability[0], newValue: vaccineAvailability[0]['date'], field: 'date'})"
+
+                  @hide="onCalendarHide"
+
+                  ></Calendar>
+
+                </div>
+              </template>
+
+
+-->
 
 <!--
   <table style="width:100%; border-collapse:collapse;" class="hidden">
