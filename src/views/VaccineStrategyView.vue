@@ -85,20 +85,15 @@ let vaccineList = currentStrategy["vaccineParameters"]["vaccineList"];
 
 let vaccinationStatusByAgeGroup = currentStrategy["vaccineParameters"]["vaccinationStatusByAgeGroup"];
 
+/*
 strategiesStore.$subscribe((mutation, state) => {
   console.log(`strategiesStore.$subscribe: state change`);
-  /*
-  // import { MutationType } from 'pinia'
-  mutation.type // 'direct' | 'patch object' | 'patch function'
-  // same as cartStore.$id
-  mutation.storeId // 'cart'
-  // only available with mutation.type === 'patch object'
-  mutation.payload // patch object passed to cartStore.$patch()
-  */
+
 
   updateSimulationParameters();
 
 })
+*/
 
 const updateSimulationParameters = () => {
   console.log(`updateSimulationParameters`);
@@ -862,6 +857,7 @@ const onInputPercentageChange = (event, index) => {
     vaccineList[index].allocation = newAvailabilityAllocation;
   }
 
+  updateSimulationParameters();
 }
 
 
@@ -964,6 +960,7 @@ const onCalendarDateSelect = (event) => {
   currentStrategy["simulationDays"]  = GeneralUtility.diffDateByUnits(newInterval[0], newInterval[1], "days");
   */
 
+  updateSimulationParameters();
 };
 
 const onCalendarHide = (event) => {

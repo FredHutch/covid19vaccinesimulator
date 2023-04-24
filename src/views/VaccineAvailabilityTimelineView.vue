@@ -77,22 +77,14 @@ let vaccinationStatusByAgeGroup =
 
 let vaccineAvailability = vaccineList;
 
-
+/*
 strategiesStore.$subscribe((mutation, state) => {
   console.log(`strategiesStore.$subscribe: state change`);
-  /*
-  // import { MutationType } from 'pinia'
-  mutation.type // 'direct' | 'patch object' | 'patch function'
-  // same as cartStore.$id
-  mutation.storeId // 'cart'
-  // only available with mutation.type === 'patch object'
-  mutation.payload // patch object passed to cartStore.$patch()
-  */
 
   updateSimulationParameters();
 
 })
-
+*/
 // URL: work if enter URL direclty, but not with roouter
 
 const router = useRouter();
@@ -162,6 +154,7 @@ watch(
 
 
 const onNextClick = (event) => {
+  
   router.push({ path: '/vaccine-strategy'});
 };
 
@@ -276,6 +269,8 @@ const onCellEditComplete = (event) => {
       //else event.preventDefault();
       break;
   }
+
+  updateSimulationParameters();
 };
 
 const onCalendarInput = (event) => {
