@@ -379,8 +379,8 @@ let excludeList = ["cumulativeNumberOfDeaths", "peakHospitalization"];
 let includeList = [
   "deathTimeSeries",
   "hospitalizationTimeSeries",
-  "infectionTimeSeries",
   "symptomaticInfectionTimeSeries",
+  "infectionTimeSeries",
 ];
 
 let pageLoadTime = DateTime.now();
