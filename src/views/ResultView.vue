@@ -794,7 +794,7 @@ const mapPropertyToLabel = (propertyName) => {
       result = "Number of symptomatic infections";
       break;
     case "deathTimeSeries":
-      result = "Daily number of deaths";
+      result = "Cumulative number of deaths";
       break;
     default:
       result = "";
