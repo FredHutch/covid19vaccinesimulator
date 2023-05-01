@@ -12,6 +12,9 @@ from .myFunctions import * #runVaccination_model, set_time_vaccine_simulation, s
 # from saveLoadFunctions import saveResults
 # from myFunctions import contact_matrix_weighted_by_social_distancing, find_beta_System1, set_time_vaccine_simulation
 # from myFunctions import runVaccination_model, calculateMetricsAndEpidemicCurves
+
+#### NOTE: THis file is different from model_tool_functions.py in that I will allow for boosters and primary series to start
+#### at different times.
 def computeVE_P(VE_SUS, VE_DIS):
 
     VE_SYMP = np.zeros(3)

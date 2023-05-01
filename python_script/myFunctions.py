@@ -509,7 +509,7 @@ def runVaccination_model(y0, params, tStartV, tStartV1_B, tStartV2_B, tStartV3_B
             rate_V, rate_V1B, rate_V2B, rate_V3B = vaccine_rate_all_eligible_classes(initCond, myStart,
                 tStartV, tStartV1_B, tStartV2_B, tStartV3_B, numVaccinesPerGroupPerDay_V, numVaccinesPerGroupPerDayV1_B,
                 numVaccinesPerGroupPerDayV2_B, numVaccinesPerGroupPerDayV3_B)
-
+            # print(tStartV1_B)
             paramsODE = [*params,*[rate_V[0], rate_V[1], rate_V[2], rate_V1B[0],rate_V1B[1],rate_V1B[2],
                          rate_V2B[0],rate_V2B[1],rate_V3B[2],rate_V3B[0],rate_V3B[1],rate_V3B[2]]]
 
@@ -815,6 +815,7 @@ def coronavirusODE_withVaccines_withDeaths(y, t, params):
                                                     vaccinationRateBoostersType1_for_V1PV[0])
 
     numVaccinatedSPV -= frac_susSPV_vaccinatedB1_fromV1Campaign
+    # print(tStartV1B)
     frac_susSPV_vaccinatedB2_fromV1Campaign = theta(t, tStartV1B[1], numVaccinatedSPV,
                                                     vaccinationRateBoostersType2_for_V1PV[0])
 

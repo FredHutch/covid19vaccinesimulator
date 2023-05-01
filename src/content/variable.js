@@ -1748,7 +1748,7 @@ export var presetStrategyList = [
   {
     simulationInterval: [
       "2022-08-31T04:00:00.000Z",
-      "2024-08-30T04:00:00.000Z",
+      "2023-08-30T04:00:00.000Z",
     ],
     regionParameters: {
       region: {
@@ -1973,11 +1973,11 @@ export var presetStrategyList = [
           ],
           number: 6829294,
           date: "2022-08-31T04:00:00.000Z",
-          rate: 10273,
+          rate: 50000,
           allocation: [
             {
               category: "Full dose",
-              date: nowDateString,
+              date: "2022-08-31T04:00:00.000Z",
               proportion: 0,
               group1: 0,
               group2: 0,
@@ -1987,7 +1987,7 @@ export var presetStrategyList = [
             },
             {
               category: "Booster",
-              date: nowDateString,
+              date: "2022-08-31T04:00:00.000Z",
               proportion: 100,
               group1: 0,
               group2: 0,
