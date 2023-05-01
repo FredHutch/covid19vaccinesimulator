@@ -76,7 +76,7 @@ const items = ref([
       */
       {
         key: "2_2",
-        label: "Vaccination by age",
+        label: "Previous vaccination",
         to: '/vaccination-by-age',
         //icon: "pi pi-fw pi-align-center",
       },
@@ -100,47 +100,26 @@ const items = ref([
   {
     key: "3",
     label: "Vaccine Planning",
-    to: '/vaccine-availability-timeline',
+    to: '/vaccine-availability',
     //icon: "pi pi-fw pi-user",
     items: [
       {
         key: "3_0",
-        label: "Availability timeline",
-        to: '/vaccine-availability-timeline',
+        label: "Availability",
+        to: '/vaccine-availability',
         //icon: "pi pi-fw pi-user-plus",
       },
       {
         key: "3_1",
-        label: "Period for simulation",
-        to: '/vaccine-plan-period',
-        //icon: "pi pi-fw pi-user-minus",
-      },
-      {
-        key: "3_2",
         label: "Allocation Strategy",
         to: '/vaccine-strategy',
         //icon: "pi pi-fw pi-users",
-        /*
-        items: [
-          {
-            key: "2_2_0",
-            label: "Filter",
-            icon: "pi pi-fw pi-filter",
-            items: [
-              {
-                key: "2_2_0_0",
-                label: "Print",
-                icon: "pi pi-fw pi-print",
-              },
-            ],
-          },
-          {
-            key: "2_2_1",
-            icon: "pi pi-fw pi-bars",
-            label: "List",
-          },
-        ],
-        */
+      },
+      {
+        key: "3_2",
+        label: "Period for simulation",
+        to: '/vaccine-plan-period',
+        //icon: "pi pi-fw pi-user-minus",
       },
       {
         key: "3_3",

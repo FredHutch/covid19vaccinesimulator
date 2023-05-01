@@ -6,6 +6,15 @@ import { systemName } from "../content/variable";
 
 export default class GeneralUtility {
 
+  static divideNumbersAsDecimal(numA, numB) {
+    let result = new Decimal(numA);
+    return result.div(new Decimal(numB)).toNumber();
+  }
+  static multiplyNumbersAsDecimal(numA, numB) {
+    let result = new Decimal(numA);
+    return result.mul(new Decimal(numB)).toNumber();
+  }
+
   static sumNumbersAsDecimal(numberList) {
     let result = new Decimal(0);
 
@@ -74,6 +83,8 @@ export default class GeneralUtility {
     result["vaccineParameters"]["vaccineList"] = result["vaccineParameters"]["vaccineList"].map((vaccineInfo) => {
       let convertedVaccineInfo = {...vaccineInfo};
       convertedVaccineInfo.date  = DateTime.fromISO(convertedVaccineInfo.date).toJSDate();
+      convertedVaccineInfo.allocation[0].date = DateTime.fromISO(convertedVaccineInfo.allocation[0].date).toJSDate();
+      convertedVaccineInfo.allocation[1].date = DateTime.fromISO(convertedVaccineInfo.allocation[1].date).toJSDate();
       return convertedVaccineInfo;
     });
 

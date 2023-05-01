@@ -22,7 +22,7 @@ import Card from 'primevue/card';
 import Panel from 'primevue/panel';
 import Fieldset from 'primevue/fieldset';
 import voca from 'voca';
-
+import Calendar from 'primevue/calendar';
 
 import AllocationMethodList from "../components/AllocationMethodList.vue";
 import { useStrategiesStore } from '../stores/strategies';
@@ -85,6 +85,20 @@ let vaccineList = currentStrategy["vaccineParameters"]["vaccineList"];
 
 let vaccinationStatusByAgeGroup = currentStrategy["vaccineParameters"]["vaccinationStatusByAgeGroup"];
 
+/*
+strategiesStore.$subscribe((mutation, state) => {
+  console.log(`strategiesStore.$subscribe: state change`);
+
+
+  updateSimulationParameters();
+
+})
+*/
+
+const updateSimulationParameters = () => {
+  console.log(`updateSimulationParameters`);
+  strategiesStore.updateSimulationParametersByStrategyIndex(strategyIndex);
+}
 
 function onInfectionStatusChange(event) {
   let { data, newValue, field } = event;
@@ -142,7 +156,7 @@ function sleep(ms) {
 
 const onNextClick = async (event) => {
   await sleep(200);
-  router.push("/additional-parameters");
+  router.push("/vaccine-plan-period");
 };
 
 
@@ -843,6 +857,7 @@ const onInputPercentageChange = (event, index) => {
     vaccineList[index].allocation = newAvailabilityAllocation;
   }
 
+  updateSimulationParameters();
 }
 
 
@@ -910,6 +925,54 @@ const onInputBoosterBlur = (event, obj, vaccineIndex, allocationIndex) => {
 
 
 
+const onCalendarInput = (event) => {
+  console.log(`onCalendarInput: ${event}`);
+};
+
+const onCalendarDateSelect = (event) => {
+  console.log(`onCalendarDateSelect: ${event}`);
+
+  let { data, newValue, vaccineIndex, allocationIndex } = event;
+
+  console.log(`onCalendarDateSelect: ${JSON.stringify(data, null, 2)}, ${vaccineIndex}, ${newValue}`);
+
+
+
+  // need to update the date property in the allocation
+
+
+
+  currentStrategy["vaccineParameters"]["vaccineList"][vaccineIndex]["allocation"][allocationIndex]["date"] = newValue;
+
+
+
+
+
+
+  /*
+  let newInterval = [...data];
+  newInterval[index] = newValue; //DateTime.fromJSDate(newValue).startOf("day").toJSDate();
+
+  currentStrategy["simulationInterval"] = newInterval;
+
+
+  // version 2, use  GeneralUtility
+  currentStrategy["simulationDays"]  = GeneralUtility.diffDateByUnits(newInterval[0], newInterval[1], "days");
+  */
+
+  updateSimulationParameters();
+};
+
+const onCalendarHide = (event) => {
+  console.log(`onCalendarHide`);
+};
+
+
+/*
+will be available on {{ DateTime.fromJSDate(vaccine.date).toISODate() }}
+*/
+
+
 </script>
 
 <template>
@@ -958,7 +1021,29 @@ const onInputBoosterBlur = (event, obj, vaccineIndex, allocationIndex) => {
               <template #legend>
                 <h3>{{ convertVaccineLabel(vaccine.category) }}</h3>
               </template>
-              <h4>{{ vaccine.number }} doses will be available on {{ DateTime.fromJSDate(vaccine.date).toISODate() }}</h4>
+              <h4>Total: {{ vaccine.number }} doses</h4>
+              <h4 v-show="vaccine.number > 0">
+                
+                Primary series starts on:&nbsp;<Calendar :id="0" v-model="vaccine.allocation[0].date" dateFormat="yy-mm-dd" :touchUI="true"
+
+                @input="onCalendarInput"
+
+                @date-select="onCalendarDateSelect({data: vaccine.allocation[0], newValue: vaccine.allocation[0].date, vaccineIndex: index, allocationIndex: 0})"
+
+                @hide="onCalendarHide"
+
+                />, 
+                Booster starts on:&nbsp;<Calendar :id="1" v-model="vaccine.allocation[1].date" dateFormat="yy-mm-dd" :touchUI="true"
+
+                @input="onCalendarInput"
+
+                @date-select="onCalendarDateSelect({data: vaccine.allocation[1], newValue: vaccine.allocation[1].date,  vaccineIndex: index, allocationIndex: 1})"
+
+                @hide="onCalendarHide"
+
+                />
+
+              </h4>
               <div v-show="vaccine.number > 0">
                 <h4>Specify how you plan to allocate these doses (in %): {{ getVaccineTotal(index) }}% allocated</h4>
                 <AllocationMethodList @change="(event) => { onStrategyChange(event, [index]) }"></AllocationMethodList>
@@ -968,11 +1053,11 @@ const onInputBoosterBlur = (event, obj, vaccineIndex, allocationIndex) => {
                 <InputNumber v-model="vaccine.allocation[0].proportion" inputClass="text-1xl" mode="decimal"
                   :minFractionDigits="1" :maxFractionDigits="2" :allowEmpty="false" :min="0" :max="100"
                   @input="(event) => { onInputPercentageChange(event, index) }"
-                  />&nbsp;% &nbsp;<spam>
+                  />&nbsp;% &nbsp;<span>
                   ({{ computeAllocationFulldoseTotal(vaccine.allocation) }} % used, {{
                     GeneralUtility.minusNumbersAsDecimal(vaccine.allocation[0].proportion,
                       computeAllocationFulldoseTotal(vaccine.allocation))
-                  }} % left)</spam>
+                  }} % left)</span>
                 <br />
                 <br />
                 <DataTable :value="[vaccine.allocation[0]]" editMode="cell"
@@ -1008,10 +1093,10 @@ const onInputBoosterBlur = (event, obj, vaccineIndex, allocationIndex) => {
                 </h5>
                 <InputNumber v-model="vaccine.allocation[1].proportion" inputClass="text-1xl" mode="decimal"
                   :minFractionDigits="0" :maxFractionDigits="2" :allowEmpty="false" :min="0"  :max="100" :readonly="true" disabled />&nbsp;% &nbsp;
-                <spam>({{ computeAllocationBoosterTotal(vaccine.allocation) }} % used, {{
+                <span>({{ computeAllocationBoosterTotal(vaccine.allocation) }} % used, {{
                   GeneralUtility.minusNumbersAsDecimal(vaccine.allocation[1].proportion,
                     computeAllocationBoosterTotal(vaccine.allocation))
-                }} % left)</spam>
+                }} % left)</span>
                 <br />
                 <br />
                 <DataTable :value="vaccine.allocation[1]['primaryMatching']" editMode="cell"
@@ -1069,3 +1154,5 @@ const onInputBoosterBlur = (event, obj, vaccineIndex, allocationIndex) => {
     <div class="col-2"></div>
   </div>
 </template>
+
+

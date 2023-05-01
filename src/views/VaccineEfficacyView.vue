@@ -177,7 +177,7 @@ const onNextClick = async (event) => {
     });
     //router.push(`/vaccination-by-age/${groupIndex + 1}`);
   } else {
-    router.push({ path: "/vaccine-availability-timeline" });
+    router.push({ path: "/vaccine-availability" });
   }
 };
 

@@ -58,7 +58,7 @@ const route = useRoute();
 
 
 const onNextClick = (event) => {
-  router.push({ path: '/vaccine-strategy'});
+  router.push({ path: '/additional-parameters'});
 };
 
 const onCalendarInput = (event) => {
@@ -80,24 +80,6 @@ const onCalendarDateSelect = (event) => {
 
   // version 2, use  GeneralUtility
   currentStrategy["simulationDays"]  = GeneralUtility.diffDateByUnits(newInterval[0], newInterval[1], "days");
-
-  // version1: now, calculate also the simulationDays properties
-  /*
-  let start = DateTime.fromISO(DateTime.fromJSDate(newInterval[0]).toISODate());
-  let end = DateTime.fromISO(DateTime.fromJSDate(newInterval[1]).toISODate());
-
-
-  let diffInDays = end.diff(start, 'days');
-  diffInDays.toObject(); //=> { days: 1 }
-  currentStrategy["simulationDays"] = diffInDays.toObject()["days"];
-  */
-
-
-  /*
-  vaccinationStore.$patch({
-      simulationInterval: newInterval,
-  });
-  */
 
 };
 

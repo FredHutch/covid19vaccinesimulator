@@ -79,17 +79,11 @@ let vaccineAvailability = vaccineList;
 
 
 strategiesStore.$subscribe((mutation, state) => {
-  console.log(`strategiesStore.$subscribe: state change`);
-  /*
-  // import { MutationType } from 'pinia'
-  mutation.type // 'direct' | 'patch object' | 'patch function'
-  // same as cartStore.$id
-  mutation.storeId // 'cart'
-  // only available with mutation.type === 'patch object'
-  mutation.payload // patch object passed to cartStore.$patch()
-  */
+  console.log(`strategiesStore.$subscribe: state change - mutation: ${JSON.stringify(mutation, null, 2)}`);
 
-  updateSimulationParameters();
+  if(mutation.events != undefined && (mutation.events.key == "rate" || mutation.events.key == "number")){
+    updateSimulationParameters();
+  }
 
 })
 
@@ -162,7 +156,8 @@ watch(
 
 
 const onNextClick = (event) => {
-  router.push({ path: '/vaccine-plan-period'});
+  
+  router.push({ path: '/vaccine-strategy'});
 };
 
 
@@ -172,7 +167,7 @@ const onNextClick = (event) => {
 const combinedColumns = reactive([
   { field: "category", header: "Category" },
   { field: "number", header: "Number" },
-  { field: "date", header: "Available on" },
+  //{ field: "date", header: "Available on" },
   { field: "rate", header: "Vaccination rate" }
 ]);
 
@@ -248,6 +243,7 @@ const onCellEditComplete = (event) => {
         console.log(`${newValue} is a positive integer`);
         data[field] = Number(newValue);
         //onVaccinationStatusChange(event);
+        
       }
       else {
         console.log(`${newValue} is not a positive integer`);
@@ -274,8 +270,11 @@ const onCellEditComplete = (event) => {
     default:
       //if (newValue.trim().length > 0) data[field] = newValue;
       //else event.preventDefault();
+      
       break;
   }
+  
+
 };
 
 const onCalendarInput = (event) => {
@@ -302,7 +301,7 @@ const onCalendarDateSelect = (event) => {
 
 const onNumberInput = (event) => {
   console.log(`onNumberInput: new value: ${event.value}`);
-  //updateSimulationParameters();
+  
 };
 
 
@@ -348,7 +347,7 @@ const convertVaccineLabel = (placholderName) => {
     <div class="col ml-4">
       <div class="sticky top-0"><Header></Header></div>
       
-      <h1>Vaccine Availablity Timeline</h1>
+      <h1>Vaccine Availablity</h1>
       <Divider class="fh-divider-primary"></Divider>
       <div class="grid">
         <div class="col" style="padding-right: 0px;">
@@ -371,20 +370,6 @@ const convertVaccineLabel = (placholderName) => {
               </template>
               <template  v-else-if="col.field == 'number'" #body="slotProps">
                 <div><InputNumber @input="onNumberInput" :allowEmpty="false" mode="decimal" :min="0"  v-model="slotProps.data[slotProps.field]" /></div>
-              </template>
-              <template  v-else-if="col.field == 'date'" #body="slotProps">
-                <div>
-                  <Calendar :id="0" v-model="slotProps.data[slotProps.field]" dateFormat="yy-mm-dd" :touchUI="true"
-
-                  @input="onCalendarInput"
-
-                  @date-select="onCalendarDateSelect({data: vaccineAvailability[0], newValue: vaccineAvailability[0]['date'], field: 'date'})"
-
-                  @hide="onCalendarHide"
-
-                  ></Calendar>
-
-                </div>
               </template>
               <template  v-else-if="col.field == 'rate'" #body="slotProps">
                 <div><InputNumber @input="onNumberInput"  mode="decimal" :allowEmpty="false" :min="0" v-model="slotProps.data[slotProps.field]" /></div>
@@ -414,6 +399,25 @@ const convertVaccineLabel = (placholderName) => {
   </div>
 </template>
 
+
+<!--
+              <template  v-else-if="col.field == 'date'" #body="slotProps">
+                <div>
+                  <Calendar :id="0" v-model="slotProps.data[slotProps.field]" dateFormat="yy-mm-dd" :touchUI="true"
+
+                  @input="onCalendarInput"
+
+                  @date-select="onCalendarDateSelect({data: vaccineAvailability[0], newValue: vaccineAvailability[0]['date'], field: 'date'})"
+
+                  @hide="onCalendarHide"
+
+                  ></Calendar>
+
+                </div>
+              </template>
+
+
+-->
 
 <!--
   <table style="width:100%; border-collapse:collapse;" class="hidden">

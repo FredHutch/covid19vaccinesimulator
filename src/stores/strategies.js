@@ -103,6 +103,12 @@ export const useStrategiesStore = defineStore("strategies", () => {
     let targetStrategy = strategyList.value[index];
     console.log(`duplicateStrategyByIndex: targetStrategy: ${targetStrategy}`);
 
+    
+    let newStrategy = GeneralUtility.convertStrategyFromJSON(JSON.stringify(targetStrategy));
+
+    // GeneralUtility.convertStrategyFromJSON
+
+    /*
     let newStrategy = JSON.parse(JSON.stringify(targetStrategy));
 
     // remember to set the simulationInterval
@@ -112,6 +118,8 @@ export const useStrategiesStore = defineStore("strategies", () => {
     newStrategy["simulationInterval"][1] = DateTime.fromISO(
       newStrategy["simulationInterval"][1]
     ).toJSDate();
+
+    */
 
     strategyList.value.push(newStrategy);
   }
@@ -220,6 +228,7 @@ export const useStrategiesStore = defineStore("strategies", () => {
       allocation: [
         {
           category: "Full dose",
+          date: jsDate,
           proportion: 100,
           group1: 100,
           group2: 0,
@@ -229,6 +238,7 @@ export const useStrategiesStore = defineStore("strategies", () => {
         },
         {
           category: "Booster",
+          date: jsDate,
           proportion: 0,
           group1: 0,
           group2: 0,
@@ -278,8 +288,32 @@ export const useStrategiesStore = defineStore("strategies", () => {
 
 
     // date, number/rate
+    let dateDaysList = [];
 
+    // version 2: a date for a primary/booster for each vaccine
+    for(let i = 0; i < validVaccineList.length; i++){
+
+      let vInfo = validVaccineList[i];
+      
+      console.log(`getValidVaccineDateDaysListByStrategyIndex: number: ${vInfo["number"]}, rate: ${vInfo["rate"]}`);
+
+      vInfo.allocation.forEach((allocationInfo) => {
+        let allocatedNumber = GeneralUtility.multiplyNumbersAsDecimal(vInfo["number"], GeneralUtility.divideNumbersAsDecimal(allocationInfo.proportion, 100));
+
+        let calculatedDays = 0;
+
+        if(vInfo["number"] != undefined && vInfo["rate"] != undefined && vInfo["rate"] > 0 && allocatedNumber > 0){
+          calculatedDays  = Math.ceil(allocatedNumber/vInfo["rate"]) + 1;
+          dateDaysList.push({startDate: allocationInfo.date, days: calculatedDays});
+        }
+      });
+
+    }
+
+    // version 1: a date for a vaccine
+    /*
     let dateDaysList = validVaccineList.map((vInfo) => {
+
       console.log(`getValidVaccineDateDaysListByStrategyIndex: date: ${vInfo.date}, number: ${vInfo["number"]}, rate: ${vInfo["rate"]}`);
 
 
@@ -290,8 +324,9 @@ export const useStrategiesStore = defineStore("strategies", () => {
       }
 
       return {startDate: vInfo.date, days: calculatedDays};
-    });
 
+    });
+    */
 
     return dateDaysList;
   }

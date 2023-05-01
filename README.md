@@ -2,7 +2,7 @@
 
 ## Frontend
 
-If baseURL is needed, specify the following in the package.json
+If baseURL is needed (typically, you don't), specify the following in the package.json
 
 ```
 "build": "vite build --base=/VaccineAllocator/",
@@ -35,18 +35,30 @@ Yarn (Package Manager): https://yarnpkg.com/
 
 ```sh
 yarn install
+
+# or
+
+npm install
 ```
 
 ### Compile and Hot-Reload for Development (only to see rendering during development)
 
 ```sh
 yarn dev
+
+# or
+
+npm run dev
 ```
 
 ### Compile and Minify for Production (e.g., run this everytime after making changes to compile html/css/javascript for Flask to serve)
 
 ```sh
 yarn build
+
+# or
+
+npm run build
 ```
 
 ## Backend
