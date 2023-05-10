@@ -77,7 +77,7 @@ function onInfectionStatusChange(event) {
   console.log(`onInfectionStatusChange: ${JSON.stringify(data)}`);
 
   //let newData = [...infectionStatusByAgeGroup.value];
-  let newData = [...isParameters];
+  let newData = [...strategyList.value[strategyIndex].regionParameters.infectionStatus];
 
   newData = newData.map((item) => {
     if( item["category"] == data["category"]){
@@ -106,7 +106,7 @@ function onInfectionStatusChange(event) {
   }
 
 
-  isParameters = newData;
+  strategyList.value[strategyIndex].regionParameters.infectionStatus = newData;
 
   /*
   isStore.$patch({
@@ -180,13 +180,13 @@ const group1Total = computed(() => {
   let propertyName = "group1";
 
   //let items = infectionStatusByAgeGroup.value;
-  let items = isParameters;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return GeneralUtility.sumNumbersAsDecimal([items[0][propertyName], items[1][propertyName], items[2][propertyName]]);
 });
 
 const group1Valid = computed(() => {
   let propertyName = "group1";
-  let items = isParameters;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return group1Total.value == 100 && items[0][propertyName] >= 0 && items[1][propertyName] >= 0 && items[2][propertyName] >= 0;
 
 });
@@ -194,13 +194,13 @@ const group1Valid = computed(() => {
 const group2Total = computed(() => {
   let propertyName = "group2";
   //let items = infectionStatusByAgeGroup.value;
-  let items = isParameters;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return GeneralUtility.sumNumbersAsDecimal([items[0][propertyName], items[1][propertyName], items[2][propertyName]]);
 });
 
 const group2Valid = computed(() => {
   let propertyName = "group2";
-  let items = isParameters;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return group2Total.value == 100 && items[0][propertyName] >= 0 && items[1][propertyName] >= 0 && items[2][propertyName] >= 0;
   
 });
@@ -208,13 +208,13 @@ const group2Valid = computed(() => {
 const group3Total = computed(() => {
   let propertyName = "group3";
   //let items = infectionStatusByAgeGroup.value;
-  let items = isParameters;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return GeneralUtility.sumNumbersAsDecimal([items[0][propertyName], items[1][propertyName], items[2][propertyName]]);
 });
 
 const group3Valid = computed(() => {
   let propertyName = "group3";
-  let items = isParameters;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return group3Total.value == 100 && items[0][propertyName] >= 0 && items[1][propertyName] >= 0 && items[2][propertyName] >= 0;
   
 });
@@ -222,13 +222,13 @@ const group3Valid = computed(() => {
 const group4Total = computed(() => {
   let propertyName = "group4";
   //let items = infectionStatusByAgeGroup.value;
-  let items = isParameters;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return GeneralUtility.sumNumbersAsDecimal([items[0][propertyName], items[1][propertyName], items[2][propertyName]]);
 });
 
 const group4Valid = computed(() => {
   let propertyName = "group4";
-  let items = isParameters;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return group4Total.value == 100 && items[0][propertyName] >= 0 && items[1][propertyName] >= 0 && items[2][propertyName] >= 0;
   
 });
@@ -236,13 +236,13 @@ const group4Valid = computed(() => {
 const group5Total = computed(() => {
   let propertyName = "group5";
   //let items = infectionStatusByAgeGroup.value;
-  let items = isParameters;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return GeneralUtility.sumNumbersAsDecimal([items[0][propertyName], items[1][propertyName], items[2][propertyName]]);
 });
 
 const group5Valid = computed(() => {
   let propertyName = "group5";
-  let items = isParameters;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return group5Total.value == 100 && items[0][propertyName] >= 0 && items[1][propertyName] >= 0 && items[2][propertyName] >= 0;
   
 });
@@ -261,8 +261,8 @@ const allGroupValid = computed(() => {
 
 const infectedByAgeGroup = computed(() => {
   // version 2
-  // isParameters
-  return isParameters.filter((data) => {
+  // strategyList.value[strategyIndex].regionParameters.infectionStatus
+  return strategyList.value[strategyIndex].regionParameters.infectionStatus.filter((data) => {
     return data['category'] != "Uninfected";
   });
 
@@ -353,7 +353,7 @@ const onCellEditComplete = (event) => {
 
 
 function updateUninfected(groupName) {
-  let newData = [ ...isParameters ];
+  let newData = [ ...strategyList.value[strategyIndex].regionParameters.infectionStatus ];
   newData[2][groupName] = GeneralUtility.minusNumbersAsDecimal(
     100,
     GeneralUtility.sumNumbersAsDecimal([
@@ -490,11 +490,11 @@ const onInputBlur = (event, obj, groupName) => {
                   footerStyle="text-align:left"
                   footerClass="fh-table-footer"
                 />
-                <Column :footer="isParameters[2]['group1']" footerClass="fh-table-footer"/>
-                <Column :footer="isParameters[2]['group2']" footerClass="fh-table-footer"/>
-                <Column :footer="isParameters[2]['group3']" footerClass="fh-table-footer"/>
-                <Column :footer="isParameters[2]['group4']" footerClass="fh-table-footer"/>
-                <Column :footer="isParameters[2]['group5']" footerClass="fh-table-footer"/>
+                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group1']" footerClass="fh-table-footer"/>
+                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group2']" footerClass="fh-table-footer"/>
+                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group3']" footerClass="fh-table-footer"/>
+                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group4']" footerClass="fh-table-footer"/>
+                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group5']" footerClass="fh-table-footer"/>
               </Row>
             </ColumnGroup>
 
