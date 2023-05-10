@@ -126,21 +126,21 @@ function onInfectiousnessLevelChnage(newData) {
             <div class="grid">
                 
                 <div class="col">
-                    <h2>Selected region: {{ regionParameters.region != undefined? regionParameters.region.name: "" }}</h2>
+                    <h2>Selected region: {{ strategyList[strategyIndex]["regionParameters"].region != undefined? strategyList[strategyIndex]["regionParameters"].region.name: "" }}</h2>
                     <div class="mt-4">
                         <RegionList @change="onRegionChnage"></RegionList>
                     </div>
-                    <div class="mt-4">Population size: {{regionParameters.region != undefined && regionParameters.region.populationList != undefined? regionParameters.region.populationList.reduce((a,b) => a + b, 0).toLocaleString(undefined): "?"}}</div>
+                    <div class="mt-4">Population size: {{strategyList[strategyIndex]["regionParameters"].region != undefined && strategyList[strategyIndex]["regionParameters"].region.populationList != undefined? strategyList[strategyIndex]["regionParameters"].region.populationList.reduce((a,b) => a + b, 0).toLocaleString(undefined): "?"}}</div>
                     <div  class="hidden">
-                        <h3>Most prominent variant: {{regionParameters.variant.name}} </h3>
+                        <h3>Most prominent variant: {{strategyList[strategyIndex]["regionParameters"].variant.name}} </h3>
                         <div>
                             <VariantList  @change="onVariantChnage"></VariantList>
                         </div>
                     </div>
                     
-                    <h3>Basic reproduction number: {{regionParameters.infectiousnessLevel}} </h3>
-                    <InputNumber  v-model="regionParameters.infectiousnessLevel" :allowEmpty="false" :min="0" :max="100" :minFractionDigits="2" :maxFractionDigits="2"/>
-                    <Message severity="error" v-if="regionParameters.infectiousnessLevel <= 0"  :closable="false"> Reproduction number needs to be a positive number.</Message>
+                    <h3>Basic reproduction number: {{strategyList[strategyIndex]["regionParameters"].infectiousnessLevel}} </h3>
+                    <InputNumber  v-model="strategyList[strategyIndex]['regionParameters'].infectiousnessLevel" :allowEmpty="false" :min="0" :max="100" :minFractionDigits="2" :maxFractionDigits="2"/>
+                    <Message severity="error" v-if="strategyList[strategyIndex]['regionParameters'].infectiousnessLevel <= 0"  :closable="false"> Reproduction number needs to be a positive number.</Message>
                     <p class="mt-6">The basic reproduction number (R_0) is defined as the average number of secondary cases an infected individual will generate in a fully susceptible population.</p>
                     <p>NOTE: This is different from the Effective Reproductive number, which measures the average number of secondary cases per infectious case in a population made up of both susceptible and non-susceptible hosts.</p>
                     <p>Based on the following article (*), we recommend:</p>
