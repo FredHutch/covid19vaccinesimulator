@@ -43,7 +43,7 @@ let sdParameters = currentStrategy["regionParameters"]["socialDistancing"];
 
 function onHomeSCLevelChange(newData) {
     console.log(`onHomeSCLevelChange: ${JSON.stringify(newData)}`);
-    sdParameters.homeSCLevel = newData;
+    strategyList.value[strategyIndex].regionParameters.socialDistancing.homeSCLevel = newData;
 
     /*
     scStore.$patch({
@@ -54,7 +54,7 @@ function onHomeSCLevelChange(newData) {
 
 function onWorkSCLevelChange(newData) {
     console.log(`onWorkSCLevelChange: ${JSON.stringify(newData)}`);
-    sdParameters.workSCLevel = newData;
+    strategyList.value[strategyIndex].regionParameters.socialDistancing.workSCLevel = newData;
     /*
     scStore.$patch({
         workSCLevel: newData
@@ -64,7 +64,7 @@ function onWorkSCLevelChange(newData) {
 
 function onSchoolSCLevelChange(newData) {
     console.log(`onSchoolSCLevelChange: ${JSON.stringify(newData)}`);
-    sdParameters.schoolSCLevel = newData;
+    strategyList.value[strategyIndex].regionParameters.socialDistancing.schoolSCLevel = newData;
 
     /*
     scStore.$patch({
@@ -75,7 +75,7 @@ function onSchoolSCLevelChange(newData) {
 
 function onOtherSCLevelChange(newData) {
     console.log(`onOtherSCLevelChange: ${JSON.stringify(newData)}`);
-    sdParameters.otherSCLevel = newData;
+    strategyList.value[strategyIndex].regionParameters.socialDistancing.otherSCLevel = newData;
 
     /*
     scStore.$patch({
@@ -107,16 +107,16 @@ const onNextClick = (event) => {
             <div class="grid">
                 <div class="col">
                     <h3>Are people practicing social distancing at home?</h3>
-                    <MySlider :min="0" :max="1" :step="0.05" :initial="sdParameters.homeSCLevel" minLabl="Not at all" maxLabel="Fully" @change="onHomeSCLevelChange"></MySlider>
+                    <MySlider :min="0" :max="1" :step="0.05" :initial="strategyList[strategyIndex].regionParameters.socialDistancing.homeSCLevel" minLabl="Not at all" maxLabel="Fully" @change="onHomeSCLevelChange"></MySlider>
 
                     <h3>Are people practicing social distancing at work?</h3>
-                    <MySlider :min="0" :max="1" :step="0.05" :initial="sdParameters.workSCLevel" minLabl="Not at all" maxLabel="Fully" @change="onWorkSCLevelChange"></MySlider>
+                    <MySlider :min="0" :max="1" :step="0.05" :initial="strategyList[strategyIndex].regionParameters.socialDistancing.workSCLevel" minLabl="Not at all" maxLabel="Fully" @change="onWorkSCLevelChange"></MySlider>
 
                     <h3>Are people practicing social distancing at school?</h3>
-                    <MySlider :min="0" :max="1" :step="0.05" :initial="sdParameters.schoolSCLevel" minLabl="Not at all" maxLabel="Fully" @change="onSchoolSCLevelChange"></MySlider>
+                    <MySlider :min="0" :max="1" :step="0.05" :initial="strategyList[strategyIndex].regionParameters.socialDistancing.schoolSCLevel" minLabl="Not at all" maxLabel="Fully" @change="onSchoolSCLevelChange"></MySlider>
 
                     <h3>Are people practicing social distancing at other locations?</h3>
-                    <MySlider :min="0" :max="1" :step="0.05" :initial="sdParameters.otherSCLevel" minLabl="Not at all" maxLabel="Fully" @change="onOtherSCLevelChange"></MySlider>
+                    <MySlider :min="0" :max="1" :step="0.05" :initial="strategyList[strategyIndex].regionParameters.socialDistancing.otherSCLevel" minLabl="Not at all" maxLabel="Fully" @change="onOtherSCLevelChange"></MySlider>
                 </div>
             </div>
             <div>
