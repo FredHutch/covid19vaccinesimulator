@@ -92,7 +92,7 @@ const isPeriodValid = computed(() => {
 
   //simulationInterval
 
-  let dateDaysList = strategiesStore.getValidVaccineDateDaysListByStrategyIndex(strategyIndex);
+  let dateDaysList = strategiesStore.getValidVaccineDateDaysListByStrategyIndex(strategyIndex, strategyList.value[strategyIndex].simulationInterval[0]);
 
   console.log(`isPeriodValid: simulationInterval: ${strategyList.value[strategyIndex].simulationInterval}`);
 
@@ -111,9 +111,11 @@ const recommendedPeriodMsg = computed(() => {
 
 //simulationInterval
 
-let dateDaysList = strategiesStore.getValidVaccineDateDaysListByStrategyIndex(strategyIndex);
+let dateDaysList = strategiesStore.getValidVaccineDateDaysListByStrategyIndex(strategyIndex, strategyList.value[strategyIndex].simulationInterval[0]);
 
 let expectedInterval = GeneralUtility.calculateStartAndEndWithDateAndDaysList(dateDaysList);
+
+console.log(`expectedInterval: ${expectedInterval}`);
 
 
 let startDateTime = DateTime.fromJSDate(expectedInterval[0]);
