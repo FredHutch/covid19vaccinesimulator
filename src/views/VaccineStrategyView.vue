@@ -47,7 +47,7 @@ const { infectionStatusByAgeGroup } = storeToRefs(isStore);
 /*
 import { useVaccinationStatusStore } from "@/stores/vaccination-status";
 const vaccinationStore = useVaccinationStatusStore();
-const { vaccinationStatusByAgeGroup} = storeToRefs(vaccinationStore);
+const { strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup} = storeToRefs(vaccinationStore);
 */
 
 /*
@@ -75,15 +75,15 @@ if(route.query.strategy != undefined){
     strategiesStore.selectStrategy(strategyIndex);
 }
 */
-let currentStrategy = strategyList.value[strategyIndex];
+//let currentStrategy = strategyList.value[strategyIndex];
 
-let regionParameters = currentStrategy["regionParameters"];
-let infectionStatusByAgeGroup = currentStrategy["regionParameters"]["infectionStatus"];
+//let regionParameters = currentStrategy["regionParameters"];
+//let infectionStatusByAgeGroup = strategyList.value[strategyIndex].regionParameters["infectionStatus"];
 
-let vaccineList = currentStrategy["vaccineParameters"]["vaccineList"];
+//let vaccineList = currentStrategy["vaccineParameters"]["vaccineList"];
 //let vaccineAvailability = vaccineList;
 
-let vaccinationStatusByAgeGroup = currentStrategy["vaccineParameters"]["vaccinationStatusByAgeGroup"];
+//let vaccinationStatusByAgeGroup = currentStrategy["vaccineParameters"]["vaccinationStatusByAgeGroup"];
 
 /*
 strategiesStore.$subscribe((mutation, state) => {
@@ -118,7 +118,7 @@ function onInfectionStatusChange(event) {
 
   console.log(`onInfectionStatusChange: ${JSON.stringify(data)}`);
 
-  let newData = [...infectionStatusByAgeGroup];
+  let newData = [...strategyList.value[strategyIndex].regionParameters.infectionStatus];
 
   newData = newData.map((item) => {
     if (item["category"] == data["category"]) {
@@ -136,11 +136,11 @@ function onInfectionStatusChange(event) {
   }
 
 
-  infectionStatusByAgeGroup = newData;
+  strategyList.value[strategyIndex].regionParameters.infectionStatus = newData;
 
   /*
   isStore.$patch({
-    infectionStatusByAgeGroup: newData,
+    strategyList.value[strategyIndex].regionParameters.infectionStatus: newData,
   });
   */
 }
@@ -203,7 +203,7 @@ const convertVaccineTypeLabel = (name) => {
 
 const group1Total = computed(() => {
   let propertyName = "group1";
-  let items = infectionStatusByAgeGroup;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return (
     items[0][propertyName] + items[1][propertyName] + items[2][propertyName]
   );
@@ -211,7 +211,7 @@ const group1Total = computed(() => {
 
 const group2Total = computed(() => {
   let propertyName = "group2";
-  let items = infectionStatusByAgeGroup;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return (
     items[0][propertyName] + items[1][propertyName] + items[2][propertyName]
   );
@@ -219,7 +219,7 @@ const group2Total = computed(() => {
 
 const group3Total = computed(() => {
   let propertyName = "group3";
-  let items = infectionStatusByAgeGroup;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return (
     items[0][propertyName] + items[1][propertyName] + items[2][propertyName]
   );
@@ -227,7 +227,7 @@ const group3Total = computed(() => {
 
 const group4Total = computed(() => {
   let propertyName = "group4";
-  let items = infectionStatusByAgeGroup;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return (
     items[0][propertyName] + items[1][propertyName] + items[2][propertyName]
   );
@@ -235,14 +235,14 @@ const group4Total = computed(() => {
 
 
 const infectedByAgeGroup = computed(() => {
-  return infectionStatusByAgeGroup.filter((data) => {
+  return strategyList.value[strategyIndex].regionParameters.infectionStatus.filter((data) => {
     return data['category'] != "Uninfected";
   });
 });
 
 const group5Total = computed(() => {
   let propertyName = "group5";
-  let items = infectionStatusByAgeGroup;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return (
     items[0][propertyName] + items[1][propertyName] + items[2][propertyName]
   );
@@ -276,7 +276,7 @@ const allGroupValid = computed(() => {
 
 
 const vaccine1Total = computed(() => {
-  let allocation = vaccineList[0].allocation;
+  let allocation = strategyList.value[strategyIndex].vaccineParameters.vaccineList[0].allocation;
 
   // version 2: use other properties
   return computeAllocationTotal(allocation);
@@ -418,7 +418,7 @@ const vaccinatedUnBoostedTotalAfterNewVaccineByGroupList = computed(() => {
 });
 
 const vaccinatedTotalAfterNewVaccineByGroupList = computed(() => {
-  let vaccinatedAfterNewVaccine = regionParameters.region.populationList != undefined ? regionParameters.region.populationList : [0, 0, 0, 0, 0];
+  let vaccinatedAfterNewVaccine = strategyList.value[strategyIndex].regionParameters.region.populationList != undefined ? strategyList.value[strategyIndex].regionParameters.region.populationList : [0, 0, 0, 0, 0];
 
   vaccinatedAfterNewVaccine = vaccinatedAfterNewVaccine.map((num, index) => {
     let result = num - unvaccinatedTotalAfterNewVaccineByGroupList.value[index];
@@ -450,11 +450,11 @@ const unvaccinatedTotalAfterNewVaccineByGroupList = computed(() => {
 
 const vaccinatedWithNewVaccineByGroupList = computed(() => {
   // this is about fulldose/primary series
-  // vaccineList
+  // strategyList.value[strategyIndex].vaccineParameters.vaccineList
 
   let vaccinatedWithNewVaccine = [0, 0, 0, 0, 0];
 
-  vaccineList.forEach((allocationInfo) => {
+  strategyList.value[strategyIndex].vaccineParameters.vaccineList.forEach((allocationInfo) => {
     let vaccineNumber = allocationInfo.number;
     let fulldoseAllocation = allocationInfo.allocation[0];
     for (let i = 1; i <= 5; i++) {
@@ -477,11 +477,11 @@ const vaccinatedWithNewVaccineByGroupList = computed(() => {
 
 const unvaccinatedTotalByGroupList = computed(() => {
 
-  let knownUnvaccinated = Object.keys(vaccinationStatusByAgeGroup).map((groupName, index) => {
+  let knownUnvaccinated = Object.keys(strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup).map((groupName, index) => {
     //console.log(`unvaccinatedTotalByGroupList: index : ${index}`);
     //console.log(`unvaccinatedTotalByGroupList: region : ${JSON.stringify(regionParameters)}`);
     //console.log(`unvaccinatedTotalByGroupList: region.populationList : ${regionParameters.region.populationList}`);
-    return Math.floor(vaccinationStatusByAgeGroup[groupName][3]["fulldose"] / 100 * (regionParameters.region.populationList == undefined ? 0 : regionParameters.region.populationList[index]));
+    return Math.floor(strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[groupName][3]["fulldose"] / 100 * (strategyList.value[strategyIndex].regionParameters.region.populationList == undefined ? 0 : strategyList.value[strategyIndex].regionParameters.region.populationList[index]));
   });
 
   return knownUnvaccinated;
@@ -490,7 +490,7 @@ const unvaccinatedTotalByGroupList = computed(() => {
 
 const boostedTotalAfterNewVaccineByGroupList = computed(() => {
 
-  let boostedAfterNewVaccine = regionParameters.region.populationList != undefined ? regionParameters.region.populationList : [0, 0, 0, 0, 0];
+  let boostedAfterNewVaccine = strategyList.value[strategyIndex].regionParameters.region.populationList != undefined ? strategyList.value[strategyIndex].regionParameters.region.populationList : [0, 0, 0, 0, 0];
 
 
 
@@ -526,7 +526,7 @@ const unboostedTotalAfterNewVaccineByGroupList = computed(() => {
 
 const boostedWithNewVaccineByGroupList = computed(() => {
   // this is about fulldose/primary series
-  // vaccineList
+  // strategyList.value[strategyIndex].vaccineParameters.vaccineList
 
   let boostedWithNewVaccine = [0, 0, 0, 0, 0];
 
@@ -534,7 +534,7 @@ const boostedWithNewVaccineByGroupList = computed(() => {
 
   // wait... there are three types of vaccine
 
-  vaccineList.forEach((allocationInfo) => {
+  strategyList.value[strategyIndex].vaccineParameters.vaccineList.forEach((allocationInfo) => {
     let vaccineNumber = allocationInfo.number;
     let boosterAllocation = allocationInfo.allocation[1];
     let boostedProportion = [0, 0, 0, 0, 0];
@@ -563,13 +563,13 @@ const boostedWithNewVaccineByGroupList = computed(() => {
 
 const unboostedTotalByGroupList = computed(() => {
 
-  let knownUnboosted = Object.keys(vaccinationStatusByAgeGroup).map((groupName, index) => {
+  let knownUnboosted = Object.keys(strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup).map((groupName, index) => {
     /*
     console.log(`unboostedTotalByGroupList: index : ${index}`);
     console.log(`unboostedTotalByGroupList: region : ${JSON.stringify(regionParameters)}`);
     console.log(`unboostedTotalByGroupList: region.populationList : ${regionParameters.region.populationList}`);
     */
-    return Math.floor(vaccinationStatusByAgeGroup[groupName][3]["booster"] / 100 * (regionParameters.region.populationList == undefined ? 0 : regionParameters.region.populationList[index]));
+    return Math.floor(strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[groupName][3]["booster"] / 100 * (strategyList.value[strategyIndex].regionParameters.region.populationList == undefined ? 0 : strategyList.value[strategyIndex].regionParameters.region.populationList[index]));
   });
 
   return knownUnboosted;
@@ -577,7 +577,7 @@ const unboostedTotalByGroupList = computed(() => {
 
 /*
 const vaccine1FulldoseAllocation = computed(() => {
-    let allocation = vaccineList[0].allocation.filter((oneAllocation) => {
+    let allocation = strategyList.value[strategyIndex].vaccineParameters.vaccineList[0].allocation.filter((oneAllocation) => {
       return oneAllocation.category == "Full dose";
     });
     return allocation;
@@ -585,7 +585,7 @@ const vaccine1FulldoseAllocation = computed(() => {
 */
 
 const vaccine1FulldoseTotal = computed(() => {
-  let allocation = vaccineList[0].allocation;
+  let allocation = strategyList.value[strategyIndex].vaccineParameters.vaccineList[0].allocation;
   let total = 0;
 
   for (let i = 1; i <= 5; i++) {
@@ -598,7 +598,7 @@ const vaccine1FulldoseTotal = computed(() => {
 });
 
 const vaccine1BoosterTotal = computed(() => {
-  let allocation = vaccineList[0].allocation;
+  let allocation = strategyList.value[strategyIndex].vaccineParameters.vaccineList[0].allocation;
   let total = 0;
 
   for (let i = 1; i <= 5; i++) {
@@ -610,7 +610,7 @@ const vaccine1BoosterTotal = computed(() => {
 });
 
 const vaccine2Total = computed(() => {
-  let allocation = vaccineList[1].allocation;
+  let allocation = strategyList.value[strategyIndex].vaccineParameters.vaccineList[1].allocation;
 
   // version 2: use other properties
   return computeAllocationTotal(allocation);
@@ -630,7 +630,7 @@ const vaccine2Total = computed(() => {
 
 
 const vaccine3Total = computed(() => {
-  let allocation = vaccineList[2].allocation;
+  let allocation = strategyList.value[strategyIndex].vaccineParameters.vaccineList[2].allocation;
 
   // version 2: use other properties
   return computeAllocationTotal(allocation);
@@ -652,7 +652,7 @@ const allAllocationValid = computed(() => {
   //console.log(`vaccine1Total: ${vaccine1Total.value}, vaccine2Total: ${vaccine2Total.value}, vaccine3Total: ${vaccine3Total.value}`);
   //return vaccine1Total.value <= 100 && vaccine2Total.value <= 100 && vaccine3Total.value <= 100;
 
-  return vaccineList.every((oneAvailability) => {
+  return strategyList.value[strategyIndex].vaccineParameters.vaccineList.every((oneAvailability) => {
     return computeAllocationFulldoseTotal(oneAvailability.allocation) <= oneAvailability.allocation[0].proportion && computeAllocationBoosterTotal(oneAvailability.allocation) <= oneAvailability.allocation[1].proportion;
   });
 });
@@ -675,19 +675,19 @@ const getVaccineTotal = (index) => {
 const convertVaccineLabel = (placholderName) => {
   //console.log(`convertVaccineLabel: ${placholderName}`);
 
-  //console.log(`convertVaccineLabel vaccine1.name: ${vaccineList[0].name}`);
+  //console.log(`convertVaccineLabel vaccine1.name: ${strategyList.value[strategyIndex].vaccineParameters.vaccineList[0].name}`);
 
   let result = "";
 
   switch (placholderName) {
     case "Vaccine 1":
-      result = vaccineList[0].name;
+      result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[0].name;
       break;
     case "Vaccine 2":
-      result = vaccineList[1].name;
+      result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[1].name;
       break;
     case "Vaccine 3":
-      result = vaccineList[2].name;
+      result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[2].name;
       break;
     default:
       result = "";
@@ -830,31 +830,31 @@ const onInputPercentageChange = (event, index) => {
 
   // version 2:
   if( event.value >= 0 && event.value <= 100){
-    let newAvailabilityAllocation = [...vaccineList[index].allocation];
+    let newAvailabilityAllocation = [...strategyList.value[strategyIndex].vaccineParameters.vaccineList[index].allocation];
     newAvailabilityAllocation = newAvailabilityAllocation.map((allocation, aIndex) => {
       let totalAllowance = 100;
       return aIndex == 0 ? { ...allocation, proportion: event.value } : { ...allocation, proportion: GeneralUtility.minusNumbersAsDecimal(totalAllowance, event.value) }
     });
 
-    vaccineList[index].allocation = newAvailabilityAllocation;
+    strategyList.value[strategyIndex].vaccineParameters.vaccineList[index].allocation = newAvailabilityAllocation;
   }
   else if ( event.value > 100){
-    let newAvailabilityAllocation = [...vaccineList[index].allocation];
+    let newAvailabilityAllocation = [...strategyList.value[strategyIndex].vaccineParameters.vaccineList[index].allocation];
     newAvailabilityAllocation = newAvailabilityAllocation.map((allocation, aIndex) => {
       let totalAllowance = 100;
       return aIndex == 0 ? { ...allocation, proportion: 100 } : { ...allocation, proportion: 0 };
     });
 
-    vaccineList[index].allocation = newAvailabilityAllocation;
+    strategyList.value[strategyIndex].vaccineParameters.vaccineList[index].allocation = newAvailabilityAllocation;
   }
   else if ( event.value < 0){
-    let newAvailabilityAllocation = [...vaccineList[index].allocation];
+    let newAvailabilityAllocation = [...strategyList.value[strategyIndex].vaccineParameters.vaccineList[index].allocation];
     newAvailabilityAllocation = newAvailabilityAllocation.map((allocation, aIndex) => {
       let totalAllowance = 100;
       return aIndex == 0 ? { ...allocation, proportion: 0 } : { ...allocation, proportion: 100 };
     });
 
-    vaccineList[index].allocation = newAvailabilityAllocation;
+    strategyList.value[strategyIndex].vaccineParameters.vaccineList[index].allocation = newAvailabilityAllocation;
   }
 
   updateSimulationParameters();
@@ -874,7 +874,7 @@ const onInputBlur = (event, obj, vaccineIndex, allocationIndex) => {
 
   resultValue = Math.min(Math.max(inputValue, 0), 100);
 
-  currentStrategy["vaccineParameters"]["vaccineList"][vaccineIndex].allocation[allocationIndex][obj.field] = resultValue;// event.value;
+  strategyList.value[strategyIndex].vaccineParameters.vaccineList[vaccineIndex].allocation[allocationIndex][obj.field] = resultValue;// event.value;
 
   /*
   //obj.data[obj.field] = event.value;
@@ -903,9 +903,9 @@ const onInputBoosterBlur = (event, obj, vaccineIndex, allocationIndex) => {
 
   resultValue = Math.min(Math.max(inputValue, 0), 100);
 
-  console.log(`currentStrategy["vaccineParameters"]["vaccineList"][vaccineIndex].allocation[allocationIndex]['primaryMatching']: ${JSON.stringify(currentStrategy["vaccineParameters"]["vaccineList"][vaccineIndex].allocation[allocationIndex]['primaryMatching'])}`);
+  console.log(`currentStrategy["vaccineParameters"]["vaccineList"][vaccineIndex].allocation[allocationIndex]['primaryMatching']: ${JSON.stringify(strategyList.value[strategyIndex].vaccineParameters.vaccineList[vaccineIndex].allocation[allocationIndex]['primaryMatching'])}`);
 
-  currentStrategy["vaccineParameters"]["vaccineList"][vaccineIndex].allocation[allocationIndex]['primaryMatching'].filter((eInfo) => {
+  strategyList.value[strategyIndex].vaccineParameters.vaccineList[vaccineIndex].allocation[allocationIndex]['primaryMatching'].filter((eInfo) => {
     return eInfo.primary == obj.data.primary;
   })[0][obj.field] = resultValue; //Number(event.value);
 
@@ -942,7 +942,7 @@ const onCalendarDateSelect = (event) => {
 
 
 
-  currentStrategy["vaccineParameters"]["vaccineList"][vaccineIndex]["allocation"][allocationIndex]["date"] = newValue;
+  strategyList.value[strategyIndex].vaccineParameters.vaccineList[vaccineIndex]["allocation"][allocationIndex]["date"] = newValue;
 
 
 
@@ -990,10 +990,10 @@ will be available on {{ DateTime.fromJSDate(vaccine.date).toISODate() }}
         <template #legend>
           <h3>Summary</h3>
         </template>
-        <div>Region: {{ regionParameters.region.name }}</div>
+        <div>Region: {{ strategyList[strategyIndex].regionParameters.region.name }}</div>
         <div>Population size: {{
-          regionParameters.region != undefined && regionParameters.region.populationList !=
-            undefined ? regionParameters.region.populationList.reduce((a, b) => a + b, 0).toLocaleString(undefined) : "?"
+          strategyList[strategyIndex].regionParameters.region != undefined && strategyList[strategyIndex].regionParameters.region.populationList !=
+            undefined ? strategyList[strategyIndex].regionParameters.region.populationList.reduce((a, b) => a + b, 0).toLocaleString(undefined) : "?"
         }}
         </div>
         <div class="hidden">
