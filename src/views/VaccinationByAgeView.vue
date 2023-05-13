@@ -172,9 +172,9 @@ const combinedColumns = reactive([
   { field: "booster", header: "Booster" },
 ]);
 
-// vaccinationStatusByAgeGroup
+// strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup
 const vaccinationByAgeGroup = computed(() => {
-  return vaccinationStatusByAgeGroup[onlyGroupName.value].filter((data) => {
+  return strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[onlyGroupName.value].filter((data) => {
     return data["category"] != "Unvaccinated";
   });
 });
@@ -184,7 +184,7 @@ const group1PrimaryTotal = computed(() => {
   let propertyName = onlyGroupName.value;
 
   //let items = infectionStatusByAgeGroup.value;
-  let items = vaccinationStatusByAgeGroup[propertyName];
+  let items = strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[propertyName];
   //console.log(`items: ${JSON.stringify(items)}`);
   let vaccineType = "fulldose";
 
@@ -193,7 +193,7 @@ const group1PrimaryTotal = computed(() => {
 
 const group1PrimaryValid = computed(() => {
   let propertyName = onlyGroupName.value;
-  let items = vaccinationStatusByAgeGroup[propertyName];
+  let items = strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[propertyName];
   let vaccineType = "fulldose";
   return group1PrimaryTotal.value == 100 && items[0][vaccineType] >= 0 && items[1][vaccineType] >= 0 && items[2][vaccineType] >= 0 && items[3][vaccineType] >= 0;
 
@@ -203,7 +203,7 @@ const group1BoosterTotal = computed(() => {
   let propertyName = onlyGroupName.value;
 
   //let items = infectionStatusByAgeGroup.value;
-  let items = vaccinationStatusByAgeGroup[propertyName];
+  let items = strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[propertyName];
   //console.log(`items: ${JSON.stringify(items)}`);
   let vaccineType = "booster";
 
@@ -212,7 +212,7 @@ const group1BoosterTotal = computed(() => {
 
 const group1BoosterValid = computed(() => {
   let propertyName = onlyGroupName.value;
-  let items = vaccinationStatusByAgeGroup[propertyName];
+  let items = strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[propertyName];
   let vaccineType = "booster";
   return group1BoosterTotal.value == 100 && items[0][vaccineType] >= 0 && items[1][vaccineType] >= 0 && items[2][vaccineType] >= 0 && items[3][vaccineType] >= 0;
 
@@ -226,7 +226,7 @@ const group1VaccinatedTotal = computed(() => {
   let propertyName = onlyGroupName.value;
 
   //let items = infectionStatusByAgeGroup.value;
-  let items = vaccinationStatusByAgeGroup[propertyName];
+  let items = strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[propertyName];
   //console.log(`items: ${JSON.stringify(items)}`);
   let vaccinePrimary = "fulldose";
   let vaccineBooster = "booster";
@@ -236,7 +236,7 @@ const group1VaccinatedTotal = computed(() => {
 
 
 function updateUnvaccinated(field) {
-  let newData = { ...vaccinationStatusByAgeGroup };
+  let newData = { ...strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup };
   newData[onlyGroupName.value][3][field] = GeneralUtility.minusNumbersAsDecimal(
     100,
     GeneralUtility.sumNumbersAsDecimal([
@@ -245,7 +245,7 @@ function updateUnvaccinated(field) {
       newData[onlyGroupName.value][2][field],
     ])
   );
-  currentStrategy["vaccineParameters"]["vaccinationStatusByAgeGroup"] = newData;
+  strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup = newData;
 }
 
 function onVaccinationStatusChange(event) {
@@ -261,21 +261,21 @@ function onVaccinationStatusChange(event) {
 
   console.log(
     `onVaccinationStatusChange vaccinationStatusByAgeGroup[onlyGroupName]: ${JSON.stringify(
-      vaccinationStatusByAgeGroup[onlyGroupName.value]
+      strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[onlyGroupName.value]
     )}`
   );
 
   console.log(
     `onVaccinationStatusChange vaccinationStatusByAgeGroup: ${JSON.stringify(
-      vaccinationStatusByAgeGroup
+      strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup
     )}`
   );
 
   console.log(
-    `onVaccinationStatusChange vaccinationStatusByAgeGroup type: ${typeof vaccinationStatusByAgeGroup}`
+    `onVaccinationStatusChange vaccinationStatusByAgeGroup type: ${typeof strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup}`
   );
 
-  let newData = { ...vaccinationStatusByAgeGroup };
+  let newData = { ...strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup };
 
   console.log(
     `onVaccinationStatusChange vaccinationStatusByAgeGroup newData (before change): ${JSON.stringify(
@@ -322,7 +322,7 @@ function onVaccinationStatusChange(event) {
     )}`
   );
 
-  currentStrategy["vaccineParameters"]["vaccinationStatusByAgeGroup"] = newData;
+  strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup = newData;
 
   /*
   vaccinationStore.$patch({
@@ -358,7 +358,7 @@ const onInputBlur = (event, obj, groupName) => {
     `onInputBlur: inputValue: ${inputValue}, resultValue: ${resultValue}`
   );
 
-  currentStrategy["vaccineParameters"]["vaccinationStatusByAgeGroup"][
+  strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[
     groupName
   ].filter((eInfo) => {
     return eInfo.category == obj.data.category;
@@ -438,7 +438,7 @@ const colorList = ["#42A5F5", "#FFA726", "#44A726"];
 const basicData = computed(() => {
   return {
     labels: ["Primary series", "Booster"],
-    datasets: vaccinationStatusByAgeGroup[onlyGroupName.value]
+    datasets: strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[onlyGroupName.value]
       .filter((item) => {
         return convertVaccineLabel(item.category) != "Unvaccinated";
       })
@@ -574,9 +574,9 @@ const basicOptions = {
                     <Column footer="Unvaccinated" :colspan="1" footerStyle="text-align:left"
                       footerClass="fh-table-footer" />
                     <Column :footer="
-                      vaccinationStatusByAgeGroup[onlyGroupName][3]['fulldose']" footerClass="fh-table-footer" />
+                      strategyList[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[onlyGroupName][3]['fulldose']" footerClass="fh-table-footer" />
                     <Column :footer="
-                      vaccinationStatusByAgeGroup[onlyGroupName][3]['booster']
+                      strategyList[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[onlyGroupName][3]['booster']
                     " footerClass="fh-table-footer" />
 
                   </Row>
