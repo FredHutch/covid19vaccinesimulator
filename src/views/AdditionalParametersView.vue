@@ -49,11 +49,11 @@ if(route.query.strategy != undefined){
 */
 let currentStrategy = strategyList.value[strategyIndex];
 
-let vaccineList = currentStrategy["vaccineParameters"]["vaccineList"];
+//let vaccineList = currentStrategy["vaccineParameters"]["vaccineList"];
 
-let isParameters = currentStrategy["regionParameters"]["infectionStatus"];
+//let isParameters = currentStrategy["regionParameters"]["infectionStatus"];
 
-let fParameters = currentStrategy["fixedParameters"];
+//let fParameters = currentStrategy["fixedParameters"];
 
 function onInfectionStatusChange(event) {
   let { data, newValue, field } = event;
@@ -74,7 +74,7 @@ function onInfectionStatusChange(event) {
   console.log(`onInfectionStatusChange: ${JSON.stringify(data)}`);
 
   //let newData = [...infectionStatusByAgeGroup.value];
-  let newData = [...isParameters];
+  let newData = [...strategyList.value[strategyIndex].regionParameters.infectionStatus];
 
   newData = newData.map((item) => {
     if (item["category"] == data["category"]) {
@@ -90,7 +90,7 @@ function onInfectionStatusChange(event) {
     newData[2][groupName] = 100 - newData[0][groupName] - newData[1][groupName];
   }
 
-  isParameters = newData;
+  strategyList.value[strategyIndex].regionParameters.infectionStatus = newData;
 
   /*
   isStore.$patch({
@@ -240,7 +240,7 @@ const ageGroupColumns = computed(() => {
   let propertyName = "group1";
 
   //let items = infectionStatusByAgeGroup.value;
-  let items = isParameters;
+  let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return (
     items[0][propertyName] + items[1][propertyName] + items[2][propertyName]
   );
@@ -250,25 +250,25 @@ const ageGroupColumns = computed(() => {
 
 
 const ageGroupParameters = computed(() => {
-  // fParameters['propSymptomaticInfection'][0]
-  // fParameters['relativeSusceptibility'][0]
+  // strategyList.value[strategyIndex].fixedParameters['propSymptomaticInfection'][0]
+  // strategyList.value[strategyIndex].fixedParameters['relativeSusceptibility'][0]
 
   return [
     {
       category: "Proportion of symptomatic infections in each age group",
-      group1: fParameters['propSymptomaticInfection'][0],
-      group2: fParameters['propSymptomaticInfection'][1],
-      group3: fParameters['propSymptomaticInfection'][2],
-      group4: fParameters['propSymptomaticInfection'][3],
-      group5: fParameters['propSymptomaticInfection'][4],
+      group1: strategyList.value[strategyIndex].fixedParameters['propSymptomaticInfection'][0],
+      group2: strategyList.value[strategyIndex].fixedParameters['propSymptomaticInfection'][1],
+      group3: strategyList.value[strategyIndex].fixedParameters['propSymptomaticInfection'][2],
+      group4: strategyList.value[strategyIndex].fixedParameters['propSymptomaticInfection'][3],
+      group5: strategyList.value[strategyIndex].fixedParameters['propSymptomaticInfection'][4],
     },
     {
       category: "Relative susceptibility",
-      group1: fParameters['relativeSusceptibility'][0],
-      group2: fParameters['relativeSusceptibility'][1],
-      group3: fParameters['relativeSusceptibility'][2],
-      group4: fParameters['relativeSusceptibility'][3],
-      group5: fParameters['relativeSusceptibility'][4],
+      group1: strategyList.value[strategyIndex].fixedParameters['relativeSusceptibility'][0],
+      group2: strategyList.value[strategyIndex].fixedParameters['relativeSusceptibility'][1],
+      group3: strategyList.value[strategyIndex].fixedParameters['relativeSusceptibility'][2],
+      group4: strategyList.value[strategyIndex].fixedParameters['relativeSusceptibility'][3],
+      group5: strategyList.value[strategyIndex].fixedParameters['relativeSusceptibility'][4],
     }
   ];
 
@@ -301,9 +301,9 @@ const ageGroupParameters = computed(() => {
               <div class="col"></div>
               <div class="col">
                 <div class="grid">
-                  <div class="col text-lg"><spam style="width: 100px;">{{vaccineList[0].name !=  ""?  vaccineList[0].name: "Vaccine 1" }}</spam></div>
-                  <div class="col text-lg"><spam style="width: 100px;">{{vaccineList[1].name !=  ""?  vaccineList[1].name: "Vaccine 2" }}</spam></div>
-                  <div class="col text-lg"><spam style="width: 100px;">{{vaccineList[2].name !=  ""?  vaccineList[2].name: "Vaccine 3" }}</spam></div>
+                  <div class="col text-lg"><spam style="width: 100px;">{{strategyList[strategyIndex].vaccineParameters.vaccineList[0].name !=  ""?  strategyList[strategyIndex].vaccineParameters.vaccineList[0].name: "Vaccine 1" }}</spam></div>
+                  <div class="col text-lg"><spam style="width: 100px;">{{strategyList[strategyIndex].vaccineParameters.vaccineList[1].name !=  ""?  strategyList[strategyIndex].vaccineParameters.vaccineList[1].name: "Vaccine 2" }}</spam></div>
+                  <div class="col text-lg"><spam style="width: 100px;">{{strategyList[strategyIndex].vaccineParameters.vaccineList[2].name !=  ""?  strategyList[strategyIndex].vaccineParameters.vaccineList[2].name: "Vaccine 3" }}</spam></div>
                 </div>
               </div>
             </div>
@@ -322,7 +322,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['meanDurationPrimaryImmunity'][0]"
+                  v-model="strategyList[strategyIndex].fixedParameters['meanDurationPrimaryImmunity'][0]"
                 />
                   </div>
                   <div class="col">
@@ -333,7 +333,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['meanDurationPrimaryImmunity'][1]"
+                  v-model="strategyList[strategyIndex].fixedParameters['meanDurationPrimaryImmunity'][1]"
                 />
                   </div>
                   <div class="col">
@@ -344,7 +344,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['meanDurationPrimaryImmunity'][2]"
+                  v-model="strategyList[strategyIndex].fixedParameters['meanDurationPrimaryImmunity'][2]"
                 />
                   </div>
                 </div>
@@ -368,7 +368,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['meanDurationHybridImmunity'][0]"
+                  v-model="strategyList[strategyIndex].fixedParameters['meanDurationHybridImmunity'][0]"
                 />
 
                   </div>
@@ -380,7 +380,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['meanDurationHybridImmunity'][1]"
+                  v-model="strategyList[strategyIndex].fixedParameters['meanDurationHybridImmunity'][1]"
                 />
 
                   </div>
@@ -392,7 +392,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['meanDurationHybridImmunity'][2]"
+                  v-model="strategyList[strategyIndex].fixedParameters['meanDurationHybridImmunity'][2]"
                 />
 
                   </div>
@@ -417,7 +417,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['meanDurationBoosterImmunity'][0]"
+                  v-model="strategyList[strategyIndex].fixedParameters['meanDurationBoosterImmunity'][0]"
                 />
                   </div>
                   <div class="col">
@@ -428,7 +428,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['meanDurationBoosterImmunity'][1]"
+                  v-model="strategyList[strategyIndex].fixedParameters['meanDurationBoosterImmunity'][1]"
                 />
                   </div>
                   <div class="col">
@@ -439,7 +439,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['meanDurationBoosterImmunity'][2]"
+                  v-model="strategyList[strategyIndex].fixedParameters['meanDurationBoosterImmunity'][2]"
                 />
                   </div>
 
@@ -464,7 +464,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['meanDurationBoostedHybridImmunity'][0]"
+                  v-model="strategyList[strategyIndex].fixedParameters['meanDurationBoostedHybridImmunity'][0]"
                 />
                   </div>
                   <div class="col">
@@ -475,7 +475,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['meanDurationBoostedHybridImmunity'][1]"
+                  v-model="strategyList[strategyIndex].fixedParameters['meanDurationBoostedHybridImmunity'][1]"
                 />
                   </div>
                   <div class="col">
@@ -486,7 +486,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['meanDurationBoostedHybridImmunity'][2]"
+                  v-model="strategyList[strategyIndex].fixedParameters['meanDurationBoostedHybridImmunity'][2]"
                 />
                   </div>
 
@@ -520,7 +520,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0" :max="1"
-                  v-model="fParameters['propSymptomaticInfection'][0]"
+                  v-model="strategyList[strategyIndex].fixedParameters['propSymptomaticInfection'][0]"
                 />
                   </div>
                   <div class="col">
@@ -531,7 +531,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0" :max="1"
-                  v-model="fParameters['propSymptomaticInfection'][1]"
+                  v-model="strategyList[strategyIndex].fixedParameters['propSymptomaticInfection'][1]"
                 />
                   </div>
                   <div class="col">
@@ -542,7 +542,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0" :max="1"
-                  v-model="fParameters['propSymptomaticInfection'][2]"
+                  v-model="strategyList[strategyIndex].fixedParameters['propSymptomaticInfection'][2]"
                 />
                   </div>
                   <div class="col">
@@ -553,7 +553,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0" :max="1"
-                  v-model="fParameters['propSymptomaticInfection'][3]"
+                  v-model="strategyList[strategyIndex].fixedParameters['propSymptomaticInfection'][3]"
                 />
                   </div>
                   <div class="col">
@@ -564,7 +564,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0" :max="1"
-                  v-model="fParameters['propSymptomaticInfection'][4]"
+                  v-model="strategyList[strategyIndex].fixedParameters['propSymptomaticInfection'][4]"
                 />
                   </div>
                 </div>
@@ -584,7 +584,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0" :max="1"
-                  v-model="fParameters['relativeSusceptibility'][0]"
+                  v-model="strategyList[strategyIndex].fixedParameters['relativeSusceptibility'][0]"
                 />
                   </div>
                   <div class="col">
@@ -595,7 +595,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0" :max="1"
-                  v-model="fParameters['relativeSusceptibility'][1]"
+                  v-model="strategyList[strategyIndex].fixedParameters['relativeSusceptibility'][1]"
                 />
                   </div>
                   <div class="col">
@@ -606,7 +606,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0" :max="1"
-                  v-model="fParameters['relativeSusceptibility'][2]"
+                  v-model="strategyList[strategyIndex].fixedParameters['relativeSusceptibility'][2]"
                 />
                   </div>
                   <div class="col">
@@ -617,7 +617,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0" :max="1"
-                  v-model="fParameters['relativeSusceptibility'][3]"
+                  v-model="strategyList[strategyIndex].fixedParameters['relativeSusceptibility'][3]"
                 />
                   </div>
                   <div class="col">
@@ -628,7 +628,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0" :max="1"
-                  v-model="fParameters['relativeSusceptibility'][4]"
+                  v-model="strategyList[strategyIndex].fixedParameters['relativeSusceptibility'][4]"
                 />
                   </div>
                 </div>
@@ -650,7 +650,7 @@ const ageGroupParameters = computed(() => {
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"
                 v-model="
-                  fParameters[
+                  strategyList[strategyIndex].fixedParameters[
                     'averageTimeBetweenSymptomOnsetAndHospitalization'
                   ]
                 "
@@ -670,7 +670,7 @@ const ageGroupParameters = computed(() => {
                 :minFractionDigits="0"
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"
-                v-model="fParameters['meanDurationInfectiousnessPostSymptoms']"
+                v-model="strategyList[strategyIndex].fixedParameters['meanDurationInfectiousnessPostSymptoms']"
               />
             </div>
           </div>
@@ -684,7 +684,7 @@ const ageGroupParameters = computed(() => {
                 :minFractionDigits="0"
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"
-                v-model="fParameters['meanDurationHospitalization']"
+                v-model="strategyList[strategyIndex].fixedParameters['meanDurationHospitalization']"
               />
             </div>
           </div>
@@ -699,7 +699,7 @@ const ageGroupParameters = computed(() => {
                 :minFractionDigits="0"
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"
-                v-model="fParameters['meanDurationLatentPeriod']"
+                v-model="strategyList[strategyIndex].fixedParameters['meanDurationLatentPeriod']"
               />
             </div>
           </div>
@@ -714,7 +714,7 @@ const ageGroupParameters = computed(() => {
                 :minFractionDigits="0"
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"
-                v-model="fParameters['meanDurationPreSymptomaticPeriod']"
+                v-model="strategyList[strategyIndex].fixedParameters['meanDurationPreSymptomaticPeriod']"
               />
             </div>
           </div>
@@ -732,7 +732,7 @@ const ageGroupParameters = computed(() => {
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"
                 v-model="
-                  fParameters['relativeInfectiousnessAsymptomaticInfection']
+                  strategyList[strategyIndex].fixedParameters['relativeInfectiousnessAsymptomaticInfection']
                 "
               />
             </div>
@@ -751,7 +751,7 @@ const ageGroupParameters = computed(() => {
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"
                 v-model="
-                  fParameters['relativeInfectiousnessHospitalizedInfection']
+                  strategyList[strategyIndex].fixedParameters['relativeInfectiousnessHospitalizedInfection']
                 "
               />
             </div>
@@ -770,7 +770,7 @@ const ageGroupParameters = computed(() => {
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"
                 v-model="
-                  fParameters['relativeInfectiousnessPreSymptomaticInfection']
+                  strategyList[strategyIndex].fixedParameters['relativeInfectiousnessPreSymptomaticInfection']
                 "
               />
             </div>
@@ -789,7 +789,7 @@ const ageGroupParameters = computed(() => {
                 :minFractionDigits="0"
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"
-                v-model="fParameters['meanDurationNatImmunityAfterInfection']"
+                v-model="strategyList[strategyIndex].fixedParameters['meanDurationNatImmunityAfterInfection']"
               />
             </div>
           </div>
@@ -807,7 +807,7 @@ const ageGroupParameters = computed(() => {
                 :minFractionDigits="0"
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"
-                v-model="fParameters['meanDurationNatImmunityAfterInfection2']"
+                v-model="strategyList[strategyIndex].fixedParameters['meanDurationNatImmunityAfterInfection2']"
               />
             </div>
           </div>
@@ -825,7 +825,7 @@ const ageGroupParameters = computed(() => {
                 :minFractionDigits="0"
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"
-                v-model="fParameters['meanDurationImmunityWanedVaxHybrid']"
+                v-model="strategyList[strategyIndex].fixedParameters['meanDurationImmunityWanedVaxHybrid']"
               />
             </div>
           </div>
@@ -845,7 +845,7 @@ const ageGroupParameters = computed(() => {
                 :minFractionDigits="0"
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0" :max="100"
-                v-model="fParameters['VESUSpartiallySus']"
+                v-model="strategyList[strategyIndex].fixedParameters['VESUSpartiallySus']"
               />
             </div>
           </div>
@@ -864,7 +864,7 @@ const ageGroupParameters = computed(() => {
                 :minFractionDigits="0"
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0" :max="100"
-                v-model="fParameters['VEDISpartiallySus']"
+                v-model="strategyList[strategyIndex].fixedParameters['VEDISpartiallySus']"
               />
             </div>
           </div>
@@ -883,7 +883,7 @@ const ageGroupParameters = computed(() => {
                 :minFractionDigits="0"
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0" :max="100"
-                v-model="fParameters['VEHpartiallySus']"
+                v-model="strategyList[strategyIndex].fixedParameters['VEHpartiallySus']"
               />
             </div>
           </div>
@@ -904,7 +904,7 @@ const ageGroupParameters = computed(() => {
                 :minFractionDigits="0"
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"  :max="100"
-                v-model="fParameters['VESUSpartiallySusVaccinated']"
+                v-model="strategyList[strategyIndex].fixedParameters['VESUSpartiallySusVaccinated']"
               />
             </div>
           </div>
@@ -923,7 +923,7 @@ const ageGroupParameters = computed(() => {
                 :minFractionDigits="0"
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"  :max="100"
-                v-model="fParameters['VEDISpartiallySusVaccinated']"
+                v-model="strategyList[strategyIndex].fixedParameters['VEDISpartiallySusVaccinated']"
               />
             </div>
           </div>
@@ -942,7 +942,7 @@ const ageGroupParameters = computed(() => {
                 :minFractionDigits="0"
                 :maxFractionDigits="2"
                 :allowEmpty="false" :min="0"  :max="100"
-                v-model="fParameters['VEHpartiallySusVaccinated']"
+                v-model="strategyList[strategyIndex].fixedParameters['VEHpartiallySusVaccinated']"
               />
             </div>
           </div>
@@ -975,7 +975,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['propSymptomaticInfection'][0]"
+                  v-model="strategyList[strategyIndex].fixedParameters['propSymptomaticInfection'][0]"
                 />
               </td>
               <td>
@@ -986,7 +986,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['propSymptomaticInfection'][1]"
+                  v-model="strategyList[strategyIndex].fixedParameters['propSymptomaticInfection'][1]"
                 />
               </td>
               <td>
@@ -997,7 +997,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['propSymptomaticInfection'][2]"
+                  v-model="strategyList[strategyIndex].fixedParameters['propSymptomaticInfection'][2]"
                 />
               </td>
               <td>
@@ -1008,7 +1008,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['propSymptomaticInfection'][3]"
+                  v-model="strategyList[strategyIndex].fixedParameters['propSymptomaticInfection'][3]"
                 />
               </td>
               <td>
@@ -1019,7 +1019,7 @@ const ageGroupParameters = computed(() => {
                   :minFractionDigits="0"
                   :maxFractionDigits="2"
                   :allowEmpty="false" :min="0"
-                  v-model="fParameters['propSymptomaticInfection'][4]"
+                  v-model="strategyList[strategyIndex].fixedParameters['propSymptomaticInfection'][4]"
                 />
               </td>
             </tr>
