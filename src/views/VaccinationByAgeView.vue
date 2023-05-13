@@ -70,7 +70,7 @@ if(route.query.strategy != undefined){
 */
 let currentStrategy = strategyList.value[strategyIndex];
 
-let vaccineList = currentStrategy["vaccineParameters"]["vaccineList"];
+//let vaccineList = currentStrategy["vaccineParameters"]["vaccineList"];
 
 let vaccinationStatusByAgeGroup =
   currentStrategy["vaccineParameters"]["vaccinationStatusByAgeGroup"];
@@ -412,13 +412,13 @@ const convertVaccineLabel = (placholderName) => {
 
   switch (placholderName) {
     case "Vaccine 1":
-      result = vaccineList[0].name;
+      result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[0].name;
       break;
     case "Vaccine 2":
-      result = vaccineList[1].name;
+      result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[1].name;
       break;
     case "Vaccine 3":
-      result = vaccineList[2].name;
+      result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[2].name;
       break;
     default:
       result = "";
