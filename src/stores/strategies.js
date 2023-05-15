@@ -276,8 +276,8 @@ export const useStrategiesStore = defineStore("strategies", () => {
     };
   }
 
-  function getValidVaccineDateDaysListByStrategyIndex(index){
-    console.log(`getValidVaccineDateDaysListByStrategyIndex: ${index}`);
+  function getValidVaccineDateDaysListByStrategyIndex(index, defaultStartDate){
+    console.log(`getValidVaccineDateDaysListByStrategyIndex: ${index}, defaultStartDate: ${defaultStartDate}`);
     let stategy = strategyList.value[index];
 
     let vaccineList = stategy["vaccineParameters"]["vaccineList"];
@@ -308,6 +308,10 @@ export const useStrategiesStore = defineStore("strategies", () => {
         }
       });
 
+    }
+
+    if( dateDaysList.length == 0){
+      dateDaysList.push({startDate: defaultStartDate, days: 1});
     }
 
     // version 1: a date for a vaccine
@@ -357,7 +361,7 @@ export const useStrategiesStore = defineStore("strategies", () => {
 
     let stategy = strategyList.value[index];
 
-    let dateDaysList = getValidVaccineDateDaysListByStrategyIndex(index);
+    let dateDaysList = getValidVaccineDateDaysListByStrategyIndex(index, strategy.simulationInterval[0]);
 
     console.log(`updateSimulationParametersByStrategyIndex: dateDaysList: ${JSON.stringify(dateDaysList)}`);
 

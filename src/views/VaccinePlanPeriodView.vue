@@ -38,9 +38,9 @@ const { strategyList, selectedStrategyIndex } = storeToRefs(strategiesStore);
 
 let strategyIndex = selectedStrategyIndex.value;
 
-let currentStrategy = strategyList.value[strategyIndex];
+//let currentStrategy = strategyList.value[strategyIndex];
 
-let simulationInterval = currentStrategy["simulationInterval"];
+//let simulationInterval = strategyList.value[strategyIndex]["simulationInterval"];
 
 let needsLongerPeriodMsg = "Too few days for the simulation. Please lengthen the simulation period long enough to cover the arrival of the first vaccine and the number of days needed to apply all vaccines.";
 
@@ -75,11 +75,11 @@ const onCalendarDateSelect = (event) => {
   let newInterval = [...data];
   newInterval[index] = newValue; //DateTime.fromJSDate(newValue).startOf("day").toJSDate();
 
-  currentStrategy["simulationInterval"] = newInterval;
+  strategyList.value[strategyIndex].simulationInterval = newInterval;
 
 
   // version 2, use  GeneralUtility
-  currentStrategy["simulationDays"]  = GeneralUtility.diffDateByUnits(newInterval[0], newInterval[1], "days");
+  strategyList.value[strategyIndex]["simulationDays"]  = GeneralUtility.diffDateByUnits(newInterval[0], newInterval[1], "days");
 
 };
 
@@ -92,11 +92,11 @@ const isPeriodValid = computed(() => {
 
   //simulationInterval
 
-  let dateDaysList = strategiesStore.getValidVaccineDateDaysListByStrategyIndex(strategyIndex);
+  let dateDaysList = strategiesStore.getValidVaccineDateDaysListByStrategyIndex(strategyIndex, strategyList.value[strategyIndex].simulationInterval[0]);
 
-  console.log(`isPeriodValid: simulationInterval: ${simulationInterval}`);
+  console.log(`isPeriodValid: simulationInterval: ${strategyList.value[strategyIndex].simulationInterval}`);
 
-  let result = GeneralUtility.hasEnoughSimulationPeriod(simulationInterval[0], simulationInterval[1], dateDaysList);
+  let result = GeneralUtility.hasEnoughSimulationPeriod(strategyList.value[strategyIndex].simulationInterval[0], strategyList.value[strategyIndex].simulationInterval[1], dateDaysList);
 
   console.log(`isPeriodValid: ${result}`);
 
@@ -111,9 +111,11 @@ const recommendedPeriodMsg = computed(() => {
 
 //simulationInterval
 
-let dateDaysList = strategiesStore.getValidVaccineDateDaysListByStrategyIndex(strategyIndex);
+let dateDaysList = strategiesStore.getValidVaccineDateDaysListByStrategyIndex(strategyIndex, strategyList.value[strategyIndex].simulationInterval[0]);
 
 let expectedInterval = GeneralUtility.calculateStartAndEndWithDateAndDaysList(dateDaysList);
+
+console.log(`expectedInterval: ${expectedInterval}`);
 
 
 let startDateTime = DateTime.fromJSDate(expectedInterval[0]);
@@ -143,22 +145,22 @@ return result;
       <div class="grid">
 
         <div class="col flex justify-content-end">
-          Start date:&nbsp;<Calendar :id="0" v-model="simulationInterval[0]" dateFormat="yy-mm-dd" :touchUI="true"
+          Start date:&nbsp;<Calendar :id="0" v-model="strategyList[strategyIndex].simulationInterval[0]" dateFormat="yy-mm-dd" :touchUI="true"
 
             @input="onCalendarInput"
 
-            @date-select="onCalendarDateSelect({data: simulationInterval, newValue: simulationInterval[0], index: 0})"
+            @date-select="onCalendarDateSelect({data: strategyList[strategyIndex].simulationInterval, newValue: strategyList[strategyIndex].simulationInterval[0], index: 0})"
 
             @hide="onCalendarHide"
 
             />
         </div>
         <div class="col">
-          End date:&nbsp;<Calendar :id="0" v-model="simulationInterval[1]" dateFormat="yy-mm-dd" :touchUI="true"
+          End date:&nbsp;<Calendar :id="0" v-model="strategyList[strategyIndex].simulationInterval[1]" dateFormat="yy-mm-dd" :touchUI="true"
 
             @input="onCalendarInput"
 
-            @date-select="onCalendarDateSelect({data: simulationInterval, newValue: simulationInterval[1], index: 1})"
+            @date-select="onCalendarDateSelect({data: strategyList[strategyIndex].simulationInterval, newValue: strategyList.value[strategyIndex].simulationInterval[1], index: 1})"
 
             @hide="onCalendarHide"
 

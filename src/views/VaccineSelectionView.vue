@@ -55,7 +55,7 @@ const onNextClick = (event) => {
 function onVaccine1Chnage(newData) {
     console.log(`onVaccine1Chnage: ${JSON.stringify(newData)}`);
     //setRegion(newRegion);
-    vParameters["vaccineList"][0] = {...vParameters["vaccineList"][0], ...newData};
+    strategyList.value[strategyIndex].vaccineParameters["vaccineList"][0] = {...strategyList.value[strategyIndex].vaccineParameters["vaccineList"][0], ...newData};
     /*
     vaccineStore.$patch({
         vaccine1: newData
@@ -68,9 +68,9 @@ function onVaccine1Input(newData) {
     // { name: 'Pfizer-BioNTech', code: 'pfizer', type:"pre-defined" },
     
 
-    vParameters["vaccineList"][0] = {...vParameters["vaccineList"][0], name: newData, code: newData.toLowerCase(), type:"customized"};
+    strategyList.value[strategyIndex].vaccineParameters["vaccineList"][0] = {...strategyList.value[strategyIndex].vaccineParameters["vaccineList"][0], name: newData, code: newData.toLowerCase(), type:"customized"};
     // version 1
-    //vParameters["vaccineList"][0] = { name: newData, code: newData.toLowerCase(), type:"customized" };
+    //strategyList.value[strategyIndex].vaccineParameters["vaccineList"][0] = { name: newData, code: newData.toLowerCase(), type:"customized" };
 
 
     /*
@@ -83,7 +83,7 @@ function onVaccine1Input(newData) {
 function onVaccine2Chnage(newData) {
     console.log(`onVaccine2Chnage: ${JSON.stringify(newData)}`);
     //setRegion(newRegion);
-    vParameters["vaccineList"][1] = {...vParameters["vaccineList"][1], ...newData};
+    strategyList.value[strategyIndex].vaccineParameters["vaccineList"][1] = {...strategyList.value[strategyIndex].vaccineParameters["vaccineList"][1], ...newData};
     /*
     vaccineStore.$patch({
         vaccine2: newData
@@ -96,9 +96,9 @@ function onVaccine2Input(newData) {
     // { name: 'Pfizer-BioNTech', code: 'pfizer', type:"pre-defined" },
     
     
-    vParameters["vaccineList"][1] = {...vParameters["vaccineList"][1], name: newData, code: newData.toLowerCase(), type:"customized"};
+    strategyList.value[strategyIndex].vaccineParameters["vaccineList"][1] = {...strategyList.value[strategyIndex].vaccineParameters["vaccineList"][1], name: newData, code: newData.toLowerCase(), type:"customized"};
     // version 1
-    //vParameters["vaccineList"][1] = { name: newData, code: newData.toLowerCase(), type:"customized" };
+    //strategyList.value[strategyIndex].vaccineParameters["vaccineList"][1] = { name: newData, code: newData.toLowerCase(), type:"customized" };
 
     /*
     vaccineStore.$patch({
@@ -110,7 +110,7 @@ function onVaccine2Input(newData) {
 function onVaccine3Chnage(newData) {
     console.log(`onVaccine3Chnage: ${JSON.stringify(newData)}`);
     //setRegion(newRegion);
-    vParameters["vaccineList"][2] = {...vParameters["vaccineList"][2], ...newData};
+    strategyList.value[strategyIndex].vaccineParameters["vaccineList"][2] = {...strategyList.value[strategyIndex].vaccineParameters["vaccineList"][2], ...newData};
 
     /*
     vaccineStore.$patch({
@@ -123,9 +123,9 @@ function onVaccine3Input(newData) {
     console.log(`onVaccine3Input: ${JSON.stringify(newData)}`);
     // { name: 'Pfizer-BioNTech', code: 'pfizer', type:"pre-defined" },
 
-    vParameters["vaccineList"][2] = {...vParameters["vaccineList"][2], name: newData, code: newData.toLowerCase(), type:"customized"};
+    strategyList.value[strategyIndex].vaccineParameters["vaccineList"][2] = {...strategyList.value[strategyIndex].vaccineParameters["vaccineList"][2], name: newData, code: newData.toLowerCase(), type:"customized"};
     // version 1
-    //vParameters["vaccineList"][2] = { name: newData, code: newData.toLowerCase(), type:"customized" };
+    //strategyList.value[strategyIndex].vaccineParameters["vaccineList"][2] = { name: newData, code: newData.toLowerCase(), type:"customized" };
 
     /*
     vaccineStore.$patch({
@@ -157,15 +157,15 @@ function onVaccine3Input(newData) {
             <div class="grid">
                 
                 <div class="col">
-                    <h2>{{vParameters["vaccineList"][0].name}}</h2>
+                    <h2>{{strategyList[strategyIndex].vaccineParameters["vaccineList"][0].name}}</h2>
                     <div>
                         <VaccineList  @change="onVaccine1Chnage" @input="onVaccine1Input" :editable="true"></VaccineList>
                     </div>
-                    <h2>{{vParameters["vaccineList"][1].name}}</h2>
+                    <h2>{{strategyList[strategyIndex].vaccineParameters["vaccineList"][1].name}}</h2>
                     <div>
                         <VaccineList  @change="onVaccine2Chnage" @input="onVaccine2Input" :editable="true"></VaccineList>
                     </div>
-                    <h2>{{vParameters["vaccineList"][2].name}}</h2>
+                    <h2>{{strategyList[strategyIndex].vaccineParameters["vaccineList"][2].name}}</h2>
                     <div>
                         <VaccineList  @change="onVaccine3Chnage" @input="onVaccine3Input" :editable="true"></VaccineList>
                     </div>

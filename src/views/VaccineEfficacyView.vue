@@ -57,12 +57,11 @@ if(route.query.strategy != undefined){
     strategiesStore.selectStrategy(strategyIndex);
 }
 */
-let currentStrategy = strategyList.value[strategyIndex];
+//let currentStrategy = strategyList.value[strategyIndex];
 
-let vaccineList = currentStrategy["vaccineParameters"]["vaccineList"];
+//let vaccineList = currentStrategy["vaccineParameters"]["vaccineList"];
 
-let vaccinationStatusByAgeGroup =
-  currentStrategy["vaccineParameters"]["vaccinationStatusByAgeGroup"];
+//let vaccinationStatusByAgeGroup = currentStrategy["vaccineParameters"]["vaccinationStatusByAgeGroup"];
 
 // URL: work if enter URL direclty, but not with roouter
 
@@ -91,15 +90,15 @@ let vaccineInfo = computed(() => {
     `vaccineInfo computed vaccineIndex: ${Number(vaccineIndex.value)}`
   );
   console.log(
-    `vaccineInfo computed vaccineList.length: ${vaccineList.length}`
+    `vaccineInfo computed vaccineList.length: ${strategyList.value[strategyIndex].vaccineParameters.vaccineList.length}`
   );
   switch (Number(vaccineIndex.value)) {
     case 1:
-      return vaccineList[0];
+      return strategyList.value[strategyIndex].vaccineParameters.vaccineList[0];
     case 2:
-      return vaccineList[1];
+      return strategyList.value[strategyIndex].vaccineParameters.vaccineList[1];
     case 3:
-      return vaccineList[2];
+      return strategyList.value[strategyIndex].vaccineParameters.vaccineList[2];
     default:
       return;
   }
@@ -115,7 +114,7 @@ let vaccineEfficacyData = computed(() => {
     `vaccineEfficacyData computed typeof vaccineIndex.value: ${typeof vaccineIndex.value}`
   );
   console.log(
-    `vaccineEfficacyData computed vaccineList.length: ${vaccineList.length}`
+    `vaccineEfficacyData computed vaccineList.length: ${strategyList.value[strategyIndex].vaccineParameters.vaccineList.length}`
   );
 
   let result = undefined;
@@ -123,21 +122,21 @@ let vaccineEfficacyData = computed(() => {
   switch (vaccineIndex.value) {
     case 1:
       console.log(`vaccineEfficacyData match: ${vaccineIndex.value}`);
-      console.log(`vaccineEfficacyData vaccineList[0]: ${JSON.stringify(vaccineList[0], null, 2)}`);
-      console.log(`vaccineEfficacyData vaccineList[0]["efficacyData"]: ${vaccineList[0]["efficacyData"]}`);
-      result = vaccineList[0]["efficacyData"];
+      console.log(`vaccineEfficacyData vaccineList[0]: ${JSON.stringify(strategyList.value[strategyIndex].vaccineParameters.vaccineList[0], null, 2)}`);
+      console.log(`vaccineEfficacyData vaccineList[0]["efficacyData"]: ${strategyList.value[strategyIndex].vaccineParameters.vaccineList[0]["efficacyData"]}`);
+      result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[0]["efficacyData"];
       break;
     case 2:
       console.log(`vaccineEfficacyData match: ${vaccineIndex.value}`);
-      console.log(`vaccineEfficacyData vaccineList[1]: ${JSON.stringify(vaccineList[1], null, 2)}`);
-      console.log(`vaccineEfficacyData vaccineList[1]["efficacyData"]: ${vaccineList[1]["efficacyData"]}`);
-      result = vaccineList[1]["efficacyData"];
+      console.log(`vaccineEfficacyData vaccineList[1]: ${JSON.stringify(strategyList.value[strategyIndex].vaccineParameters.vaccineList[1], null, 2)}`);
+      console.log(`vaccineEfficacyData vaccineList[1]["efficacyData"]: ${strategyList.value[strategyIndex].vaccineParameters.vaccineList[1]["efficacyData"]}`);
+      result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[1]["efficacyData"];
       break;
     case 3:
       console.log(`vaccineEfficacyData match: ${vaccineIndex.value}`);
-      console.log(`vaccineEfficacyData vaccineList[2]: ${JSON.stringify(vaccineList[2], null, 2)}`);
-      console.log(`vaccineEfficacyData vaccineList[2]["efficacyData"]: ${vaccineList[2]["efficacyData"]}`);
-      result = vaccineList[2]["efficacyData"];
+      console.log(`vaccineEfficacyData vaccineList[2]: ${JSON.stringify(strategyList.value[strategyIndex].vaccineParameters.vaccineList[2], null, 2)}`);
+      console.log(`vaccineEfficacyData vaccineList[2]["efficacyData"]: ${strategyList.value[strategyIndex].vaccineParameters.vaccineList[2]["efficacyData"]}`);
+      result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[2]["efficacyData"];
       break;
     default:
       console.log(`vaccineEfficacyData no match: ${vaccineIndex.value}`);
@@ -244,7 +243,7 @@ function onVaccineEfficacyChange(event) {
 
   switch (vaccineIndex.value) {
     case 1:
-      vaccineList[0]["efficacyData"] = newData;
+      strategyList.value[strategyIndex].vaccineParameters.vaccineList[0]["efficacyData"] = newData;
       break;
     /*
         vaccineStore.$patch({
@@ -253,7 +252,7 @@ function onVaccineEfficacyChange(event) {
         
         */
     case 2:
-      vaccineList[1]["efficacyData"] = newData;
+      strategyList.value[strategyIndex].vaccineParameters.vaccineList[1]["efficacyData"] = newData;
       break;
       /*
         vaccineStore.$patch({
@@ -262,7 +261,7 @@ function onVaccineEfficacyChange(event) {
         */
       break;
     case 3:
-      vaccineList[2]["efficacyData"] = newData;
+      strategyList.value[strategyIndex].vaccineParameters.vaccineList[2]["efficacyData"] = newData;
       break;
       /*
         vaccineStore.$patch({
@@ -310,19 +309,19 @@ const onCellEditComplete = (event) => {
 const convertVaccineLabel = (placholderName) => {
   console.log(`convertVaccineLabel: ${JSON.stringify(placholderName)}`);
 
-  console.log(`vaccine1.name: ${vaccineList[0].name}`);
+  console.log(`vaccine1.name: ${strategyList.value[strategyIndex].vaccineParameters.vaccineList[0].name}`);
 
   let result = "";
 
   switch (placholderName) {
     case "Vaccine 1":
-      result = vaccineList[0].name;
+      result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[0].name;
       break;
     case "Vaccine 2":
-      result = vaccineList[1].name;
+      result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[1].name;
       break;
     case "Vaccine 3":
-      result = vaccineList[2].name;
+      result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[2].name;
       break;
     case undefined:
       result = "vaccine";
@@ -359,9 +358,9 @@ const onInputBlur = (event, obj, vaccineLabel) => {
 
 
 
-  console.log(`currentStrategy["vaccineParameters"]["vaccineList"][vaccineIndex.value-1]["efficacyData"]: ${JSON.stringify(currentStrategy["vaccineParameters"]["vaccineList"][vaccineIndex.value-1]["efficacyData"])}`);
+  console.log(`currentStrategy["vaccineParameters"]["vaccineList"][vaccineIndex.value-1]["efficacyData"]: ${JSON.stringify(strategyList.value[strategyIndex].vaccineParameters.vaccineList[vaccineIndex.value-1]["efficacyData"])}`);
 
-  currentStrategy["vaccineParameters"]["vaccineList"][vaccineIndex.value - 1]["efficacyData"].filter((eInfo) => {
+  strategyList.value[strategyIndex].vaccineParameters.vaccineList[vaccineIndex.value - 1]["efficacyData"].filter((eInfo) => {
     return eInfo.category == obj.data.category;
   })[0][obj.field] = resultValue;
 

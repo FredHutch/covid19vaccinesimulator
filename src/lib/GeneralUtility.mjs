@@ -210,7 +210,7 @@ export default class GeneralUtility {
   }
 
   static calculateStartAndEndWithDateAndDaysList(dateDatesList) {
-    // {startDate, days, endDate}
+    console.log(`calculateStartAndEndWithDateAndDaysList: ${JSON.stringify(dateDatesList)}`);
 
     let expectedStartDate = undefined;
     let expectedEndDate = undefined;

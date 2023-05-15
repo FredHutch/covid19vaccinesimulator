@@ -69,13 +69,12 @@ if(route.query.strategy != undefined){
 */
 let currentStrategy = strategyList.value[strategyIndex];
 
-let vaccineList = currentStrategy["vaccineParameters"]["vaccineList"];
+//let vaccineList = currentStrategy["vaccineParameters"]["vaccineList"];
 
-let vaccinationStatusByAgeGroup =
-  currentStrategy["vaccineParameters"]["vaccinationStatusByAgeGroup"];
+// let vaccinationStatusByAgeGroup = currentStrategy["vaccineParameters"]["vaccinationStatusByAgeGroup"];
 
 
-let vaccineAvailability = vaccineList;
+//let vaccineAvailability = strategyList.value[strategyIndex].vaccineParameters.vaccineList;
 
 
 strategiesStore.$subscribe((mutation, state) => {
@@ -173,19 +172,13 @@ const combinedColumns = reactive([
 
 
 
-// 
+/*
 const sortedVaccineAvailability = computed(() => {
 
   console.log(`sortedVaccineAvailability: ${JSON.stringify(vaccineAvailability)}`);
   return vaccineAvailability.slice();
-  
-  // disable sorting for now
-  /*
-  .sort((a, b) => {
-    return b["date"].getTime() - a["date"].getTime();
-  } );
-  */
 });
+*/
 
 
 function onVaccinationStatusChange(event) {
@@ -193,18 +186,18 @@ function onVaccinationStatusChange(event) {
 
   console.log(`onVaccinationStatusChange: ${JSON.stringify(data, null, 2)}, ${field}, ${newValue}`);
 
-  console.log(`onVaccinationStatusChange vaccinationStatusByAgeGroup.value[onlyGroupName]: ${JSON.stringify(vaccinationStatusByAgeGroup.value[onlyGroupName.value])}`);
+  console.log(`onVaccinationStatusChange strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup.value[onlyGroupName]: ${JSON.stringify(strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup.value[onlyGroupName.value])}`);
 
 
-  console.log(`onVaccinationStatusChange vaccinationStatusByAgeGroup.value: ${JSON.stringify(vaccinationStatusByAgeGroup.value)}`);
-
-
-
-  console.log(`onVaccinationStatusChange vaccinationStatusByAgeGroup.value type: ${typeof vaccinationStatusByAgeGroup.value}`);
+  console.log(`onVaccinationStatusChange vaccinationStatusByAgeGroup.value: ${JSON.stringify(strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup.value)}`);
 
 
 
-  let newData = {...(vaccinationStatusByAgeGroup.value)};
+  console.log(`onVaccinationStatusChange vaccinationStatusByAgeGroup.value type: ${typeof strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup.value}`);
+
+
+
+  let newData = {...(strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup.value)};
 
   console.log(`onVaccinationStatusChange vaccinationStatusByAgeGroup newData (before change): ${JSON.stringify(newData, null, 2)}`);
 
@@ -312,13 +305,13 @@ const convertVaccineLabel = (placholderName) => {
 
   switch(placholderName){
     case "Vaccine 1":
-      result =  vaccineList[0].name;
+      result =  strategyList.value[strategyIndex].vaccineParameters.vaccineList[0].name;
       break;
     case "Vaccine 2":
-      result =  vaccineList[1].name;
+      result =  strategyList.value[strategyIndex].vaccineParameters.vaccineList[1].name;
       break;
     case "Vaccine 3":
-      result =  vaccineList[2].name;
+      result =  strategyList.value[strategyIndex].vaccineParameters.vaccineList[2].name;
       break;
     default:
       result =  "";
