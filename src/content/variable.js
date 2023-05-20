@@ -1746,1300 +1746,1847 @@ export var sampleResponse = {
 
 export var presetStrategyList = [
   {
-    simulationInterval: [
+    "simulationInterval": [
       "2022-08-31T04:00:00.000Z",
-      "2023-08-30T04:00:00.000Z",
+      "2023-02-28T08:00:00.000Z"
     ],
-    regionParameters: {
-      region: {
-        name: "Afghanistan",
-        code: "AFG",
-        populationList: [20910291, 14533976, 2452836, 757309, 273929],
+    "simulationDays": 184,
+    "regionParameters": {
+      "region": {
+        "name": "Afghanistan",
+        "code": "AFG",
+        "populationList": [
+          20910291,
+          14533976,
+          2452836,
+          757309,
+          273929
+        ]
       },
-      variant: {
-        name: "Delta",
-        code: "delta",
+      "variant": {
+        "name": "Delta",
+        "code": "delta"
       },
-      infectiousnessLevel: 3,
-      socialDistancing: {
-        homeSCLevel: 0,
-        workSCLevel: 0,
-        schoolSCLevel: 0,
-        otherSCLevel: 0,
+      "infectiousnessLevel": 3,
+      "socialDistancing": {
+        "homeSCLevel": 0,
+        "workSCLevel": 0,
+        "schoolSCLevel": 0,
+        "otherSCLevel": 0
       },
-      infectionStatus: [
+      "infectionStatus": [
         {
-          category: "Previously Infected",
-          group1: 84.8,
-          group2: 84.8,
-          group3: 84.8,
-          group4: 84.8,
-          group5: 84.8,
+          "category": "Previously Infected",
+          "group1": 84.8,
+          "group2": 84.8,
+          "group3": 84.8,
+          "group4": 84.8,
+          "group5": 84.8
         },
         {
-          category: "Currently Infected",
-          group1: 0.1,
-          group2: 0.1,
-          group3: 0.1,
-          group4: 0.1,
-          group5: 0.1,
+          "category": "Currently Infected",
+          "group1": 0.1,
+          "group2": 0.1,
+          "group3": 0.1,
+          "group4": 0.1,
+          "group5": 0.1
         },
         {
-          category: "Uninfected",
-          group1: 15.1,
-          group2: 15.1,
-          group3: 15.1,
-          group4: 15.1,
-          group5: 15.1,
+          "category": "Uninfected",
+          "group1": 15.1,
+          "group2": 15.1,
+          "group3": 15.1,
+          "group4": 15.1,
+          "group5": 15.1
+        }
+      ]
+    },
+    "vaccineParameters": {
+      "vaccineList": [
+        {
+          "category": "Vaccine 1",
+          "name": "VAXZEVRIA",
+          "code": "AstraZeneca",
+          "type": "pre-defined",
+          "usage": [
+            {
+              "name": "Primary series",
+              "value": "full dose"
+            },
+            {
+              "name": "Booster",
+              "value": "booster"
+            }
+          ],
+          "number": 0,
+          "date": "2022-09-01T00:00:00.000Z",
+          "rate": 0,
+          "allocation": [
+            {
+              "category": "Full dose",
+              "date": "2023-05-15T18:33:02.318Z",
+              "proportion": 0,
+              "group1": 0,
+              "group2": 0,
+              "group3": 0,
+              "group4": 0,
+              "group5": 0
+            },
+            {
+              "category": "Booster",
+              "date": "2023-05-15T18:33:02.318Z",
+              "proportion": 0,
+              "group1": 0,
+              "group2": 0,
+              "group3": 0,
+              "group4": 0,
+              "group5": 0,
+              "primaryMatching": [
+                {
+                  "primary": "Vaccine 1",
+                  "group1": 0,
+                  "group2": 0,
+                  "group3": 0,
+                  "group4": 0,
+                  "group5": 0
+                },
+                {
+                  "primary": "Vaccine 2",
+                  "group1": 0,
+                  "group2": 0,
+                  "group3": 0,
+                  "group4": 0,
+                  "group5": 0
+                },
+                {
+                  "primary": "Vaccine 3",
+                  "group1": 0,
+                  "group2": 0,
+                  "group3": 0,
+                  "group4": 0,
+                  "group5": 0
+                }
+              ]
+            }
+          ],
+          "efficacyData": [
+            {
+              "category": "Infection",
+              "fulldose": 36,
+              "booster": 63
+            },
+            {
+              "category": "Symptomatic infection",
+              "fulldose": 29,
+              "booster": 63
+            },
+            {
+              "category": "Hospitalization",
+              "fulldose": 71,
+              "booster": 94
+            }
+          ]
         },
+        {
+          "category": "Vaccine 2",
+          "name": "VERO CELL",
+          "code": "SINOPHARM",
+          "type": "pre-defined",
+          "usage": [
+            {
+              "name": "Booster",
+              "value": "booster"
+            }
+          ],
+          "number": 0,
+          "date": "2022-08-31T04:00:00.000Z",
+          "rate": 0,
+          "allocation": [
+            {
+              "category": "Full dose",
+              "date": "2023-05-15T18:33:02.318Z",
+              "proportion": 0,
+              "group1": 0,
+              "group2": 0,
+              "group3": 0,
+              "group4": 0,
+              "group5": 0
+            },
+            {
+              "category": "Booster",
+              "date": "2023-05-15T18:33:02.318Z",
+              "proportion": 0,
+              "group1": 0,
+              "group2": 0,
+              "group3": 0,
+              "group4": 0,
+              "group5": 0,
+              "primaryMatching": [
+                {
+                  "primary": "Vaccine 1",
+                  "group1": 0,
+                  "group2": 0,
+                  "group3": 0,
+                  "group4": 0,
+                  "group5": 0
+                },
+                {
+                  "primary": "Vaccine 2",
+                  "group1": 0,
+                  "group2": 0,
+                  "group3": 0,
+                  "group4": 0,
+                  "group5": 0
+                },
+                {
+                  "primary": "Vaccine 3",
+                  "group1": 0,
+                  "group2": 0,
+                  "group3": 0,
+                  "group4": 0,
+                  "group5": 0
+                }
+              ]
+            }
+          ],
+          "efficacyData": [
+            {
+              "category": "Infection",
+              "fulldose": 35,
+              "booster": 68
+            },
+            {
+              "category": "Symptomatic infection",
+              "fulldose": 31,
+              "booster": 78
+            },
+            {
+              "category": "Hospitalization",
+              "fulldose": 53,
+              "booster": 73
+            }
+          ]
+        },
+        {
+          "category": "Vaccine 3",
+          "name": "JANSEN",
+          "code": "JANSEN",
+          "type": "pre-defined",
+          "usage": [
+            {
+              "name": "Primary series",
+              "value": "full dose"
+            }
+          ],
+          "number": 6829294,
+          "date": "2022-08-31T04:00:00.000Z",
+          "rate": 50000,
+          "allocation": [
+            {
+              "category": "Full dose",
+              "date": "2022-08-31T04:00:00.000Z",
+              "proportion": 0,
+              "group1": 0,
+              "group2": 0,
+              "group3": 0,
+              "group4": 0,
+              "group5": 0
+            },
+            {
+              "category": "Booster",
+              "date": "2022-08-31T04:00:00.000Z",
+              "proportion": 100,
+              "group1": 0,
+              "group2": 0,
+              "group3": 0,
+              "group4": 0,
+              "group5": 0,
+              "primaryMatching": [
+                {
+                  "primary": "Vaccine 1",
+                  "group1": 0,
+                  "group2": 0,
+                  "group3": 0,
+                  "group4": 0,
+                  "group5": 3.7
+                },
+                {
+                  "primary": "Vaccine 2",
+                  "group1": 0,
+                  "group2": 0,
+                  "group3": 13.2,
+                  "group4": 11.1,
+                  "group5": 0.4
+                },
+                {
+                  "primary": "Vaccine 3",
+                  "group1": 0,
+                  "group2": 49,
+                  "group3": 19.7,
+                  "group4": 0,
+                  "group5": 0
+                }
+              ]
+            }
+          ],
+          "efficacyData": [
+            {
+              "category": "Infection",
+              "fulldose": 33,
+              "booster": 72
+            },
+            {
+              "category": "Symptomatic infection",
+              "fulldose": 26,
+              "booster": 67
+            },
+            {
+              "category": "Hospitalization",
+              "fulldose": 57,
+              "booster": 86
+            }
+          ]
+        }
       ],
+      "vaccinationStatusByAgeGroup": {
+        "group1": [
+          {
+            "category": "Vaccine 1",
+            "fulldose": 0,
+            "booster": 0
+          },
+          {
+            "category": "Vaccine 2",
+            "fulldose": 0,
+            "booster": 0
+          },
+          {
+            "category": "Vaccine 3",
+            "fulldose": 0,
+            "booster": 0
+          },
+          {
+            "category": "Unvaccinated",
+            "fulldose": 100,
+            "booster": 100
+          }
+        ],
+        "group2": [
+          {
+            "category": "Vaccine 1",
+            "fulldose": 0,
+            "booster": 0
+          },
+          {
+            "category": "Vaccine 2",
+            "fulldose": 0,
+            "booster": 0
+          },
+          {
+            "category": "Vaccine 3",
+            "fulldose": 50.02,
+            "booster": 0
+          },
+          {
+            "category": "Unvaccinated",
+            "fulldose": 49.98,
+            "booster": 100
+          }
+        ],
+        "group3": [
+          {
+            "category": "Vaccine 1",
+            "fulldose": 8.56,
+            "booster": 0
+          },
+          {
+            "category": "Vaccine 2",
+            "fulldose": 36.6,
+            "booster": 0
+          },
+          {
+            "category": "Vaccine 3",
+            "fulldose": 54.79,
+            "booster": 0
+          },
+          {
+            "category": "Unvaccinated",
+            "fulldose": 0.05,
+            "booster": 100
+          }
+        ],
+        "group4": [
+          {
+            "category": "Vaccine 1",
+            "fulldose": 0,
+            "booster": 0
+          },
+          {
+            "category": "Vaccine 2",
+            "fulldose": 100,
+            "booster": 0
+          },
+          {
+            "category": "Vaccine 3",
+            "fulldose": 0,
+            "booster": 0
+          },
+          {
+            "category": "Unvaccinated",
+            "fulldose": 0,
+            "booster": 100
+          }
+        ],
+        "group5": [
+          {
+            "category": "Vaccine 1",
+            "fulldose": 91.3,
+            "booster": 0
+          },
+          {
+            "category": "Vaccine 2",
+            "fulldose": 8.7,
+            "booster": 0
+          },
+          {
+            "category": "Vaccine 3",
+            "fulldose": 0,
+            "booster": 0
+          },
+          {
+            "category": "Unvaccinated",
+            "fulldose": 0,
+            "booster": 100
+          }
+        ]
+      }
     },
-    vaccineParameters: {
-      vaccineList: [
-        {
-          category: "Vaccine 1",
-          name: "VAXZEVRIA",
-          code: "AstraZeneca",
-          type: "pre-defined",
-          usage: [
-            {
-              name: "Primary series",
-              value: "full dose",
-            },
-            {
-              name: "Booster",
-              value: "booster",
-            },
-          ],
-          number: 0,
-          date: "2022-09-01T00:00:00.000Z",
-          rate: 0,
-          allocation: [
-            {
-              category: "Full dose",
-              date: nowDateString,
-              proportion: 0,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-            },
-            {
-              category: "Booster",
-              date: nowDateString,
-              proportion: 0,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-              primaryMatching: [
-                {
-                  primary: "Vaccine 1",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 2",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 3",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-              ],
-            },
-          ],
-          efficacyData: [
-            {
-              category: "Infection",
-              fulldose: 36,
-              booster: 63,
-            },
-            {
-              category: "Symptomatic infection",
-              fulldose: 29,
-              booster: 63,
-            },
-            {
-              category: "Hospitalization",
-              fulldose: 71,
-              booster: 94,
-            },
-          ],
-        },
-        {
-          category: "Vaccine 2",
-          name: "VERO CELL",
-          code: "SINOPHARM",
-          type: "pre-defined",
-          usage: [
-            {
-              name: "Booster",
-              value: "booster",
-            },
-          ],
-          number: 0,
-          date: "2022-08-31T04:00:00.000Z",
-          rate: 0,
-          allocation: [
-            {
-              category: "Full dose",
-              date: nowDateString,
-              proportion: 0,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-            },
-            {
-              category: "Booster",
-              date: nowDateString,
-              proportion: 0,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-              primaryMatching: [
-                {
-                  primary: "Vaccine 1",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 2",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 3",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-              ],
-            },
-          ],
-          efficacyData: [
-            {
-              category: "Infection",
-              fulldose: 35,
-              booster: 68,
-            },
-            {
-              category: "Symptomatic infection",
-              fulldose: 31,
-              booster: 78,
-            },
-            {
-              category: "Hospitalization",
-              fulldose: 53,
-              booster: 73,
-            },
-          ],
-        },
-        {
-          category: "Vaccine 3",
-          name: "JANSEN",
-          code: "JANSEN",
-          type: "pre-defined",
-          usage: [
-            {
-              name: "Primary series",
-              value: "full dose",
-            },
-          ],
-          number: 6829294,
-          date: "2022-08-31T04:00:00.000Z",
-          rate: 50000,
-          allocation: [
-            {
-              category: "Full dose",
-              date: "2022-08-31T04:00:00.000Z",
-              proportion: 0,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-            },
-            {
-              category: "Booster",
-              date: "2022-08-31T04:00:00.000Z",
-              proportion: 100,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-              primaryMatching: [
-                {
-                  primary: "Vaccine 1",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 3.7,
-                },
-                {
-                  primary: "Vaccine 2",
-                  group1: 0,
-                  group2: 0,
-                  group3: 13.2,
-                  group4: 11.1,
-                  group5: 0.4,
-                },
-                {
-                  primary: "Vaccine 3",
-                  group1: 0,
-                  group2: 49,
-                  group3: 19.7,
-                  group4: 0,
-                  group5: 0,
-                },
-              ],
-            },
-          ],
-          efficacyData: [
-            {
-              category: "Infection",
-              fulldose: 33,
-              booster: 72,
-            },
-            {
-              category: "Symptomatic infection",
-              fulldose: 26,
-              booster: 67,
-            },
-            {
-              category: "Hospitalization",
-              fulldose: 57,
-              booster: 86,
-            },
-          ],
-        },
+    "fixedParameters": {
+      "averageTimeBetweenSymptomOnsetAndHospitalization": 3.8,
+      "meanDurationInfectiousnessPostSymptoms": 4,
+      "meanDurationHospitalization": 7,
+      "meanDurationLatentPeriod": 2,
+      "meanDurationPreSymptomaticPeriod": 1.5,
+      "meanDurationNatImmunityAfterInfection": 100,
+      "meanDurationNatImmunityAfterInfection2": 180,
+      "meanDurationImmunityWanedVaxHybrid": 100,
+      "meanDurationPrimaryImmunity": [
+        100,
+        100,
+        100
       ],
-      vaccinationStatusByAgeGroup: {
-        group1: [
-          {
-            category: "Vaccine 1",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 2",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 3",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 100,
-            booster: 100,
-          },
-        ],
-        group2: [
-          {
-            category: "Vaccine 1",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 2",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 3",
-            fulldose: 50.02,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 49.98,
-            booster: 100,
-          },
-        ],
-        group3: [
-          {
-            category: "Vaccine 1",
-            fulldose: 8.56,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 2",
-            fulldose: 36.6,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 3",
-            fulldose: 54.79,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 0.05,
-            booster: 100,
-          },
-        ],
-        group4: [
-          {
-            category: "Vaccine 1",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 2",
-            fulldose: 100,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 3",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 0,
-            booster: 100,
-          },
-        ],
-        group5: [
-          {
-            category: "Vaccine 1",
-            fulldose: 91.3,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 2",
-            fulldose: 8.7,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 3",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 0,
-            booster: 100,
-          },
-        ],
-      },
-    },
-    fixedParameters: {
-      averageTimeBetweenSymptomOnsetAndHospitalization: 3.8,
-      meanDurationInfectiousnessPostSymptoms: 4,
-      meanDurationHospitalization: 7,
-      meanDurationLatentPeriod: 2,
-      meanDurationPreSymptomaticPeriod: 1.5,
-      meanDurationNatImmunityAfterInfection: 100,
-      meanDurationNatImmunityAfterInfection2: 180,
-      meanDurationImmunityWanedVaxHybrid: 100,
-      meanDurationPrimaryImmunity: [100, 100, 100],
-      meanDurationHybridImmunity: [180, 180, 180],
-      meanDurationBoosterImmunity: [180, 180, 180],
-      meanDurationBoostedHybridImmunity: [180, 180, 180],
-      propSymptomaticInfection: [0.25, 0.4, 0.4, 0.4, 0.4],
-      relativeInfectiousnessAsymptomaticInfection: 1,
-      relativeInfectiousnessHospitalizedInfection: 0,
-      relativeInfectiousnessPreSymptomaticInfection: 1,
-      relativeSusceptibility: [1, 1, 1, 1, 1],
-      VESUSpartiallySus: 0,
-      VEDISpartiallySus: 0,
-      VEHpartiallySus: 20,
-      VESUSpartiallySusVaccinated: 0,
-      VEDISpartiallySusVaccinated: 0,
-      VEHpartiallySusVaccinated: 40,
-    },
+      "meanDurationHybridImmunity": [
+        180,
+        180,
+        180
+      ],
+      "meanDurationBoosterImmunity": [
+        180,
+        180,
+        180
+      ],
+      "meanDurationBoostedHybridImmunity": [
+        180,
+        180,
+        180
+      ],
+      "propSymptomaticInfection": [
+        0.25,
+        0.4,
+        0.4,
+        0.4,
+        0.4
+      ],
+      "relativeInfectiousnessAsymptomaticInfection": 1,
+      "relativeInfectiousnessHospitalizedInfection": 0,
+      "relativeInfectiousnessPreSymptomaticInfection": 1,
+      "relativeSusceptibility": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "VESUSpartiallySus": 0,
+      "VEDISpartiallySus": 0,
+      "VEHpartiallySus": 20,
+      "VESUSpartiallySusVaccinated": 0,
+      "VEDISpartiallySusVaccinated": 0,
+      "VEHpartiallySusVaccinated": 40
+    }
   },
   {
-    simulationInterval: [
-      "2022-08-31T04:00:00.000Z",
-      "2023-08-30T04:00:00.000Z",
-    ],
-    regionParameters: {
-      region: {
-        name: "Chad",
-        code: "TCD",
-        populationList: [9491277, 5633494, 890671, 293509, 116908],
-      },
-      variant: {
-        name: "Delta",
-        code: "delta",
-      },
-      infectiousnessLevel: 3,
-      socialDistancing: {
-        homeSCLevel: 0,
-        workSCLevel: 0,
-        schoolSCLevel: 0,
-        otherSCLevel: 0,
-      },
-      infectionStatus: [
-        {
-          category: "Previously Infected",
-          group1: 54,
-          group2: 54,
-          group3: 54,
-          group4: 54,
-          group5: 54,
-        },
-        {
-          category: "Currently Infected",
-          group1: 0.1,
-          group2: 0.1,
-          group3: 0.1,
-          group4: 0.1,
-          group5: 0.1,
-        },
-        {
-          category: "Uninfected",
-          group1: 45.9,
-          group2: 45.9,
-          group3: 45.9,
-          group4: 45.9,
-          group5: 45.9,
-        },
+      "simulationInterval": [
+        "2022-08-31T04:00:00.000Z",
+        "2023-02-28T08:00:00.000Z"
       ],
-    },
-    vaccineParameters: {
-      vaccineList: [
-        {
-          category: "Vaccine 1",
-          name: "VERO CELL",
-          code: "VERO CELL",
-          type: "pre-defined",
-          usage: [
-            {
-              name: "Primary series",
-              value: "full dose",
-            },
-            {
-              name: "Booster",
-              value: "booster",
-            },
-          ],
-          number: 0,
-          date: "2022-09-01T00:00:00.000Z",
-          rate: 0,
-          allocation: [
-            {
-              category: "Full dose",
-              date: nowDateString,
-              proportion: 0,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-            },
-            {
-              category: "Booster",
-              date: nowDateString,
-              proportion: 0,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-              primaryMatching: [
-                {
-                  primary: "Vaccine 1",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 2",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 3",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-              ],
-            },
-          ],
-          efficacyData: [
-            {
-              category: "Infection",
-              fulldose: 35,
-              booster: 68,
-            },
-            {
-              category: "Symptomatic infection",
-              fulldose: 31,
-              booster: 78,
-            },
-            {
-              category: "Hospitalization",
-              fulldose: 53,
-              booster: 73,
-            },
-          ],
+      "simulationDays": 184,
+      "regionParameters": {
+        "region": {
+          "name": "Afghanistan",
+          "code": "AFG",
+          "populationList": [
+            20910291,
+            14533976,
+            2452836,
+            757309,
+            273929
+          ]
         },
-        {
-          category: "Vaccine 2",
-          name: "COMIRNATY (Pfizer/BioNTech)",
-          code: "COMIRNATY",
-          type: "pre-defined",
-          usage: [
-            {
-              name: "Booster",
-              value: "booster",
-            },
-          ],
-          number: 0,
-          date: "2022-08-31T04:00:00.000Z",
-          rate: 0,
-          allocation: [
-            {
-              category: "Full dose",
-              date: nowDateString,
-              proportion: 0,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-            },
-            {
-              category: "Booster",
-              date: nowDateString,
-              proportion: 0,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-              primaryMatching: [
-                {
-                  primary: "Vaccine 1",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 2",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 3",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-              ],
-            },
-          ],
-          efficacyData: [
-            {
-              category: "Infection",
-              fulldose: 44,
-              booster: 86,
-            },
-            {
-              category: "Symptomatic infection",
-              fulldose: 30,
-              booster: 88,
-            },
-            {
-              category: "Hospitalization",
-              fulldose: 72,
-              booster: 95,
-            },
-          ],
+        "variant": {
+          "name": "Delta",
+          "code": "delta"
         },
-        {
-          category: "Vaccine 3",
-          name: "JANSEN",
-          code: "JANSEN",
-          type: "pre-defined",
-          usage: [
-            {
-              name: "Primary series",
-              value: "full dose",
-            },
-          ],
-          number: 6630189,
-          date: "2022-08-31T04:00:00.000Z",
-          rate: 27101,
-          allocation: [
-            {
-              category: "Full dose",
-              date: nowDateString,
-              proportion: 45.4,
-              group1: 0,
-              group2: 45.4,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-            },
-            {
-              category: "Booster",
-              date: nowDateString,
-              proportion: 54.6,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-              primaryMatching: [
-                {
-                  primary: "Vaccine 1",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 1.5,
-                },
-                {
-                  primary: "Vaccine 2",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 3.4,
-                  group5: 0.03,
-                },
-                {
-                  primary: "Vaccine 3",
-                  group1: 0,
-                  group2: 35,
-                  group3: 13.4,
-                  group4: 1,
-                  group5: 0,
-                },
-              ],
-            },
-          ],
-          efficacyData: [
-            {
-              category: "Infection",
-              fulldose: 33,
-              booster: 72,
-            },
-            {
-              category: "Symptomatic infection",
-              fulldose: 26,
-              booster: 67,
-            },
-            {
-              category: "Hospitalization",
-              fulldose: 57,
-              booster: 86,
-            },
-          ],
+        "infectiousnessLevel": 3,
+        "socialDistancing": {
+          "homeSCLevel": 0,
+          "workSCLevel": 0,
+          "schoolSCLevel": 0,
+          "otherSCLevel": 0
         },
-      ],
-      vaccinationStatusByAgeGroup: {
-        group1: [
+        "infectionStatus": [
           {
-            category: "Vaccine 1",
-            fulldose: 0,
-            booster: 0,
+            "category": "Previously Infected",
+            "group1": 84.8,
+            "group2": 84.8,
+            "group3": 84.8,
+            "group4": 84.8,
+            "group5": 84.8
           },
           {
-            category: "Vaccine 2",
-            fulldose: 0,
-            booster: 0,
+            "category": "Currently Infected",
+            "group1": 0.1,
+            "group2": 0.1,
+            "group3": 0.1,
+            "group4": 0.1,
+            "group5": 0.1
           },
           {
-            category: "Vaccine 3",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 100,
-            booster: 100,
-          },
-        ],
-        group2: [
-          {
-            category: "Vaccine 1",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 2",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 3",
-            fulldose: 41.2,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 58.8,
-            booster: 100,
-          },
-        ],
-        group3: [
-          {
-            category: "Vaccine 1",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 2",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 3",
-            fulldose: 100,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 0,
-            booster: 100,
-          },
-        ],
-        group4: [
-          {
-            category: "Vaccine 1",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 2",
-            fulldose: 76.6,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 3",
-            fulldose: 23.4,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 0,
-            booster: 100,
-          },
-        ],
-        group5: [
-          {
-            category: "Vaccine 1",
-            fulldose: 85.5,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 2",
-            fulldose: 14.5,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 3",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 0,
-            booster: 100,
-          },
-        ],
+            "category": "Uninfected",
+            "group1": 15.100000000000003,
+            "group2": 15.100000000000003,
+            "group3": 15.100000000000003,
+            "group4": 15.100000000000003,
+            "group5": 15.100000000000003
+          }
+        ]
       },
-    },
-    fixedParameters: {
-      averageTimeBetweenSymptomOnsetAndHospitalization: 3.8,
-      meanDurationInfectiousnessPostSymptoms: 4,
-      meanDurationHospitalization: 7,
-      meanDurationLatentPeriod: 2,
-      meanDurationPreSymptomaticPeriod: 1.5,
-      meanDurationNatImmunityAfterInfection: 100,
-      meanDurationNatImmunityAfterInfection2: 180,
-      meanDurationImmunityWanedVaxHybrid: 100,
-      meanDurationPrimaryImmunity: [100, 100, 100],
-      meanDurationHybridImmunity: [180, 180, 180],
-      meanDurationBoosterImmunity: [180, 180, 180],
-      meanDurationBoostedHybridImmunity: [180, 180, 180],
-      propSymptomaticInfection: [0.25, 0.4, 0.4, 0.4, 0.4],
-      relativeInfectiousnessAsymptomaticInfection: 1,
-      relativeInfectiousnessHospitalizedInfection: 0,
-      relativeInfectiousnessPreSymptomaticInfection: 1,
-      relativeSusceptibility: [1, 1, 1, 1, 1],
-      VESUSpartiallySus: 0,
-      VEDISpartiallySus: 24.7,
-      VEHpartiallySus: 74.6,
-      VESUSpartiallySusVaccinated: 0,
-      VEDISpartiallySusVaccinated: 41,
-      VEHpartiallySusVaccinated: 95.3,
-    },
+      "vaccineParameters": {
+        "vaccineList": [
+          {
+            "category": "Vaccine 1",
+            "name": "VAXZEVRIA",
+            "code": "AstraZeneca",
+            "type": "pre-defined",
+            "usage": [
+              {
+                "name": "Primary series",
+                "value": "full dose"
+              },
+              {
+                "name": "Booster",
+                "value": "booster"
+              }
+            ],
+            "number": 0,
+            "date": "2022-09-01T00:00:00.000Z",
+            "rate": 0,
+            "allocation": [
+              {
+                "category": "Full dose",
+                "date": "2023-05-15T18:33:02.318Z",
+                "proportion": 0,
+                "group1": 0,
+                "group2": 0,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0
+              },
+              {
+                "category": "Booster",
+                "date": "2023-05-15T18:33:02.318Z",
+                "proportion": 0,
+                "group1": 0,
+                "group2": 0,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0,
+                "primaryMatching": [
+                  {
+                    "primary": "Vaccine 1",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 2",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 3",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  }
+                ]
+              }
+            ],
+            "efficacyData": [
+              {
+                "category": "Infection",
+                "fulldose": 36,
+                "booster": 63
+              },
+              {
+                "category": "Symptomatic infection",
+                "fulldose": 29,
+                "booster": 63
+              },
+              {
+                "category": "Hospitalization",
+                "fulldose": 71,
+                "booster": 94
+              }
+            ]
+          },
+          {
+            "category": "Vaccine 2",
+            "name": "VERO CELL",
+            "code": "SINOPHARM",
+            "type": "pre-defined",
+            "usage": [
+              {
+                "name": "Booster",
+                "value": "booster"
+              }
+            ],
+            "number": 0,
+            "date": "2022-08-31T04:00:00.000Z",
+            "rate": 0,
+            "allocation": [
+              {
+                "category": "Full dose",
+                "date": "2023-05-15T18:33:02.318Z",
+                "proportion": 0,
+                "group1": 0,
+                "group2": 0,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0
+              },
+              {
+                "category": "Booster",
+                "date": "2023-05-15T18:33:02.318Z",
+                "proportion": 0,
+                "group1": 0,
+                "group2": 0,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0,
+                "primaryMatching": [
+                  {
+                    "primary": "Vaccine 1",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 2",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 3",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  }
+                ]
+              }
+            ],
+            "efficacyData": [
+              {
+                "category": "Infection",
+                "fulldose": 35,
+                "booster": 68
+              },
+              {
+                "category": "Symptomatic infection",
+                "fulldose": 31,
+                "booster": 78
+              },
+              {
+                "category": "Hospitalization",
+                "fulldose": 53,
+                "booster": 73
+              }
+            ]
+          },
+          {
+            "category": "Vaccine 3",
+            "name": "JANSEN",
+            "code": "JANSEN",
+            "type": "pre-defined",
+            "usage": [
+              {
+                "name": "Primary series",
+                "value": "full dose"
+              }
+            ],
+            "number": 6829294,
+            "date": "2022-08-31T04:00:00.000Z",
+            "rate": 50000,
+            "allocation": [
+              {
+                "category": "Full dose",
+                "date": "2022-08-31T04:00:00.000Z",
+                "proportion": 100,
+                "group1": 0,
+                "group2": 100,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0
+              },
+              {
+                "category": "Booster",
+                "date": "2022-08-31T04:00:00.000Z",
+                "proportion": 0,
+                "group1": 0,
+                "group2": 0,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0,
+                "primaryMatching": [
+                  {
+                    "primary": "Vaccine 1",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 2",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 3",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  }
+                ]
+              }
+            ],
+            "efficacyData": [
+              {
+                "category": "Infection",
+                "fulldose": 33,
+                "booster": 72
+              },
+              {
+                "category": "Symptomatic infection",
+                "fulldose": 26,
+                "booster": 67
+              },
+              {
+                "category": "Hospitalization",
+                "fulldose": 57,
+                "booster": 86
+              }
+            ]
+          }
+        ],
+        "vaccinationStatusByAgeGroup": {
+          "group1": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 100,
+              "booster": 100
+            }
+          ],
+          "group2": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 50.02,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 49.98,
+              "booster": 100
+            }
+          ],
+          "group3": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 8.56,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 36.6,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 54.79,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 0.05,
+              "booster": 100
+            }
+          ],
+          "group4": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 100,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 0,
+              "booster": 100
+            }
+          ],
+          "group5": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 91.3,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 8.7,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 0,
+              "booster": 100
+            }
+          ]
+        }
+      },
+      "fixedParameters": {
+        "averageTimeBetweenSymptomOnsetAndHospitalization": 3.8,
+        "meanDurationInfectiousnessPostSymptoms": 4,
+        "meanDurationHospitalization": 7,
+        "meanDurationLatentPeriod": 2,
+        "meanDurationPreSymptomaticPeriod": 1.5,
+        "meanDurationNatImmunityAfterInfection": 100,
+        "meanDurationNatImmunityAfterInfection2": 180,
+        "meanDurationImmunityWanedVaxHybrid": 100,
+        "meanDurationPrimaryImmunity": [
+          100,
+          100,
+          100
+        ],
+        "meanDurationHybridImmunity": [
+          180,
+          180,
+          180
+        ],
+        "meanDurationBoosterImmunity": [
+          180,
+          180,
+          180
+        ],
+        "meanDurationBoostedHybridImmunity": [
+          180,
+          180,
+          180
+        ],
+        "propSymptomaticInfection": [
+          0.25,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ],
+        "relativeInfectiousnessAsymptomaticInfection": 1,
+        "relativeInfectiousnessHospitalizedInfection": 0,
+        "relativeInfectiousnessPreSymptomaticInfection": 1,
+        "relativeSusceptibility": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "VESUSpartiallySus": 0,
+        "VEDISpartiallySus": 0,
+        "VEHpartiallySus": 20,
+        "VESUSpartiallySusVaccinated": 0,
+        "VEDISpartiallySusVaccinated": 0,
+        "VEHpartiallySusVaccinated": 40
+      }
   },
   {
-    simulationInterval: [
-      "2023-02-19T04:00:00.000Z",
-      "2024-02-26T04:00:00.000Z",
-    ],
-    regionParameters: {
-      region: {
-        name: "Panama",
-        code: "PAN",
-        populationList: [1500388, 1853245, 592706, 214524, 153904],
-      },
-      variant: {
-        name: "Delta",
-        code: "delta",
-      },
-      infectiousnessLevel: 3,
-      socialDistancing: {
-        homeSCLevel: 0,
-        workSCLevel: 0,
-        schoolSCLevel: 0,
-        otherSCLevel: 0,
-      },
-      infectionStatus: [
-        {
-          category: "Previously Infected",
-          group1: 40.5,
-          group2: 40.5,
-          group3: 40.5,
-          group4: 40.5,
-          group5: 40.5,
-        },
-        {
-          category: "Currently Infected",
-          group1: 0.1,
-          group2: 0.1,
-          group3: 0.1,
-          group4: 0.1,
-          group5: 0.1,
-        },
-        {
-          category: "Uninfected",
-          group1: 59.4,
-          group2: 59.4,
-          group3: 59.4,
-          group4: 59.4,
-          group5: 59.4,
-        },
+      "simulationInterval": [
+        "2023-04-24T00:00:00.000Z",
+        "2023-10-24T04:00:00.000Z"
       ],
-    },
-    vaccineParameters: {
-      vaccineList: [
-        {
-          category: "Vaccine 1",
-          name: "COMIRNATY (Pfizer/BioNTech)",
-          code: "COMIRNATY",
-          type: "pre-defined",
-          usage: [
-            {
-              name: "Primary series",
-              value: "full dose",
-            },
-            {
-              name: "Booster",
-              value: "booster",
-            },
-          ],
-          number: 0,
-          date: "2023-02-19T04:00:00.000Z",
-          rate: 0,
-          allocation: [
-            {
-              category: "Full dose",
-              date: nowDateString,
-              proportion: 100,
-              group1: 100,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-            },
-            {
-              category: "Booster",
-              date: nowDateString,
-              proportion: 0,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-              primaryMatching: [
-                {
-                  primary: "Vaccine 1",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 2",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 3",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-              ],
-            },
-          ],
-          efficacyData: [
-            {
-              category: "Infection",
-              fulldose: 44,
-              booster: 86,
-            },
-            {
-              category: "Symptomatic infection",
-              fulldose: 30,
-              booster: 88,
-            },
-            {
-              category: "Hospitalization",
-              fulldose: 72,
-              booster: 95,
-            },
-          ],
+      "simulationDays": 184,
+      "regionParameters": {
+        "region": {
+          "name": "Haiti",
+          "code": "HTI",
+          "populationList": [
+            4847308,
+            4882600,
+            1082578,
+            381790,
+            208257
+          ]
         },
-        {
-          category: "Vaccine 2",
-          name: "VAXZEVRIA (AstraZeneca)",
-          code: "VAXZEVRIA",
-          type: "pre-defined",
-          usage: [],
-          number: 177980,
-          date: "2023-02-20T00:00:00.000Z",
-          rate: 7694,
-          allocation: [
-            {
-              category: "Full dose",
-              date: nowDateString,
-              proportion: 0,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-            },
-            {
-              category: "Booster",
-              date: nowDateString,
-              proportion: 100,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-              primaryMatching: [
-                {
-                  primary: "Vaccine 1",
-                  group1: 0,
-                  group2: 100,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 2",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 3",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-              ],
-            },
-          ],
-          efficacyData: [
-            {
-              category: "Infection",
-              fulldose: 36,
-              booster: 63,
-            },
-            {
-              category: "Symptomatic infection",
-              fulldose: 29,
-              booster: 63,
-            },
-            {
-              category: "Hospitalization",
-              fulldose: 71,
-              booster: 94,
-            },
-          ],
+        "variant": {
+          "name": "Delta",
+          "code": "delta"
         },
-        {
-          category: "Vaccine 3",
-          name: "Unknown",
-          code: "unknown",
-          type: "customized",
-          usage: [],
-          number: 1196095,
-          date: "2023-02-20T00:00:00.000Z",
-          rate: 7694,
-          allocation: [
-            {
-              category: "Full dose",
-              date: nowDateString,
-              proportion: 18,
-              group1: 18,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-            },
-            {
-              category: "Booster",
-              date: nowDateString,
-              proportion: 82,
-              group1: 0,
-              group2: 0,
-              group3: 0,
-              group4: 0,
-              group5: 0,
-              primaryMatching: [
-                {
-                  primary: "Vaccine 1",
-                  group1: 28.8,
-                  group2: 53.2,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 2",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-                {
-                  primary: "Vaccine 3",
-                  group1: 0,
-                  group2: 0,
-                  group3: 0,
-                  group4: 0,
-                  group5: 0,
-                },
-              ],
-            },
-          ],
-          efficacyData: [
-            {
-              category: "Infection",
-              fulldose: 0,
-              booster: 0,
-            },
-            {
-              category: "Symptomatic infection",
-              fulldose: 0,
-              booster: 0,
-            },
-            {
-              category: "Hospitalization",
-              fulldose: 37,
-              booster: 50,
-            },
-          ],
+        "infectiousnessLevel": 3,
+        "socialDistancing": {
+          "homeSCLevel": 0,
+          "workSCLevel": 0,
+          "schoolSCLevel": 0,
+          "otherSCLevel": 0
         },
-      ],
-      vaccinationStatusByAgeGroup: {
-        group1: [
+        "infectionStatus": [
           {
-            category: "Vaccine 1",
-            fulldose: 23,
-            booster: 0,
+            "category": "Previously Infected",
+            "group1": 29.6,
+            "group2": 29.6,
+            "group3": 29.6,
+            "group4": 29.6,
+            "group5": 29.6
           },
           {
-            category: "Vaccine 2",
-            fulldose: 0,
-            booster: 0,
+            "category": "Currently Infected",
+            "group1": 0.1,
+            "group2": 0.1,
+            "group3": 0.1,
+            "group4": 0.1,
+            "group5": 0.1
           },
           {
-            category: "Vaccine 3",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 77,
-            booster: 100,
-          },
-        ],
-        group2: [
-          {
-            category: "Vaccine 1",
-            fulldose: 44,
-            booster: 5,
-          },
-          {
-            category: "Vaccine 2",
-            fulldose: 0,
-            booster: 51,
-          },
-          {
-            category: "Vaccine 3",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 56,
-            booster: 44,
-          },
-        ],
-        group3: [
-          {
-            category: "Vaccine 1",
-            fulldose: 0,
-            booster: 100,
-          },
-          {
-            category: "Vaccine 2",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 3",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 100,
-            booster: 0,
-          },
-        ],
-        group4: [
-          {
-            category: "Vaccine 1",
-            fulldose: 0,
-            booster: 100,
-          },
-          {
-            category: "Vaccine 2",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 3",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 100,
-            booster: 0,
-          },
-        ],
-        group5: [
-          {
-            category: "Vaccine 1",
-            fulldose: 0,
-            booster: 100,
-          },
-          {
-            category: "Vaccine 2",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Vaccine 3",
-            fulldose: 0,
-            booster: 0,
-          },
-          {
-            category: "Unvaccinated",
-            fulldose: 100,
-            booster: 0,
-          },
-        ],
+            "category": "Uninfected",
+            "group1": 70.3,
+            "group2": 70.3,
+            "group3": 70.3,
+            "group4": 70.3,
+            "group5": 70.3
+          }
+        ]
       },
-    },
-    fixedParameters: {
-      averageTimeBetweenSymptomOnsetAndHospitalization: 3.8,
-      meanDurationInfectiousnessPostSymptoms: 4,
-      meanDurationHospitalization: 7,
-      meanDurationLatentPeriod: 2,
-      meanDurationPreSymptomaticPeriod: 1.5,
-      meanDurationNatImmunityAfterInfection: 100,
-      meanDurationNatImmunityAfterInfection2: 180,
-      meanDurationImmunityWanedVaxHybrid: 100,
-      meanDurationPrimaryImmunity: [100, 100, 100],
-      meanDurationHybridImmunity: [180, 180, 180],
-      meanDurationBoosterImmunity: [180, 180, 180],
-      meanDurationBoostedHybridImmunity: [180, 180, 180],
-      propSymptomaticInfection: [0.25, 0.4, 0.4, 0.4, 0.4],
-      relativeInfectiousnessAsymptomaticInfection: 1,
-      relativeInfectiousnessHospitalizedInfection: 0,
-      relativeInfectiousnessPreSymptomaticInfection: 1,
-      relativeSusceptibility: [1, 1, 1, 1, 1],
-      VESUSpartiallySus: 0,
-      VEDISpartiallySus: 24.7,
-      VEHpartiallySus: 74.6,
-      VESUSpartiallySusVaccinated: 0,
-      VEDISpartiallySusVaccinated: 41,
-      VEHpartiallySusVaccinated: 95.3,
-    },
+      "vaccineParameters": {
+        "vaccineList": [
+          {
+            "category": "Vaccine 1",
+            "name": "JANSEN (Johnson & Johnson)",
+            "code": "JANSEN",
+            "type": "pre-defined",
+            "usage": [],
+            "number": 1000000,
+            "date": "2023-04-24T00:00:00.000Z",
+            "rate": 50000,
+            "allocation": [
+              {
+                "category": "Full dose",
+                "date": "2023-04-24T07:00:00.000Z",
+                "proportion": 76.5,
+                "group1": 0,
+                "group2": 0,
+                "group3": 39.5,
+                "group4": 37,
+                "group5": 0
+              },
+              {
+                "category": "Booster",
+                "date": "2023-04-24T07:00:00.000Z",
+                "proportion": 23.5,
+                "group1": 0,
+                "group2": 0,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0,
+                "primaryMatching": [
+                  {
+                    "primary": "Vaccine 1",
+                    "group1": 0,
+                    "group2": 1.2,
+                    "group3": 0.02,
+                    "group4": 1.1,
+                    "group5": 20.8
+                  },
+                  {
+                    "primary": "Vaccine 2",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 3",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  }
+                ]
+              }
+            ],
+            "efficacyData": [
+              {
+                "category": "Infection",
+                "fulldose": 33,
+                "booster": 72
+              },
+              {
+                "category": "Symptomatic infection",
+                "fulldose": 26,
+                "booster": 67
+              },
+              {
+                "category": "Hospitalization",
+                "fulldose": 57,
+                "booster": 86
+              }
+            ]
+          },
+          {
+            "category": "Vaccine 2",
+            "name": "CONVIDECIA (CanSino)",
+            "code": "CONVIDECIA",
+            "type": "pre-defined",
+            "usage": [],
+            "number": 1500000,
+            "date": "2023-04-24T00:00:00.000Z",
+            "rate": 50000,
+            "allocation": [
+              {
+                "category": "Full dose",
+                "date": "2023-06-14T07:00:00.000Z",
+                "proportion": 49,
+                "group1": 0,
+                "group2": 0,
+                "group3": 3.3,
+                "group4": 45.7,
+                "group5": 0
+              },
+              {
+                "category": "Booster",
+                "date": "2023-06-12T07:00:00.000Z",
+                "proportion": 51,
+                "group1": 0,
+                "group2": 0,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0,
+                "primaryMatching": [
+                  {
+                    "primary": "Vaccine 1",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 26,
+                    "group4": 25,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 2",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 3",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  }
+                ]
+              }
+            ],
+            "efficacyData": [
+              {
+                "category": "Infection",
+                "fulldose": 32,
+                "booster": 62
+              },
+              {
+                "category": "Symptomatic infection",
+                "fulldose": 26,
+                "booster": 66
+              },
+              {
+                "category": "Hospitalization",
+                "fulldose": 48,
+                "booster": 66
+              }
+            ]
+          },
+          {
+            "category": "Vaccine 3",
+            "name": "VERO CELL (SINOPHARM)",
+            "code": "VERO CELL",
+            "type": "pre-defined",
+            "usage": [],
+            "number": 1000000,
+            "date": "2023-04-24T00:00:00.000Z",
+            "rate": 50000,
+            "allocation": [
+              {
+                "category": "Full dose",
+                "date": "2023-07-10T07:00:00.000Z",
+                "proportion": 26.5,
+                "group1": 0,
+                "group2": 26.5,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0
+              },
+              {
+                "category": "Booster",
+                "date": "2023-07-10T07:00:00.000Z",
+                "proportion": 73.5,
+                "group1": 0,
+                "group2": 0,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0,
+                "primaryMatching": [
+                  {
+                    "primary": "Vaccine 1",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 2",
+                    "group1": 0,
+                    "group2": 4.99,
+                    "group3": 68.49,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 3",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  }
+                ]
+              }
+            ],
+            "efficacyData": [
+              {
+                "category": "Infection",
+                "fulldose": 35,
+                "booster": 68
+              },
+              {
+                "category": "Symptomatic infection",
+                "fulldose": 31,
+                "booster": 78
+              },
+              {
+                "category": "Hospitalization",
+                "fulldose": 53,
+                "booster": 73
+              }
+            ]
+          }
+        ],
+        "vaccinationStatusByAgeGroup": {
+          "group1": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 100,
+              "booster": 100
+            }
+          ],
+          "group2": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 0.25,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 99.75,
+              "booster": 100
+            }
+          ],
+          "group3": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 0.25,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 99.75,
+              "booster": 100
+            }
+          ],
+          "group4": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 3,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 97,
+              "booster": 100
+            }
+          ],
+          "group5": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 100,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 0,
+              "booster": 100
+            }
+          ]
+        }
+      },
+      "fixedParameters": {
+        "averageTimeBetweenSymptomOnsetAndHospitalization": 3.8,
+        "meanDurationInfectiousnessPostSymptoms": 4,
+        "meanDurationHospitalization": 7,
+        "meanDurationLatentPeriod": 2,
+        "meanDurationPreSymptomaticPeriod": 1.5,
+        "meanDurationNatImmunityAfterInfection": 100,
+        "meanDurationNatImmunityAfterInfection2": 180,
+        "meanDurationImmunityWanedVaxHybrid": 100,
+        "meanDurationPrimaryImmunity": [
+          100,
+          100,
+          100
+        ],
+        "meanDurationHybridImmunity": [
+          180,
+          180,
+          180
+        ],
+        "meanDurationBoosterImmunity": [
+          180,
+          180,
+          180
+        ],
+        "meanDurationBoostedHybridImmunity": [
+          180,
+          180,
+          180
+        ],
+        "propSymptomaticInfection": [
+          0.25,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ],
+        "relativeInfectiousnessAsymptomaticInfection": 1,
+        "relativeInfectiousnessHospitalizedInfection": 0,
+        "relativeInfectiousnessPreSymptomaticInfection": 1,
+        "relativeSusceptibility": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "VESUSpartiallySus": 0,
+        "VEDISpartiallySus": 24.7,
+        "VEHpartiallySus": 74.6,
+        "VESUSpartiallySusVaccinated": 0,
+        "VEDISpartiallySusVaccinated": 41,
+        "VEHpartiallySusVaccinated": 95.3
+      }
   },
+  {
+      "simulationInterval": [
+        "2023-04-24T00:00:00.000Z",
+        "2023-10-23T04:00:00.000Z"
+      ],
+      "simulationDays": 184,
+      "regionParameters": {
+        "region": {
+          "name": "Haiti",
+          "code": "HTI",
+          "populationList": [
+            4847308,
+            4882600,
+            1082578,
+            381790,
+            208257
+          ]
+        },
+        "variant": {
+          "name": "Delta",
+          "code": "delta"
+        },
+        "infectiousnessLevel": 3,
+        "socialDistancing": {
+          "homeSCLevel": 0,
+          "workSCLevel": 0,
+          "schoolSCLevel": 0,
+          "otherSCLevel": 0
+        },
+        "infectionStatus": [
+          {
+            "category": "Previously Infected",
+            "group1": 29.6,
+            "group2": 29.6,
+            "group3": 29.6,
+            "group4": 29.6,
+            "group5": 29.6
+          },
+          {
+            "category": "Currently Infected",
+            "group1": 0.1,
+            "group2": 0.1,
+            "group3": 0.1,
+            "group4": 0.1,
+            "group5": 0.1
+          },
+          {
+            "category": "Uninfected",
+            "group1": 70.30000000000001,
+            "group2": 70.30000000000001,
+            "group3": 70.30000000000001,
+            "group4": 70.30000000000001,
+            "group5": 70.30000000000001
+          }
+        ]
+      },
+      "vaccineParameters": {
+        "vaccineList": [
+          {
+            "category": "Vaccine 1",
+            "name": "JANSEN (Johnson & Johnson)",
+            "code": "JANSEN",
+            "type": "pre-defined",
+            "usage": [],
+            "number": 1000000,
+            "date": "2023-04-24T00:00:00.000Z",
+            "rate": 50000,
+            "allocation": [
+              {
+                "category": "Full dose",
+                "date": "2023-04-24T07:00:00.000Z",
+                "proportion": 100,
+                "group1": 0,
+                "group2": 0,
+                "group3": 62.98,
+                "group4": 37.01,
+                "group5": 0
+              },
+              {
+                "category": "Booster",
+                "date": "2023-04-24T07:00:00.000Z",
+                "proportion": 23.5,
+                "group1": 0,
+                "group2": 0,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0,
+                "primaryMatching": [
+                  {
+                    "primary": "Vaccine 1",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 2",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 3",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  }
+                ]
+              }
+            ],
+            "efficacyData": [
+              {
+                "category": "Infection",
+                "fulldose": 33,
+                "booster": 72
+              },
+              {
+                "category": "Symptomatic infection",
+                "fulldose": 26,
+                "booster": 67
+              },
+              {
+                "category": "Hospitalization",
+                "fulldose": 57,
+                "booster": 86
+              }
+            ]
+          },
+          {
+            "category": "Vaccine 2",
+            "name": "CONVIDECIA (CanSino)",
+            "code": "CONVIDECIA",
+            "type": "pre-defined",
+            "usage": [],
+            "number": 1500000,
+            "date": "2023-04-24T00:00:00.000Z",
+            "rate": 50000,
+            "allocation": [
+              {
+                "category": "Full dose",
+                "date": "2023-06-14T07:00:00.000Z",
+                "proportion": 100,
+                "group1": 0,
+                "group2": 70,
+                "group3": 30,
+                "group4": 0,
+                "group5": 0
+              },
+              {
+                "category": "Booster",
+                "date": "2023-06-12T07:00:00.000Z",
+                "proportion": 51,
+                "group1": 0,
+                "group2": 0,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0,
+                "primaryMatching": [
+                  {
+                    "primary": "Vaccine 1",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 2",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 3",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  }
+                ]
+              }
+            ],
+            "efficacyData": [
+              {
+                "category": "Infection",
+                "fulldose": 32,
+                "booster": 62
+              },
+              {
+                "category": "Symptomatic infection",
+                "fulldose": 26,
+                "booster": 66
+              },
+              {
+                "category": "Hospitalization",
+                "fulldose": 48,
+                "booster": 66
+              }
+            ]
+          },
+          {
+            "category": "Vaccine 3",
+            "name": "VERO CELL (SINOPHARM)",
+            "code": "VERO CELL",
+            "type": "pre-defined",
+            "usage": [],
+            "number": 1000000,
+            "date": "2023-04-24T00:00:00.000Z",
+            "rate": 50000,
+            "allocation": [
+              {
+                "category": "Full dose",
+                "date": "2023-07-10T07:00:00.000Z",
+                "proportion": 100,
+                "group1": 0,
+                "group2": 100,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0
+              },
+              {
+                "category": "Booster",
+                "date": "2023-07-10T07:00:00.000Z",
+                "proportion": 73.5,
+                "group1": 0,
+                "group2": 0,
+                "group3": 0,
+                "group4": 0,
+                "group5": 0,
+                "primaryMatching": [
+                  {
+                    "primary": "Vaccine 1",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 2",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  },
+                  {
+                    "primary": "Vaccine 3",
+                    "group1": 0,
+                    "group2": 0,
+                    "group3": 0,
+                    "group4": 0,
+                    "group5": 0
+                  }
+                ]
+              }
+            ],
+            "efficacyData": [
+              {
+                "category": "Infection",
+                "fulldose": 35,
+                "booster": 68
+              },
+              {
+                "category": "Symptomatic infection",
+                "fulldose": 31,
+                "booster": 78
+              },
+              {
+                "category": "Hospitalization",
+                "fulldose": 53,
+                "booster": 73
+              }
+            ]
+          }
+        ],
+        "vaccinationStatusByAgeGroup": {
+          "group1": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 100,
+              "booster": 100
+            }
+          ],
+          "group2": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 0.25,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 99.75,
+              "booster": 100
+            }
+          ],
+          "group3": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 0.25,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 99.75,
+              "booster": 100
+            }
+          ],
+          "group4": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 3,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 97,
+              "booster": 100
+            }
+          ],
+          "group5": [
+            {
+              "category": "Vaccine 1",
+              "fulldose": 100,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 2",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Vaccine 3",
+              "fulldose": 0,
+              "booster": 0
+            },
+            {
+              "category": "Unvaccinated",
+              "fulldose": 0,
+              "booster": 100
+            }
+          ]
+        }
+      },
+      "fixedParameters": {
+        "averageTimeBetweenSymptomOnsetAndHospitalization": 3.8,
+        "meanDurationInfectiousnessPostSymptoms": 4,
+        "meanDurationHospitalization": 7,
+        "meanDurationLatentPeriod": 2,
+        "meanDurationPreSymptomaticPeriod": 1.5,
+        "meanDurationNatImmunityAfterInfection": 100,
+        "meanDurationNatImmunityAfterInfection2": 180,
+        "meanDurationImmunityWanedVaxHybrid": 100,
+        "meanDurationPrimaryImmunity": [
+          100,
+          100,
+          100
+        ],
+        "meanDurationHybridImmunity": [
+          180,
+          180,
+          180
+        ],
+        "meanDurationBoosterImmunity": [
+          180,
+          180,
+          180
+        ],
+        "meanDurationBoostedHybridImmunity": [
+          180,
+          180,
+          180
+        ],
+        "propSymptomaticInfection": [
+          0.25,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ],
+        "relativeInfectiousnessAsymptomaticInfection": 1,
+        "relativeInfectiousnessHospitalizedInfection": 0,
+        "relativeInfectiousnessPreSymptomaticInfection": 1,
+        "relativeSusceptibility": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "VESUSpartiallySus": 0,
+        "VEDISpartiallySus": 24.7,
+        "VEHpartiallySus": 74.6,
+        "VESUSpartiallySusVaccinated": 0,
+        "VEDISpartiallySusVaccinated": 41,
+        "VEHpartiallySusVaccinated": 95.3
+      }
+  }
 ];
 
 export var sampleSimulationOutcome = {

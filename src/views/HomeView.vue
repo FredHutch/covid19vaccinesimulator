@@ -43,9 +43,10 @@ const onPresetSelectionClick = (event) => {
 
 const options = ref([
   { label: "None", value: 0 },
-  { label: "Afghanistan", value: 1 },
-  { label: "Chad", value: 2 },
-  { label: "Panama", value: 3 },
+  { label: "Afghanistan (Boosters first)", value: 1 },
+  { label: "Afghanistan (Primary series first)", value: 2 },
+  { label: "Haiti (Boosters first)", value: 3 },
+  { label: "Haiti (Primary series first)", value: 4 },
 ]);
 
 const selectedPreset = ref(options.value[0]);
@@ -55,8 +56,16 @@ const onPresetSelectionButtonChange = (event) => {
   console.log(
     `onPresetSelectionButtonChange: selection ${JSON.stringify(
       event.value
+    )}`
+  );
+  
+  /*
+  console.log(
+    `onPresetSelectionButtonChange: selection ${JSON.stringify(
+      event.value
     )}, selectedPreset: ${JSON.stringify(selectedPreset)}`
   );
+  */
 
   /*
   onPresetSelectionButtonChange: selection {"label":"Afghanistan","value":1}, selectedPreset: {"__v_isShallow":false,"dep":{"w":0,"n":0},"__v_isRef":true,"_rawValue":{"label":"Afghanistan","value":1},"_value":{"label":"Afghanistan","value":1}}
@@ -101,7 +110,7 @@ const onPresetSelectionButtonChange = (event) => {
 };
 
 strategiesStore.$subscribe((mutation, state) => {
-  console.log(`strategiesStore.$subscribe: state change - mutation: ${JSON.stringify(mutation)}`);
+  console.log(`strategiesStore.$subscribe: state change`);
 
   if(mutation.events != undefined && (mutation.events.key == "rate" || mutation.events.key == "number")){
     updateSimulationParameters();

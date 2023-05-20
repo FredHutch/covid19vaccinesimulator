@@ -104,7 +104,7 @@ let vaccineInfo = computed(() => {
   }
 });
 
-console.log(`vaccineInfo: ${JSON.stringify(vaccineInfo.value)}`);
+//console.log(`vaccineInfo: ${JSON.stringify(vaccineInfo.value)}`);
 
 let vaccineEfficacyData = computed(() => {
   console.log(
@@ -122,20 +122,20 @@ let vaccineEfficacyData = computed(() => {
   switch (vaccineIndex.value) {
     case 1:
       console.log(`vaccineEfficacyData match: ${vaccineIndex.value}`);
-      console.log(`vaccineEfficacyData vaccineList[0]: ${JSON.stringify(strategyList.value[strategyIndex].vaccineParameters.vaccineList[0], null, 2)}`);
-      console.log(`vaccineEfficacyData vaccineList[0]["efficacyData"]: ${strategyList.value[strategyIndex].vaccineParameters.vaccineList[0]["efficacyData"]}`);
+      //console.log(`vaccineEfficacyData vaccineList[0]: ${JSON.stringify(strategyList.value[strategyIndex].vaccineParameters.vaccineList[0], null, 2)}`);
+      //console.log(`vaccineEfficacyData vaccineList[0]["efficacyData"]: ${strategyList.value[strategyIndex].vaccineParameters.vaccineList[0]["efficacyData"]}`);
       result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[0]["efficacyData"];
       break;
     case 2:
       console.log(`vaccineEfficacyData match: ${vaccineIndex.value}`);
-      console.log(`vaccineEfficacyData vaccineList[1]: ${JSON.stringify(strategyList.value[strategyIndex].vaccineParameters.vaccineList[1], null, 2)}`);
-      console.log(`vaccineEfficacyData vaccineList[1]["efficacyData"]: ${strategyList.value[strategyIndex].vaccineParameters.vaccineList[1]["efficacyData"]}`);
+      //console.log(`vaccineEfficacyData vaccineList[1]: ${JSON.stringify(strategyList.value[strategyIndex].vaccineParameters.vaccineList[1], null, 2)}`);
+      //console.log(`vaccineEfficacyData vaccineList[1]["efficacyData"]: ${strategyList.value[strategyIndex].vaccineParameters.vaccineList[1]["efficacyData"]}`);
       result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[1]["efficacyData"];
       break;
     case 3:
       console.log(`vaccineEfficacyData match: ${vaccineIndex.value}`);
-      console.log(`vaccineEfficacyData vaccineList[2]: ${JSON.stringify(strategyList.value[strategyIndex].vaccineParameters.vaccineList[2], null, 2)}`);
-      console.log(`vaccineEfficacyData vaccineList[2]["efficacyData"]: ${strategyList.value[strategyIndex].vaccineParameters.vaccineList[2]["efficacyData"]}`);
+      //console.log(`vaccineEfficacyData vaccineList[2]: ${JSON.stringify(strategyList.value[strategyIndex].vaccineParameters.vaccineList[2], null, 2)}`);
+      //console.log(`vaccineEfficacyData vaccineList[2]["efficacyData"]: ${strategyList.value[strategyIndex].vaccineParameters.vaccineList[2]["efficacyData"]}`);
       result = strategyList.value[strategyIndex].vaccineParameters.vaccineList[2]["efficacyData"];
       break;
     default:
@@ -148,9 +148,11 @@ let vaccineEfficacyData = computed(() => {
   return result;
 });
 
+/*
 console.log(
   `vaccineEfficacyData: ${JSON.stringify(vaccineEfficacyData.value, null, 2)}`
 );
+*/
 
 watch(
   () => route.query.vaccine,
@@ -209,11 +211,13 @@ function onVaccineEfficacyChange(event) {
     )}, ${field}, ${newValue}`
   );
 
+  /*
   console.log(
     `onVaccineEfficacyChange vaccineEfficacyData: ${JSON.stringify(
       vaccineEfficacyData.value
     )}`
   );
+  */
 
   console.log(
     `onVaccineEfficacyChange vaccineEfficacyData.value type: ${typeof vaccineEfficacyData.value}`

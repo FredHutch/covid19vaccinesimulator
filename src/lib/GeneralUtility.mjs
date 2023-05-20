@@ -69,7 +69,7 @@ export default class GeneralUtility {
   }
 
   static convertStrategyFromJSON(strategyJSON) {
-    console.log(`convertStrategyFromJSON: ${strategyJSON}`);
+    console.log(`convertStrategyFromJSON`);
 
     let result = JSON.parse(strategyJSON);
 
