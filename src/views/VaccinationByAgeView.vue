@@ -358,20 +358,20 @@ const onInputBlur = (event, obj, groupName) => {
     `onInputBlur: inputValue: ${inputValue}, resultValue: ${resultValue}`
   );
 
-  let oldValue =  strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[
+  let oldValue = strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[
     groupName
   ].filter((eInfo) => {
     return eInfo.category == obj.data.category;
   })[0][obj.field];
 
-  if(oldValue != resultValue){
+  if (oldValue != resultValue) {
     strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[
-    groupName
-  ].filter((eInfo) => {
-    return eInfo.category == obj.data.category;
-  })[0][obj.field] = resultValue;
+      groupName
+    ].filter((eInfo) => {
+      return eInfo.category == obj.data.category;
+    })[0][obj.field] = resultValue;
 
-  updateUnvaccinated(obj.field);
+    updateUnvaccinated(obj.field);
 
   }
 
@@ -551,6 +551,10 @@ const basicOptions = {
           Group {{ groupIndex }}: people {{ groupIndexLabelMap[groupIndex] }}
         </h3>
         <h3>Primary series vs. Booster</h3>
+        <div class="mt-4 text-2xl">
+          <strong>Primary seires: People who completed a primary series BUT have not had a booster yet</strong>.
+        </div>
+        <br />
         <div class="grid">
           <div class="col" style="padding-right: 0px">
             <Chart type="bar" :data="basicData" :options="basicOptions" />
@@ -578,17 +582,17 @@ const basicOptions = {
                       " />
                 </template>
               </Column>
-              
+
               <div class="hidden">
                 <ColumnGroup type="footer">
                   <Row>
                     <Column footer="Unvaccinated" :colspan="1" footerStyle="text-align:left"
                       footerClass="fh-table-footer" />
-                    <Column :footer="
-                      strategyList[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[onlyGroupName][3]['fulldose']" footerClass="fh-table-footer" />
-                    <Column :footer="
-                      strategyList[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[onlyGroupName][3]['booster']
-                    " footerClass="fh-table-footer" />
+                    <Column
+                      :footer="strategyList[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[onlyGroupName][3]['fulldose']"
+                      footerClass="fh-table-footer" />
+                    <Column :footer="strategyList[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[onlyGroupName][3]['booster']
+                      " footerClass="fh-table-footer" />
 
                   </Row>
                 </ColumnGroup>
@@ -597,17 +601,17 @@ const basicOptions = {
             </DataTable>
             <br />
             <br />
-            <div class="text-2xl text-center">Unvaccinated: {{ GeneralUtility.minusNumbersAsDecimal(100, group1VaccinatedTotal) }} %</div>
+            <div class="text-2xl text-center">Unvaccinated: {{ GeneralUtility.minusNumbersAsDecimal(100,
+              group1VaccinatedTotal) }} %</div>
             <div>
-              
-              <Message severity="error" v-if="group1VaccinatedTotal > 100" :closable="false">{{ proporSumOver100Msg }}</Message>
+
+              <Message severity="error" v-if="group1VaccinatedTotal > 100" :closable="false">{{ proporSumOver100Msg }}
+              </Message>
             </div>
           </div>
         </div>
       </div>
-      <div class="mt-4 text-2xl">
-        * People who completed a primary series BUT have not had a booster yet.
-      </div>
+
 
       <div>
         <ProgressBar v-if="showProgress" style="height: 0.5em" mode="indeterminate" />

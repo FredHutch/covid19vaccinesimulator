@@ -18,7 +18,7 @@ import ColumnGroup from "primevue/columngroup"; //optional for column grouping
 import Row from "primevue/row";
 import InputText from "primevue/inputtext";
 import InputNumber from "primevue/inputnumber";
-
+import { systemName } from "../content/variable";
 import Calendar from 'primevue/calendar';
 
 import { ref, computed, onMounted, reactive } from "vue";
@@ -165,7 +165,7 @@ const onNextClick = (event) => {
 
 const combinedColumns = reactive([
   { field: "category", header: "Category" },
-  { field: "number", header: "Number" },
+  { field: "number", header: "Number of courses" },
   //{ field: "date", header: "Available on" },
   { field: "rate", header: "Vaccination rate" }
 ]);
@@ -374,7 +374,7 @@ const convertVaccineLabel = (placholderName) => {
       </div>
       <br />
         <br />
-        <div>* A course of vaccine is defined to be the required number of doses to be considered fully vaccinated with a primary series vaccination or boosted. For example, you need 2 doses of the COMIRNATY (Pfizer/BioNTech) vaccine for the primary series but only one dose for the CONVIDECIA (CanSino) vaccine. Boosters are assumed to be a single dose per course.</div>
+        <div>* {{systemName}} does not explicitly model first and second doses, and instead models "vaccine courses."  <strong>A course of vaccine is defined to be the required number of doses to be considered fully vaccinated with a primary series vaccination or boosted. For example, a course of COMIRNATY (Pfizer/BioNTech) vaccine would be equivalent to 2 doses of the COMIRNATY since the primary series requires two doses. However, a course of CONVIDECIA (CanSino) vaccine would be only one dose of CONVIDENCIA since the primary series requires only one dose</strong>.</div>
 
       <div>
         <div class="flex justify-content-center mt-4 mb-4">
