@@ -358,13 +358,24 @@ const onInputBlur = (event, obj, groupName) => {
     `onInputBlur: inputValue: ${inputValue}, resultValue: ${resultValue}`
   );
 
-  strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[
+  let oldValue =  strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[
+    groupName
+  ].filter((eInfo) => {
+    return eInfo.category == obj.data.category;
+  })[0][obj.field];
+
+  if(oldValue != resultValue){
+    strategyList.value[strategyIndex].vaccineParameters.vaccinationStatusByAgeGroup[
     groupName
   ].filter((eInfo) => {
     return eInfo.category == obj.data.category;
   })[0][obj.field] = resultValue;
 
   updateUnvaccinated(obj.field);
+
+  }
+
+
 };
 
 const onCellEditComplete = (event) => {
