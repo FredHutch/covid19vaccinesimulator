@@ -25,12 +25,12 @@ const isStore = useInfectionStatusStore();
 const { infectionStatusByAgeGroup } = storeToRefs(isStore);
 */
 
-import {propor0to100OutOfScopeMsg} from "../content/variable";
+import { propor0to100OutOfScopeMsg } from "../content/variable";
 
 
 import { useStrategiesStore } from '../stores/strategies';
 
-import {Decimal} from 'decimal.js';
+import { Decimal } from 'decimal.js';
 
 const strategiesStore = useStrategiesStore();
 const { strategyList, selectedStrategyIndex } = storeToRefs(strategiesStore);
@@ -80,17 +80,22 @@ function onInfectionStatusChange(event) {
   let newData = [...strategyList.value[strategyIndex].regionParameters.infectionStatus];
 
   newData = newData.map((item) => {
-    if( item["category"] == data["category"]){
+    if (item["category"] == data["category"]) {
       return data;
     }
-    else{
+    else {
       return item;
     }
   });
 
   // now, calibrate the uninfected
-  for(let i = 1; i < 6; i++){
+  for (let i = 1; i < 6; i++) {
     let groupName = `group${i}`;
+
+    updateUninfected(groupName);
+
+    // verion 1
+    /*
     // Decimal('1.1').add('2.2').toNumber()
 
     // newData[2][groupName] = new Decimal(100).minus(new Decimal(newData[0][groupName])).minus(new Decimal(newData[1][groupName])).toNumber();
@@ -103,10 +108,11 @@ function onInfectionStatusChange(event) {
       newData[1][groupName]
       ])
     );
+    */
   }
 
 
-  strategyList.value[strategyIndex].regionParameters.infectionStatus = newData;
+  //strategyList.value[strategyIndex].regionParameters.infectionStatus = newData;
 
   /*
   isStore.$patch({
@@ -202,7 +208,7 @@ const group2Valid = computed(() => {
   let propertyName = "group2";
   let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return group2Total.value == 100 && items[0][propertyName] >= 0 && items[1][propertyName] >= 0 && items[2][propertyName] >= 0;
-  
+
 });
 
 const group3Total = computed(() => {
@@ -216,7 +222,7 @@ const group3Valid = computed(() => {
   let propertyName = "group3";
   let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return group3Total.value == 100 && items[0][propertyName] >= 0 && items[1][propertyName] >= 0 && items[2][propertyName] >= 0;
-  
+
 });
 
 const group4Total = computed(() => {
@@ -230,7 +236,7 @@ const group4Valid = computed(() => {
   let propertyName = "group4";
   let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return group4Total.value == 100 && items[0][propertyName] >= 0 && items[1][propertyName] >= 0 && items[2][propertyName] >= 0;
-  
+
 });
 
 const group5Total = computed(() => {
@@ -244,16 +250,16 @@ const group5Valid = computed(() => {
   let propertyName = "group5";
   let items = strategyList.value[strategyIndex].regionParameters.infectionStatus;
   return group5Total.value == 100 && items[0][propertyName] >= 0 && items[1][propertyName] >= 0 && items[2][propertyName] >= 0;
-  
+
 });
 
 
 
 
 const allGroupValid = computed(() => {
-    console.log(`group1Total: ${group1Total.value}, group2Total: ${group2Total.value}, group3Total: ${group3Total.value}, group4Total: ${group4Total.value}, group5Total: ${group5Total.value}`);
-    console.log(`group1Valid: ${group1Valid.value}, group2Valid: ${group2Valid.value}, group3Valid: ${group3Valid.value}, group4Valid: ${group4Valid.value}, group5Valid: ${group5Valid.value}`);
-    return group1Valid.value && group2Valid.value && group3Valid.value && group4Valid.value && group5Valid.value;
+  console.log(`group1Total: ${group1Total.value}, group2Total: ${group2Total.value}, group3Total: ${group3Total.value}, group4Total: ${group4Total.value}, group5Total: ${group5Total.value}`);
+  console.log(`group1Valid: ${group1Valid.value}, group2Valid: ${group2Valid.value}, group3Valid: ${group3Valid.value}, group4Valid: ${group4Valid.value}, group5Valid: ${group5Valid.value}`);
+  return group1Valid.value && group2Valid.value && group3Valid.value && group4Valid.value && group5Valid.value;
 });
 
 
@@ -309,7 +315,7 @@ const onCellEditComplete = (event) => {
     case "category":
       break;
     case "group1":
-      if ( GeneralUtility.isPositiveNumber(newValue)) {
+      if (GeneralUtility.isPositiveNumber(newValue)) {
         data[field] = Number(newValue);
         onInfectionStatusChange(event);
       }
@@ -323,14 +329,14 @@ const onCellEditComplete = (event) => {
       else event.preventDefault();
       break;
     case "group3":
-      if (GeneralUtility.isPositiveNumber(newValue) ) {
+      if (GeneralUtility.isPositiveNumber(newValue)) {
         data[field] = Number(newValue);
         onInfectionStatusChange(event);
       }
       else event.preventDefault();
       break;
     case "group4":
-      if (GeneralUtility.isPositiveNumber(newValue) ) {
+      if (GeneralUtility.isPositiveNumber(newValue)) {
         data[field] = Number(newValue);
         onInfectionStatusChange(event);
       }
@@ -353,12 +359,12 @@ const onCellEditComplete = (event) => {
 
 
 function updateUninfected(groupName) {
-  let newData = [ ...strategyList.value[strategyIndex].regionParameters.infectionStatus ];
+  let newData = [...strategyList.value[strategyIndex].regionParameters.infectionStatus];
   newData[2][groupName] = GeneralUtility.minusNumbersAsDecimal(
     100,
     GeneralUtility.sumNumbersAsDecimal([
-    newData[0][groupName],
-    newData[1][groupName]
+      newData[0][groupName],
+      newData[1][groupName]
     ])
   );
 
@@ -373,13 +379,13 @@ const onInputBlur = (event, obj, groupName) => {
       obj.field
     )}, value: ${event.value}, type: ${typeof event.value}`
   );
-  
+
   /*
   obj.data[obj.field] = event.value;
   onCellEditComplete({...event, ...obj});
   updateUninfected(groupName);
   */
- 
+
 
   let inputValue = Number(voca.replaceAll(event.value, ",", ""));
   let resultValue = 0;
@@ -389,11 +395,26 @@ const onInputBlur = (event, obj, groupName) => {
   console.log(`onInputBlur: inputValue: ${inputValue}, resultValue: ${resultValue}`);
 
   console.log(`currentStrategy["regionParameters"]["infectionStatus"]: ${JSON.stringify(currentStrategy["regionParameters"]["infectionStatus"])}`);
-  currentStrategy["regionParameters"]["infectionStatus"].filter((eInfo) => {
-    return eInfo.category == obj.data.category;
-  })[0][obj.field] = resultValue;
 
-  updateUninfected(groupName);
+
+  let oldValue = currentStrategy["regionParameters"]["infectionStatus"].filter((eInfo) => {
+    return eInfo.category == obj.data.category;
+  })[0][obj.field];
+
+  if (oldValue != resultValue) {
+    currentStrategy["regionParameters"]["infectionStatus"].filter((eInfo) => {
+      return eInfo.category == obj.data.category;
+    })[0][obj.field] = resultValue;
+    // consider only updateUninfected if the value actually change?
+
+    updateUninfected(groupName);
+
+
+  }
+
+
+
+
 
   //updateUninfected(obj.field);
   //onInfectionStatusChange({data: obj.data, field: obj.field, value: event.value});
@@ -440,86 +461,77 @@ const onInputBlur = (event, obj, groupName) => {
   <div class="grid">
     <div class="col-2">
       <div class="mt-7"></div>
-      <div class="sticky top-0"><SideBar></SideBar></div>
+      <div class="sticky top-0">
+        <SideBar></SideBar>
+      </div>
 
-      
+
     </div>
     <div class="col ml-4">
-      <div class="sticky top-0"><Header></Header></div>
+      <div class="sticky top-0">
+        <Header></Header>
+      </div>
 
-      
+
       <h1>Infection Prevalence</h1>
       <Divider class="fh-divider-primary"></Divider>
       <div class="grid">
         <div class="col">
           <h3>Infection status for each age group (in %):</h3>
-          <DataTable
-            :value="infectedByAgeGroup" 
-            editMode="cell"
-            @cell-edit-complete="onCellEditComplete"
-            responsiveLayout="scroll"
-            
-          >
-            <Column
-              v-for="col of columns"
-              :field="col.field"
-              :header="col.header"
-              :key="col.field"
-              style="width: 18%"
-              headerClass="fh-table-header"
-              
-            >
+          <DataTable :value="infectedByAgeGroup" editMode="cell" @cell-edit-complete="onCellEditComplete"
+            responsiveLayout="scroll">
+            <Column v-for="col of columns" :field="col.field" :header="col.header" :key="col.field" style="width: 18%"
+              headerClass="fh-table-header">
               <template v-if="col.field == 'category'">
                 <div>{{ field }}</div>
               </template>
               <template v-if="col.field != 'category'" #editor="slotProps">
-                <InputNumber mode="decimal" :minFractionDigits="0" :maxFractionDigits="2" :allowEmpty="false" :min="0" :max="100" v-model="slotProps.data[slotProps.field]" 
-                @blur="
-                      (event) => {
-                        onInputBlur(event, slotProps, slotProps.field);
-                      }
-                    "
-                />
+                <InputNumber mode="decimal" :minFractionDigits="0" :maxFractionDigits="2" :allowEmpty="false" :min="0"
+                  :max="100" v-model="slotProps.data[slotProps.field]" @blur="(event) => {
+                      onInputBlur(event, slotProps, slotProps.field);
+                    }
+                    " />
               </template>
             </Column>
             <ColumnGroup type="footer">
-              <Row >
-                <Column
-                  footer="Uninfected"
-                  :colspan="1"
-                  footerStyle="text-align:left"
-                  footerClass="fh-table-footer"
-                />
-                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group1']" footerClass="fh-table-footer"/>
-                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group2']" footerClass="fh-table-footer"/>
-                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group3']" footerClass="fh-table-footer"/>
-                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group4']" footerClass="fh-table-footer"/>
-                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group5']" footerClass="fh-table-footer"/>
+              <Row>
+                <Column footer="Uninfected" :colspan="1" footerStyle="text-align:left" footerClass="fh-table-footer" />
+                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group1']"
+                  footerClass="fh-table-footer" />
+                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group2']"
+                  footerClass="fh-table-footer" />
+                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group3']"
+                  footerClass="fh-table-footer" />
+                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group4']"
+                  footerClass="fh-table-footer" />
+                <Column :footer="strategyList[strategyIndex].regionParameters.infectionStatus[2]['group5']"
+                  footerClass="fh-table-footer" />
               </Row>
             </ColumnGroup>
 
           </DataTable>
           <div>
-        <Message severity="error"
-          v-if="!allGroupValid"
-          :closable="false">{{ propor0to100OutOfScopeMsg }}</Message>
-      </div>          
-          <p class="mt-6">Previously infected: People who have been previously infected with any strain of SARS-CoV-2 and are not fully susceptible.</p>
-          <p class="mt-6">Currently infected: People who are currently infected with SARS-CoV-2 (including asymptomatic, mild and hospitalized infections).</p>
+            <Message severity="error" v-if="!allGroupValid" :closable="false">{{ propor0to100OutOfScopeMsg }}</Message>
+          </div>
+          <p class="mt-6">Previously infected: People who have been previously infected with any strain of SARS-CoV-2 and
+            are not fully susceptible.</p>
+          <p class="mt-6">Currently infected: People who are currently infected with SARS-CoV-2 (including asymptomatic,
+            mild and hospitalized infections).</p>
           <p class="mt-6">Uninfected: People who have never been infected by SARS-CoV-2.</p>
-          <p class="mt-6">Note: If age-specific rates of pre-existing and current infections are not known, give overall rates.</p>
-          <p class="mt-6">Default previously infected (cumulative infection) rates reflect estimates as of November 2021, taken from this article: Barber, Ryan M et al . <em>Estimating global, regional, and national daily and cumulative infections with SARS-CoV-2 through Nov 14, 2021: a statistical analysis</em>. The Lancet (2022), <a href="https://doi.org/10.1016/S0140-6736(22)00484-6ß" target="_blank">https://doi.org/10.1016/S0140-6736(22)00484-6ß</a></p>
+          <p class="mt-6">Note: If age-specific rates of pre-existing and current infections are not known, give overall
+            rates.</p>
+          <p class="mt-6">Default previously infected (cumulative infection) rates reflect estimates as of November 2021,
+            taken from this article: Barber, Ryan M et al . <em>Estimating global, regional, and national daily and
+              cumulative infections with SARS-CoV-2 through Nov 14, 2021: a statistical analysis</em>. The Lancet (2022),
+            <a href="https://doi.org/10.1016/S0140-6736(22)00484-6ß"
+              target="_blank">https://doi.org/10.1016/S0140-6736(22)00484-6ß</a></p>
         </div>
       </div>
 
       <div>
         <div class="flex justify-content-center mt-4 mb-4">
-          <Button
-            label="Next"
-            class="p-button-lg fh-button-primary"
-            :disabled="!allGroupValid"
-            @click="onNextClick"
-          ></Button>
+          <Button label="Next" class="p-button-lg fh-button-primary" :disabled="!allGroupValid"
+            @click="onNextClick"></Button>
         </div>
         <Divider class="fh-divider-primary"></Divider>
         <Footer></Footer>
