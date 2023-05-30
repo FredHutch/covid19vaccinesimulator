@@ -157,7 +157,7 @@ const onPresetSelectionInputChange = (newValue) => {
             cases, hospitalizations, and deaths over the period of choice.
           </div>
         </Fieldset>
-        <Fieldset legend="Data/Parmeters">
+        <Fieldset legend="Data/Parameters">
           <div>
             In the following pages, you will be able to input region-specific
             data and parameters, including the percentage of the population
