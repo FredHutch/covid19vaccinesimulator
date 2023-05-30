@@ -78,7 +78,7 @@ let currentStrategy = strategyList.value[strategyIndex];
 
 
 strategiesStore.$subscribe((mutation, state) => {
-  console.log(`strategiesStore.$subscribe: state change - mutation: ${JSON.stringify(mutation, null, 2)}`);
+  console.log(`strategiesStore.$subscribe: state change`);
 
   if(mutation.events != undefined && (mutation.events.key == "rate" || mutation.events.key == "number")){
     updateSimulationParameters();

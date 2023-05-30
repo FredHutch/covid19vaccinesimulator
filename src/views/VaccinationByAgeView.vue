@@ -552,7 +552,7 @@ const basicOptions = {
         </h3>
         <h3>Primary series vs. Booster</h3>
         <div class="mt-4 text-2xl">
-          <strong>Primary seires: People who completed a primary series BUT have not had a booster yet</strong>.
+          <strong>* Primary series: People who completed a primary series BUT have not had a booster yet</strong>.
         </div>
         <br />
         <div class="grid">
