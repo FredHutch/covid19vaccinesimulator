@@ -37,9 +37,16 @@ const items = ref([
         label: "Social distancing",
         to: '/social-distancing'
         //icon: "pi pi-fw pi-trash",
+      },
+      {
+        key: "0_2",
+        label: "Infection prevalence",
+        to: '/infection-status',
+        //icon: "pi pi-fw pi-align-left",
       }
     ],
   },
+  /*
   {
     key: "1",
     label: "Infection",
@@ -54,6 +61,7 @@ const items = ref([
       }
     ],
   },
+  */
   {
     key: "2",
     label: "Vaccine",
