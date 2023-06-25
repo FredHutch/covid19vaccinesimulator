@@ -8,6 +8,17 @@ import Image from "primevue/image";
 import { devHistoryInfoList } from "../content/dev-history-info";
 import Timeline from 'primevue/timeline';
 
+import { systemName } from "../content/variable";
+import { useHead } from "@unhead/vue";
+useHead({
+  title: `Development History | ${systemName}`,
+  /*
+  meta: [
+    { name: 'description', content: 'Learn more about us.' },
+  ],
+  */
+})
+
 </script>
 
 <template>

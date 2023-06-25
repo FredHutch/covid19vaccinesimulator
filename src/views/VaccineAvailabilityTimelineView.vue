@@ -18,7 +18,6 @@ import ColumnGroup from "primevue/columngroup"; //optional for column grouping
 import Row from "primevue/row";
 import InputText from "primevue/inputtext";
 import InputNumber from "primevue/inputnumber";
-import { systemName } from "../content/variable";
 import Calendar from 'primevue/calendar';
 
 import { ref, computed, onMounted, reactive } from "vue";
@@ -90,7 +89,16 @@ strategiesStore.$subscribe((mutation, state) => {
 
 const router = useRouter();
 const route = useRoute();
-
+import { systemName } from "../content/variable";
+import { useHead } from "@unhead/vue";
+useHead({
+  title: `Vaccine Availability | ${systemName}`,
+  /*
+  meta: [
+    { name: 'description', content: 'Learn more about us.' },
+  ],
+  */
+});
 /*
 let groupIndex = ref(1);
 

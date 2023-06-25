@@ -8,7 +8,6 @@ import PrimeVue from 'primevue/config';
 
 import VueGtag from "vue-gtag";
 
-
 const app = createApp(App);
 //app.config.globalProperties.$systemName = 'Vaccine Allocator';
 

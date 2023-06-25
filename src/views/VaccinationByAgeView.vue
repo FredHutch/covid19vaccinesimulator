@@ -79,7 +79,16 @@ let vaccinationStatusByAgeGroup =
 
 const router = useRouter();
 const route = useRoute();
-
+import { systemName } from "../content/variable";
+import { useHead } from "@unhead/vue";
+useHead({
+  title: `Previously Vaccinated by Age | ${systemName}`,
+  /*
+  meta: [
+    { name: 'description', content: 'Learn more about us.' },
+  ],
+  */
+});
 /*
 let groupIndex = ref(1);
 

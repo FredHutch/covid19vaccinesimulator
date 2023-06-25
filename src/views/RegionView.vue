@@ -31,6 +31,17 @@ const { strategyList, selectedStrategyIndex, updateRegionParametersByStrategyInd
 let strategyIndex = selectedStrategyIndex.value;
 const route = useRoute();
 
+import { systemName } from "../content/variable";
+import { useHead } from "@unhead/vue";
+useHead({
+  title: `Region ${strategyList[strategyIndex] != undefined && strategyList[strategyIndex]["regionParameters"].region != undefined? ` - ${strategyList[strategyIndex]["regionParameters"].region.name}`: ""} | ${systemName}`,
+  /*
+  meta: [
+    { name: 'description', content: 'Learn more about us.' },
+  ],
+  */
+})
+
 /*
 if(route.query.strategy != undefined){
     strategyIndex = Number(route.query.strategy);
