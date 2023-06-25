@@ -12,7 +12,7 @@ from datetime import datetime
 
 # version 2
 import time
-from flask import Flask, request, jsonify, current_app, g as app_context
+from flask import Flask, request, jsonify, send_from_directory, current_app, g as app_context
 
 # from python_script import example 
 from python_script import example_finalModel as example
@@ -22,7 +22,9 @@ from datetime import datetime
 # app = Flask(__name__, static_folder='app', static_url_path="/")
 
 # integrated with front
-app = Flask(__name__, static_folder='dist', static_url_path="/")
+# app = Flask(__name__, static_folder='dist', static_url_path="/")
+
+app = Flask(__name__, static_folder=None)
 
 print(mimetypes.knownfiles)
 print(mimetypes.types_map['.js'])
@@ -114,8 +116,17 @@ def simulation():
     print("/simulation ends")
     return jsonify(result)
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def catch_all(path):
-    print("index.html")
-    return app.send_static_file("index.html")
+@app.route('/', defaults={'path': 'index.html'})
+@app.route("/<path:path>")
+def static_file(path):
+    return send_from_directory('dist', path)
+
+@app.errorhandler(404)
+def send_index(path):
+    return send_from_directory('dist', 'index.html')
+
+#@app.route('/', defaults={'path': ''})
+#@app.route('/<path:path>')
+#def catch_all(path):
+#    print("index.html")
+#    return app.send_static_file("index.html")
