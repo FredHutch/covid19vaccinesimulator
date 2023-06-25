@@ -33,7 +33,7 @@ const route = useRoute();
 import { systemName } from "../content/variable";
 import { useHead } from "@unhead/vue";
 useHead({
-  title: `Social distancing | ${systemName}`,
+  title: `Social Distancing | ${systemName}`,
   /*
   meta: [
     { name: 'description', content: 'Learn more about us.' },

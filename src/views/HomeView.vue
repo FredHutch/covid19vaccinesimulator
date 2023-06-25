@@ -37,7 +37,7 @@ const onStartClick = (event) => {
 
 import { useHead } from "@unhead/vue";
 useHead({
-  title: `Overview | ${systemName}`,
+  title: `${systemName}: a COVID-19 Vaccine Allocation Comparison Tool`,
   /*
   meta: [
     { name: 'description', content: 'Learn more about us.' },

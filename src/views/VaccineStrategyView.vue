@@ -147,6 +147,18 @@ function onInfectionStatusChange(event) {
 
 const router = useRouter();
 
+import { systemName } from "../content/variable";
+import { useHead } from "@unhead/vue";
+useHead({
+  title: `Vaccine Allocation Strategy | ${systemName}`,
+  /*
+  meta: [
+    { name: 'description', content: 'Learn more about us.' },
+  ],
+  */
+});
+
+
 function sleep(ms) {
   console.log(`sleep for ${ms}`);
   return new Promise((resolve) => setTimeout(resolve, ms));

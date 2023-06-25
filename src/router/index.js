@@ -6,10 +6,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
-      meta: {
-        title: 'Home',
-      }
+      component: HomeView
     },
     {
       path: '/about',
@@ -17,10 +14,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
-      meta: {
-        title: 'About',
-      }
+      component: () => import('../views/AboutView.vue')
     },
     {
       path: '/team',
@@ -28,10 +22,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/TeamView.vue'),
-      meta: {
-        title: 'Team',
-      }
+      component: () => import('../views/TeamView.vue')
     },
     {
       path: '/region',
@@ -39,10 +30,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/RegionView.vue'),
-      meta: {
-        title: 'Region',
-      }
+      component: () => import('../views/RegionView.vue')
     },
     {
       path: '/social-distancing',
@@ -50,10 +38,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/SocialDistancingView.vue'),
-      meta: {
-        title: 'Social distancing',
-      }
+      component: () => import('../views/SocialDistancingView.vue')
     },
     {
       path: '/infection-status',
@@ -61,10 +46,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/InfectionStatusView.vue'),
-      meta: {
-        title: 'Infection status',
-      }
+      component: () => import('../views/InfectionStatusView.vue')
     },
     {
       path: '/vaccine-selection',
@@ -72,10 +54,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/VaccineSelectionView.vue'),
-      meta: {
-        title: 'Vaccine options',
-      }
+      component: () => import('../views/VaccineSelectionView.vue')
     },
     {
       path: '/vaccine-check',
@@ -83,10 +62,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/VaccineCheckView.vue'),
-      meta: {
-        title: 'Vaccine situation',
-      }
+      component: () => import('../views/VaccineCheckView.vue')
     },
     {
       path: '/vaccination-by-age', //'/vaccination-by-age/:groupIndex?',
@@ -94,10 +70,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/VaccinationByAgeView.vue'),
-      meta: {
-        title: 'Previously vaccination',
-      }
+      component: () => import('../views/VaccinationByAgeView.vue')
     },
     {
       path: '/vaccination-efficacy-precheck', //'/vaccination-by-age/:groupIndex?',
@@ -105,10 +78,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/VaccineEfficacyPreCheckView.vue'),
-      meta: {
-        title: 'Vaccination situation',
-      }
+      component: () => import('../views/VaccineEfficacyPreCheckView.vue')
     },
     {
       path: '/vaccine-efficacy', //'/vaccination-by-age/:groupIndex?',
@@ -116,10 +86,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/VaccineEfficacyView.vue'),
-      meta: {
-        title: 'Vaccine effectiveness',
-      }
+      component: () => import('../views/VaccineEfficacyView.vue')
     },
     {
       path: '/vaccine-availability', //'/vaccination-by-age/:groupIndex?',
@@ -127,10 +94,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/VaccineAvailabilityTimelineView.vue'),
-      meta: {
-        title: 'Vaccine availability',
-      }
+      component: () => import('../views/VaccineAvailabilityTimelineView.vue')
     },
     {
       path: '/vaccine-plan-period', //'/vaccination-by-age/:groupIndex?',
@@ -138,10 +102,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/VaccinePlanPeriodView.vue'),
-      meta: {
-        title: 'Simulation period',
-      }
+      component: () => import('../views/VaccinePlanPeriodView.vue')
     },
     {
       path: '/vaccine-strategy', //'/vaccination-by-age/:groupIndex?',
@@ -149,10 +110,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/VaccineStrategyView.vue'),
-      meta: {
-        title: 'Vaccine strategy',
-      }
+      component: () => import('../views/VaccineStrategyView.vue')
     },
     {
       path: '/additional-parameters', //'/vaccination-by-age/:groupIndex?',
@@ -160,10 +118,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AdditionalParametersView.vue'),
-      meta: {
-        title: 'Additional parameters',
-      }
+      component: () => import('../views/AdditionalParametersView.vue')
     },
     {
       path: '/result', //'/vaccination-by-age/:groupIndex?',
@@ -171,10 +126,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/ResultView.vue'),
-      meta: {
-        title: 'Simulated outcome',
-      }
+      component: () => import('../views/ResultView.vue')
     },
     {
       path: '/reference',
@@ -182,10 +134,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/ReferenceView.vue'),
-      meta: {
-        title: 'References',
-      }
+      component: () => import('../views/ReferenceView.vue')
     },
     {
       path: '/disclaimer',
@@ -193,10 +142,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/DisclaimerView.vue'),
-      meta: {
-        title: 'Disclaimer',
-      }
+      component: () => import('../views/DisclaimerView.vue')
     },
     {
       path: '/dev-history',
@@ -204,10 +150,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/DevHistoryView.vue'),
-      meta: {
-        title: 'Development history',
-      }
+      component: () => import('../views/DevHistoryView.vue')
     }
   ]
 })

@@ -6,6 +6,17 @@ import Footer from "../components/Footer.vue";
 import Header from "../components/Header.vue";
 import Image from "primevue/image";
 import { teamInfoList } from "../content/team-info";
+
+import { systemName } from "../content/variable";
+import { useHead } from "@unhead/vue";
+useHead({
+  title: `Research Team | ${systemName}`,
+  meta: [
+    { name: 'description', content: `${teamInfoList.map((aInfo) => {return aInfo.label;}).join(", ")}` },
+  ]
+});
+
+
 </script>
 
 <template>
