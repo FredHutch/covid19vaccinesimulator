@@ -1,0 +1,16 @@
+https://covid19vaxplorer.fredhutch.org/
+https://covid19vaxplorer.fredhutch.org/region
+https://covid19vaxplorer.fredhutch.org/social-distancing
+https://covid19vaxplorer.fredhutch.org/infection-status
+https://covid19vaxplorer.fredhutch.org/vaccine-selection
+https://covid19vaxplorer.fredhutch.org/vaccination-by-age
+https://covid19vaxplorer.fredhutch.org/vaccine-efficacy
+https://covid19vaxplorer.fredhutch.org/vaccine-availability
+https://covid19vaxplorer.fredhutch.org/vaccine-strategy
+https://covid19vaxplorer.fredhutch.org/vaccine-plan-period
+https://covid19vaxplorer.fredhutch.org/additional-parameters
+https://covid19vaxplorer.fredhutch.org/result
+https://covid19vaxplorer.fredhutch.org/team
+https://covid19vaxplorer.fredhutch.org/reference
+https://covid19vaxplorer.fredhutch.org/dev-history
+https://covid19vaxplorer.fredhutch.org/disclaimer
