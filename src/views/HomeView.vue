@@ -15,6 +15,9 @@ import { storeToRefs } from "pinia";
 import { useStrategiesStore } from "../stores/strategies";
 import { useToast } from "primevue/usetoast";
 
+
+
+
 const strategiesStore = useStrategiesStore();
 const {
   usePresetStrategyList,
@@ -31,6 +34,17 @@ const router = useRouter();
 const onStartClick = (event) => {
   router.push("/region");
 };
+
+import { useHead } from "@unhead/vue";
+useHead({
+  title: `${systemName}: a COVID-19 Vaccine Allocation Comparison Tool`,
+  /*
+  meta: [
+    { name: 'description', content: 'Learn more about us.' },
+  ],
+  */
+})
+
 
 // @click="onPresetSelectionClick"
 /*
@@ -54,11 +68,9 @@ strategiesStore.resetStrategyList();
 
 const onPresetSelectionButtonChange = (event) => {
   console.log(
-    `onPresetSelectionButtonChange: selection ${JSON.stringify(
-      event.value
-    )}`
+    `onPresetSelectionButtonChange: selection ${JSON.stringify(event.value)}`
   );
-  
+
   /*
   console.log(
     `onPresetSelectionButtonChange: selection ${JSON.stringify(
@@ -112,16 +124,18 @@ const onPresetSelectionButtonChange = (event) => {
 strategiesStore.$subscribe((mutation, state) => {
   console.log(`strategiesStore.$subscribe: state change`);
 
-  if(mutation.events != undefined && (mutation.events.key == "rate" || mutation.events.key == "number")){
+  if (
+    mutation.events != undefined &&
+    (mutation.events.key == "rate" || mutation.events.key == "number")
+  ) {
     updateSimulationParameters();
   }
-
-})
+});
 
 const updateSimulationParameters = () => {
   console.log(`updateSimulationParameters`);
   strategiesStore.updateSimulationParametersByStrategyIndex(0);
-}
+};
 
 const onPresetSelectionInputChange = (newValue) => {
   console.log(`onPresetSelectionInputChange: checked ${newValue}`);
@@ -152,7 +166,9 @@ const onPresetSelectionInputChange = (newValue) => {
   <div class="grid">
     <div class="col-2"></div>
     <div class="col">
-      <h1 class="text-7xl text-center">{{ systemName }}: a COVID-19 Vaccine Allocation Comparison Tool</h1>
+      <h1 class="text-7xl text-center">
+        {{ systemName }}: a COVID-19 Vaccine Allocation Comparison Tool
+      </h1>
       <div>
         <Fieldset legend="Purpose">
           <div>

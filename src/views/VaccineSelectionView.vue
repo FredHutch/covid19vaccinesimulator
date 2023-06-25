@@ -33,6 +33,16 @@ const { strategyList, selectedStrategyIndex } = storeToRefs(strategiesStore);
 
 let strategyIndex = selectedStrategyIndex.value;
 const route = useRoute();
+import { systemName } from "../content/variable";
+import { useHead } from "@unhead/vue";
+useHead({
+  title: `Vaccine Options | ${systemName}`,
+  /*
+  meta: [
+    { name: 'description', content: 'Learn more about us.' },
+  ],
+  */
+});
 
 /*
 if(route.query.strategy != undefined){

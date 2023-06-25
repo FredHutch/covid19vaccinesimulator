@@ -54,7 +54,16 @@ let needsLongerPeriodMsg = "Too few days for the simulation. Please lengthen the
 const router = useRouter();
 const route = useRoute();
 
-
+import { systemName } from "../content/variable";
+import { useHead } from "@unhead/vue";
+useHead({
+  title: `Period for Simulation | ${systemName}`,
+  /*
+  meta: [
+    { name: 'description', content: 'Learn more about us.' },
+  ],
+  */
+});
 
 
 const onNextClick = (event) => {

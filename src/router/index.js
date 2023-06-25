@@ -155,4 +155,19 @@ const router = createRouter({
   ]
 })
 
+/*
+router.beforeEach((to, from, next) => {
+  //document.title = to.meta != undefined && to.meta.title != undefined? to.meta.title: 'Default Title'
+  
+  const titleFromParams = to.params?.pageTitle
+
+  if (titleFromParams) {
+    document.title = `${titleFromParams} - ${document.title}`
+  } else {
+    document.title = to.meta?.title ?? 'Default Title'
+  }
+  
+})
+*/
+
 export default router

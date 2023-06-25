@@ -104,6 +104,17 @@ let vaccineInfo = computed(() => {
   }
 });
 
+import { systemName } from "../content/variable";
+import { useHead } from "@unhead/vue";
+useHead({
+  title: `Vaccine Effectiveness ${vaccineInfo != undefined && vaccineInfo.name != undefined ? `for ${vaccineInfo.name}` : ""} | ${systemName}`,
+  /*
+  meta: [
+    { name: 'description', content: 'Learn more about us.' },
+  ],
+  */
+});
+
 //console.log(`vaccineInfo: ${JSON.stringify(vaccineInfo.value)}`);
 
 let vaccineEfficacyData = computed(() => {

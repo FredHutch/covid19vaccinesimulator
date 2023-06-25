@@ -7,6 +7,17 @@ import Header from "../components/Header.vue";
 import Image from "primevue/image";
 import { teamInfoList } from "../content/team-info";
 import { referenceInfoList } from "../content/reference-info";
+
+import { systemName } from "../content/variable";
+import { useHead } from "@unhead/vue";
+useHead({
+  title: `References | ${systemName}`,
+  /*
+  meta: [
+    { name: 'description', content: 'Learn more about us.' },
+  ],
+  */
+});
 </script>
 
 <template>

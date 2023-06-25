@@ -78,6 +78,19 @@ const simulatedOutcome = ref({
 });
 
 const router = useRouter();
+
+import { systemName } from "../content/variable";
+import { useHead } from "@unhead/vue";
+useHead({
+  title: `Simulated Outcome | ${systemName}`,
+  /*
+  meta: [
+    { name: 'description', content: 'Learn more about us.' },
+  ],
+  */
+});
+
+
 const onNextClick = (event) => {
   router.push("/vaccine-selection");
 };
