@@ -788,8 +788,7 @@ const ageGroupParameters = computed(() => {
           </div>
           <div class="grid">
             <div class="col">
-              Mean duration of immunity after SARS-CoV-2 infection (first
-              phase):
+              Mean duration of immunity after SARS-CoV-2 first infection:
             </div>
 
             <div class="col">
@@ -806,8 +805,7 @@ const ageGroupParameters = computed(() => {
           </div>
           <div class="grid">
             <div class="col">
-              Mean duration of immunity after SARS-CoV-2 infection (second
-              phase):
+              Mean duration of immunity after SARS-CoV-2 infection for those partially protected:
             </div>
 
             <div class="col">
