@@ -1,4 +1,8 @@
-# vaccine-allocator-front
+# Covid19Vaxplorer
+
+The development of this tool, including its model, is described in the following article:
+
+Trejo I, Hung P-Y, Matrajt L (2024) Covid19Vaxplorer: A free, online, user-friendly COVID-19 vaccine allocation comparison tool. PLOS Glob Public Health 4(1): e0002136. https://doi.org/10.1371/journal.pgph.0002136
 
 ## Frontend
 
