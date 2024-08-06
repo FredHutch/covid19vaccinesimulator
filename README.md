@@ -77,21 +77,23 @@ By default, the "yarn build" command above will generate html, css, javascript f
 
 ## Install dependency
 
-Option 1 (recommended): follow the official installation instructions: https://flask.palletsprojects.com/en/2.2.x/installation/
-
-
-Option 2: inside the projet folder, run the following command
+Step 1: Install Flask
+- Option 1: (recommended): follow the official installation instructions: https://flask.palletsprojects.com/en/2.2.x/installation/
+- Option 2: inside the projet folder, run the following command
 
 ```
 # if only Flask is not installed
 
 pip install Flask
 
+```
+
+Step 2: Install additional packages
+
+```
+# Inside the projet folder, run the following command
 
 # if all packages (i.e., numpy, scipy, matplotlib, Flask) are not installed
-
-# option 1
-
 
 # windows
 pip install numpy scipy pandas Flask
