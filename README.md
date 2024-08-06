@@ -92,8 +92,9 @@ Step 2: Install additional packages
 
 ```
 # Inside the projet folder, run the following command
-
 # if all packages (i.e., numpy, scipy, matplotlib, Flask) are not installed
+
+# option 1
 
 # windows
 pip install numpy scipy pandas Flask
